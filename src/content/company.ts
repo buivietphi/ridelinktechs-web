@@ -28,7 +28,7 @@ export const company: CompanyProfile = {
     vi: 'Công ty phần mềm độc lập, làm tại Đà Nẵng.',
     en: 'An independent software company, based in Da Nang.',
   },
-  email: 'support@ridelinktechs.com',
+  email: 'contact@ridelinktechs.com',
   phoneDisplay: '0967329308',
   phoneHref: '+84967329308',
   address: {
