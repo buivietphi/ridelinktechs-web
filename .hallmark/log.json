@@ -1,0 +1,35 @@
+[
+  {
+    "date": "2026-09-28",
+    "macrostructure": "Workbench",
+    "theme": "custom",
+    "theme_axes": "dark / neo-grotesque / brand blue",
+    "vibe": "real product UI as the evidence",
+    "enrichment": "real device frames around real captures",
+    "nav": "N1b",
+    "footer": "Ft1 Mast-headed",
+    "brief": "ridelinks-techs-web · 7th pivot · real UI screenshots unblock the product-forward layout"
+  },
+  {
+    "date": "2026-09-28",
+    "macrostructure": "Split Studio",
+    "theme": "custom",
+    "theme_axes": "light / neo-grotesque / cool violet-blue",
+    "vibe": "logo-forward, calm, professional",
+    "enrichment": "the brand mark as the hero object (Tier A)",
+    "nav": "N1b",
+    "footer": "Ft1 Mast-headed",
+    "brief": "ridelinks-techs-web · 6th pivot · Be Vietnam Pro, bigger logo, restrained buttons, rewritten copy, no code comments"
+  },
+  {
+    "date": "2026-09-27",
+    "macrostructure": "Marquee Hero",
+    "theme": "custom",
+    "theme_axes": "dark / geometric-condensed / cool violet-blue",
+    "vibe": "luminous dispatch, after hours",
+    "enrichment": "E-tier built canvas + GSAP pinned rail",
+    "nav": "N5 Floating pill",
+    "footer": "Ft5 Statement",
+    "brief": "ridelinks-techs-web · 5th pivot, brand-derived"
+  }
+]

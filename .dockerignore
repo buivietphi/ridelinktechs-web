@@ -1,0 +1,31 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Next.js
+.next/
+out/
+build/
+*.tsbuildinfo
+next-env.d.ts
+
+# Misc
+.DS_Store
+*.pem
+.vscode
+.idea
+*.log
+
+# Local env files
+.env*.local
+
+# Source maps (large, not needed in container)
+*.map
+
+# Tests
+test-results/
+playwright-report/
+
+# Large asset sources (not needed at runtime)
+logo/

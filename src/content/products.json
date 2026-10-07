@@ -1,0 +1,229 @@
+[
+  {
+    "slug": "ridelink-go",
+    "name": {
+      "vi": "Ridelink Go",
+      "en": "Ridelink Go"
+    },
+    "tagline": {
+      "vi": "Gọi xe và vận chuyển theo thời gian thực — bắt đầu từ Đà Nẵng.",
+      "en": "Real-time ride-hailing and delivery, starting in Da Nang."
+    },
+    "description": {
+      "vi": "Ridelink Go là sản phẩm chủ lực của chúng tôi — một ứng dụng mobile kết nối hành khách với tài xế trong khu vực Đà Nẵng và các thành phố lân cận. Hệ thống xử lý ghép nối theo thời gian thực, theo dõi chuyến đi trực tiếp trên bản đồ, và thanh toán không tiền mặt qua ví nội bộ. Đang trong quá trình hoàn thiện với phiên bản beta giới hạn dự kiến ra mắt trong năm tới.",
+      "en": "Ridelink Go is our flagship product — a mobile app that connects riders with drivers across Da Nang and nearby cities. Real-time matching, live trip tracking on the map, and cashless payment through an in-app wallet. Currently in active development with a limited beta planned for the next year."
+    },
+    "category": "prod",
+    "status": "in-development",
+    "timeline": [
+      {
+        "label": {
+          "vi": "Ý tưởng",
+          "en": "Idea"
+        },
+        "date": "2024-08"
+      },
+      {
+        "label": {
+          "vi": "Bắt đầu phát triển",
+          "en": "Dev start"
+        },
+        "date": "2025-08"
+      }
+    ],
+    "targetUser": {
+      "vi": "Hành khách và tài xế tại Đà Nẵng muốn một lựa chọn gọi xe minh bạch và đáng tin cậy hơn.",
+      "en": "Riders and drivers in Da Nang who want a more transparent and reliable ride-hailing option."
+    },
+    "problem": {
+      "vi": "Các nền tảng hiện tại thiếu sự minh bạch về giá và thời gian đón, đặc biệt vào giờ cao điểm và ngày mưa.",
+      "en": "Existing platforms lack transparency around pricing and pickup times, especially at peak hours and rainy days."
+    },
+    "image": "/products/ridelink-go.jpg",
+    "shot": "brand",
+    "platform": "mobile",
+    "features": {
+      "vi": [
+        "Ghép nối tài xế theo thời gian thực",
+        "Theo dõi chuyến đi trực tiếp trên bản đồ",
+        "Thanh toán không tiền mặt trong ứng dụng",
+        "Giá hiển thị trước khi đặt"
+      ],
+      "en": [
+        "Real-time driver matching",
+        "Live trip tracking on a map",
+        "Cashless payment in the app",
+        "Fare shown before you book"
+      ]
+    }
+  },
+  {
+    "slug": "glosslink-beautiful",
+    "name": {
+      "vi": "GlossLink Beautiful",
+      "en": "GlossLink Beautiful"
+    },
+    "tagline": {
+      "vi": "Đặt lịch salon và chăm sóc sắc đẹp — không còn trùng lịch.",
+      "en": "Salon and beauty-care booking — no more double bookings."
+    },
+    "description": {
+      "vi": "GlossLink Beautiful kết nối khách hàng với các salon và thợ làm đẹp độc lập. Đặt lịch trực tiếp, theo dõi lịch sử dịch vụ, thanh toán tích hợp và hệ thống đánh giá — tất cả trong một ứng dụng duy nhất. Hiện đang trong giai đoạn thiết kế UX; phiên bản đầu tiên dự kiến ra mắt giữa năm 2026.",
+      "en": "GlossLink Beautiful connects customers with independent salons and beauticians. Direct booking, service history, integrated payments, and reviews — all in one app. Currently in UX design; the first release is targeted for mid-2026."
+    },
+    "category": "prod",
+    "status": "upcoming",
+    "timeline": [
+      {
+        "label": {
+          "vi": "Ý tưởng",
+          "en": "Idea"
+        },
+        "date": "2025-04"
+      },
+      {
+        "label": {
+          "vi": "Bắt đầu phát triển",
+          "en": "Dev start"
+        },
+        "date": "2026-06"
+      }
+    ],
+    "targetUser": {
+      "vi": "Khách hàng và chủ salon tại Việt Nam muốn quản lý lịch hẹn và thanh toán dễ dàng hơn.",
+      "en": "Customers and salon owners across Vietnam who want easier scheduling and payment."
+    },
+    "problem": {
+      "vi": "Salon độc lập thiếu công cụ quản lý lịch hẹn và thường xuyên mất khách do quên hoặc trùng lịch.",
+      "en": "Independent salons lack scheduling tools and frequently lose customers to forgotten or double-booked appointments."
+    },
+    "image": "/products/glosslink-beautiful.jpg",
+    "shot": "ui",
+    "platform": "mobile",
+    "screens": [
+      "/products/screens/glosslink-01-home.jpg",
+      "/products/screens/glosslink-02-search.jpg",
+      "/products/screens/glosslink-03-appointment.jpg",
+      "/products/screens/glosslink-04-booking.jpg"
+    ],
+    "features": {
+      "vi": [
+        "Tìm salon gần bạn theo vị trí",
+        "Đặt lịch theo ngày và giờ",
+        "Quản lý và hủy lịch hẹn",
+        "Duyệt dịch vụ theo danh mục phổ biến",
+        "Nhận ưu đãi qua mã giảm giá"
+      ],
+      "en": [
+        "Find salons near you by location",
+        "Book by date and time",
+        "Manage and cancel appointments",
+        "Browse services by popular category",
+        "Redeem promo codes"
+      ]
+    }
+  },
+  {
+    "slug": "pawly",
+    "name": {
+      "vi": "Pawly",
+      "en": "Pawly"
+    },
+    "tagline": {
+      "vi": "Mạng xã hội và dịch vụ chăm sóc thú cưng — mọi thứ ở một nơi.",
+      "en": "Pet social and care network — everything in one home."
+    },
+    "description": {
+      "vi": "Pawly kết hợp mạng xã hội cho chủ thú cưng với các dịch vụ đi kèm — tìm bạn đời cho thú cưng, đặt dịch vụ chăm sóc, theo dõi sức khỏe và chia sẻ hành trình nuôi dưỡng. Đang ở giai đoạn hoàn thiện ý tưởng; dự kiến bắt đầu phát triển giữa năm 2026.",
+      "en": "Pawly combines a pet-owner social network with care services — finding companions for pets, booking care, health tracking, and sharing the ownership journey. Idea stage through end of 2025, with development starting mid-2026."
+    },
+    "category": "prod",
+    "status": "upcoming",
+    "timeline": [
+      {
+        "label": {
+          "vi": "Ý tưởng",
+          "en": "Idea"
+        },
+        "date": "2025-12"
+      },
+      {
+        "label": {
+          "vi": "Bắt đầu phát triển",
+          "en": "Dev start"
+        },
+        "date": "2026-07"
+      }
+    ],
+    "targetUser": {
+      "vi": "Chủ thú cưng tại Việt Nam muốn kết nối với cộng đồng và dễ dàng đặt dịch vụ chăm sóc.",
+      "en": "Pet owners across Vietnam who want community connection and easy access to care services."
+    },
+    "problem": {
+      "vi": "Các ứng dụng hiện có phục vụ thú cưng theo từng nhu cầu riêng lẻ (bác sĩ thú y, khách sạn, cộng đồng) nhưng thiếu một điểm đến thống nhất cho mọi thứ.",
+      "en": "Existing apps serve individual pet needs (vet, hotel, community) but lack one unified home for everything."
+    },
+    "image": "/products/pawly.jpg",
+    "shot": "ui",
+    "platform": "mobile",
+    "screens": ["/products/screens/pawly-01-home.jpg"],
+    "features": {
+      "vi": [
+        "Hồ sơ riêng cho từng thú cưng",
+        "Nhắc lịch tiêm vaccine",
+        "Nhật ký tắm, tấm, uống thuốc",
+        "Cân nặng gần nhất",
+        "Nhắc lịch khám định kỳ"
+      ],
+      "en": [
+        "A profile for each pet",
+        "Vaccination reminders",
+        "A log for walks, baths and medication",
+        "Latest weight",
+        "Vet appointment reminders"
+      ]
+    }
+  },
+  {
+    "slug": "vibeholic",
+    "name": {
+      "vi": "VibeHolic",
+      "en": "VibeHolic"
+    },
+    "tagline": {
+      "vi": "Dự án web đã bàn giao cho khách hàng. Chi tiết giữ kín theo NDA.",
+      "en": "Delivered web project for a client. Details withheld under NDA."
+    },
+    "description": {
+      "vi": "VibeHolic là dự án web chúng tôi xây và đã bàn giao cho một khách hàng hoạt động trong ngành marketing. Phạm vi công việc, kiến trúc hệ thống và tên khách hàng không được công khai theo thỏa thuận bảo mật hai chiều.",
+      "en": "VibeHolic is a web project we built and delivered to a client working in marketing. The scope of work, the system architecture, and the client’s name are not public under a mutual NDA."
+    },
+    "category": "outsource",
+    "status": "shipped",
+    "timeline": [],
+    "clientName": "withheld",
+    "image": "/products/vibeholic.jpg",
+    "shot": "ui",
+    "demoUrl": "https://vibeholic.media/",
+    "platform": "web",
+    "screens": [
+      "/products/screens/vibeholic-01-home.jpg",
+      "/products/screens/vibeholic-02.jpg",
+      "/products/screens/vibeholic-03.jpg"
+    ],
+    "features": {
+      "vi": [
+        "Đại diện tài năng",
+        "Đặt chỗ quảng cáo",
+        "Sản xuất media",
+        "Mạng xã hội chia sẻ Creator"
+      ],
+      "en": [
+        "Talent representation",
+        "Advertising placement",
+        "Media production",
+        "A social network for creators"
+      ]
+    }
+  }
+]

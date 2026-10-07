@@ -1,0 +1,8 @@
+.next
+node_modules
+.impeccable
+pnpm-lock.yaml
+package-lock.json
+_claude
+_screenshots
+.DS_Store

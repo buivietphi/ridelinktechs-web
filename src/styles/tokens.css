@@ -1,0 +1,133 @@
+:root {
+  --ground: #13110d;
+  --ground-raise: #1c1a15;
+  --ground-sink: #0c0b08;
+  --ground-lift: #262319;
+
+  --ink: #f0ede6;
+  --ink-soft: rgba(240, 237, 230, 0.7);
+  --ink-faint: rgba(240, 237, 230, 0.48);
+  --ink-ghost: rgba(240, 237, 230, 0.12);
+  --ink-on-signal: #100e0a;
+
+  --rule: rgba(240, 237, 230, 0.12);
+  --rule-2: rgba(240, 237, 230, 0.05);
+
+  --signal: #6f8dff;
+  --signal-deep: #2f5bd8;
+  --signal-bright: #93abff;
+  --signal-violet: #9b6df0;
+  --signal-cyan: #3fb8d8;
+  --signal-soft: rgba(111, 141, 255, 0.14);
+
+  --ok: #4c7cf0;
+  --hold: #4c7cf0;
+  --warn: #e0705c;
+  --quiet: rgba(240, 237, 230, 0.34);
+
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.5), 0 6px 18px -8px rgba(0, 0, 0, 0.6);
+  --shadow-2: 0 2px 6px rgba(0, 0, 0, 0.5), 0 20px 50px -20px rgba(0, 0, 0, 0.75);
+  --shadow-lift: 0 2px 6px rgba(0, 0, 0, 0.55), 0 14px 34px -14px rgba(0, 0, 0, 0.8);
+  --shadow-device: 0 34px 74px -32px rgba(0, 0, 0, 0.92), 0 4px 14px -6px rgba(0, 0, 0, 0.7);
+  --surface-tint: linear-gradient(
+    170deg,
+    rgba(255, 255, 255, 0.045) 0%,
+    rgba(255, 255, 255, 0) 55%
+  );
+
+  --font-display:
+    var(--font-display-loaded), 'Be Vietnam Pro', ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-body-loaded), 'Be Vietnam Pro', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono-loaded), 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+
+  --text-11: 0.6875rem;
+  --text-13: 0.8125rem;
+  --text-16: 1rem;
+  --text-20: 1.25rem;
+  --text-28: 1.75rem;
+  --text-44: 2.75rem;
+  --text-64: 4rem;
+  --text-96: 6rem;
+
+  --tracking-display: -0.03em;
+  --tracking-heading: -0.02em;
+  --tracking-mid: -0.012em;
+  --tracking-body: 0;
+  --tracking-micro: 0.14em;
+
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --s-9: 6rem;
+  --s-10: 8rem;
+  --s-11: 10rem;
+
+  --page-gutter: 1.25rem;
+  --page-max: 1440px;
+
+  --ease-out-quint: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-snap: cubic-bezier(0.34, 1.32, 0.64, 1);
+
+  --dur-tap: 180ms;
+  --dur-fast: 320ms;
+  --dur-base: 560ms;
+  --dur-slow: 900ms;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 16px;
+  --radius-field: 6px;
+  --radius-pill: 999px;
+
+  --selection-bg: rgba(111, 141, 255, 0.3);
+  --selection-fg: var(--ink);
+}
+
+.light {
+  --ground: #f0eee8;
+  --ground-raise: #e5e2da;
+  --ground-sink: #f7f6f2;
+  --ground-lift: #d9d5cb;
+
+  --ink: #14120e;
+  --ink-soft: rgba(20, 18, 14, 0.7);
+  --ink-faint: rgba(20, 18, 14, 0.5);
+  --ink-ghost: rgba(20, 18, 14, 0.14);
+  --ink-on-signal: #f7f8fb;
+
+  --rule: rgba(20, 18, 14, 0.14);
+  --rule-2: rgba(20, 18, 14, 0.07);
+
+  --signal: #2a44c4;
+  --signal-deep: #1a2f94;
+  --signal-bright: #244ec2;
+  --signal-violet: #7a4fd8;
+  --signal-cyan: #0d6f92;
+  --signal-soft: rgba(47, 91, 216, 0.1);
+
+  --ok: #2f5bd8;
+  --hold: #2f5bd8;
+  --warn: #a3341f;
+  --quiet: rgba(20, 18, 14, 0.36);
+
+  --shadow-1: 0 1px 2px rgba(14, 16, 22, 0.08), 0 6px 18px -8px rgba(14, 16, 22, 0.18);
+  --shadow-2: 0 2px 6px rgba(14, 16, 22, 0.1), 0 20px 50px -20px rgba(14, 16, 22, 0.3);
+  --shadow-lift: 0 2px 6px rgba(14, 16, 22, 0.12), 0 14px 34px -14px rgba(14, 16, 22, 0.32);
+  --shadow-device: 0 26px 62px -30px rgba(14, 16, 22, 0.45), 0 3px 10px -5px rgba(14, 16, 22, 0.2);
+  --surface-tint: linear-gradient(170deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 55%);
+
+  --selection-bg: rgba(42, 68, 196, 0.2);
+  --selection-fg: var(--ink);
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-fg);
+}

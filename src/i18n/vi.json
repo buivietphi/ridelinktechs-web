@@ -1,0 +1,220 @@
+{
+  "_comment": "Keys (vi) — order locked, parity with en.json required.",
+  "nav": {
+    "home": "Trang chủ",
+    "products": "Sản phẩm",
+    "about": "Về chúng tôi",
+    "contact": "Liên hệ",
+    "skip": "Bỏ qua đến nội dung",
+    "brief": {
+      "label": "Bắt đầu brief"
+    },
+    "openMenu": "Mở menu",
+    "closeMenu": "Đóng menu",
+    "menuAll": "Tất cả những gì chúng tôi đã làm"
+  },
+  "home": {
+    "eyebrow": "Đà Nẵng, Việt Nam — thành lập 2026",
+    "lede": "Bốn sản phẩm do chúng tôi tự xây, và VibeHolic — dự án web đã bàn giao cho khách hàng ngành marketing. Dưới đây là giao diện thật của từng sản phẩm.",
+    "ctaPrimary": "Xem sản phẩm",
+    "ctaSecondary": "Gửi brief",
+    "ledger": "Năm mục trong danh mục. Chấm đặc là đã bàn giao, vòng rỗng là đang phát triển, chấm nhỏ là sắp ra mắt.",
+    "catalogue": {
+      "title": "Danh mục",
+      "heading": "Năm thứ chúng tôi thực sự đã làm.",
+      "lede": "Đây là những gì chúng tôi đã làm, không phải ảnh minh hoạ.",
+      "cta": "Mở toàn bộ danh mục",
+      "client": "Dự án khách hàng"
+    },
+    "shotTip": {
+      "ui": "Ảnh chụp màn hình ứng dụng thật, chụp từ bản đang chạy.",
+      "brand": "Ứng dụng chưa build được nên chúng tôi để brand mark thay cho ảnh chụp.",
+      "photo": "Ảnh minh hoạ. Sản phẩm này chưa có giao diện để chụp."
+    },
+    "stack": {
+      "hint": "Cuộn xuống để đi lần lượt qua từng sản phẩm."
+    },
+    "practice": {
+      "title": "Cách chúng tôi làm việc",
+      "heading": "Bốn nguyên tắc không đánh đổi.",
+      "lede": "Chúng tôi đề cao chất lượng kỹ thuật, tính minh bạch và giá trị thực tiễn, lấy khả năng phát triển bền vững làm định hướng cho mọi sản phẩm và dự án.",
+      "cta": "Về chúng tôi"
+    },
+    "contact": {
+      "title": "Liên hệ",
+      "heading": "Kể chúng tôi nghe bạn đang làm.",
+      "lede": "Gửi cho chúng tôi vài dòng về dự án của bạn. Chúng tôi đọc và trả lời trong một ngày làm việc, thường kèm một vài câu hỏi và đề xuất cụ thể để bàn tiếp.",
+      "cta": "Gửi brief"
+    },
+    "shot": {
+      "ui": "Ảnh chụp giao diện thật",
+      "brand": "Brand mark — ứng dụng đang phát triển",
+      "photo": "Ảnh minh hoạ"
+    },
+    "bench": {
+      "open": "Mở chi tiết",
+      "demo": "Xem bản chạy thật"
+    },
+    "place": "Đà Nẵng, Việt Nam",
+    "brandName": "RideLink Techs",
+    "titleLines": ["Phần mềm làm", "ở Việt Nam."],
+    "hero": {
+      "eyebrow": "Công ty phần mềm độc lập · Đà Nẵng",
+      "titleLines": ["Tự xây.", "Tự chạy.", "Bàn giao thật."],
+      "lede": "Chúng tôi tập trung phát triển các sản phẩm công nghệ của riêng mình, đồng thời tìm kiếm nhà đầu tư và đối tác để cùng phát triển, mở rộng sản phẩm.\n\nBên cạnh đó, chúng tôi cũng nhận các dự án phát triển phần mềm theo yêu cầu, hợp tác cùng khách hàng để xây dựng và triển khai những giải pháp phù hợp với nhu cầu thực tế.",
+      "ctaPrimary": "Xem sản phẩm",
+      "ctaSecondary": "Gửi brief",
+      "cue": "Kéo xuống"
+    },
+    "facts": {
+      "products": "sản phẩm trong danh mục",
+      "inHouse": "sản phẩm chúng tôi tự xây",
+      "shipped": "dự án đã bàn giao cho khách hàng"
+    }
+  },
+  "products": {
+    "eyebrow": "Danh mục",
+    "title": "Những gì chúng tôi đang xây.",
+    "subtitle": "Bốn sản phẩm chúng tôi tự xây, và một dự án đã bàn giao cho khách hàng. Mỗi mục ghi rõ trạng thái thật, kể cả khi sản phẩm chưa sẵn sàng.",
+    "readMore": "Mở",
+    "category": {
+      "internal": "Sản phẩm nội bộ",
+      "outsource": "Dự án khách hàng"
+    },
+    "nda": "Đã bàn giao",
+    "filter": {
+      "label": "Lọc danh mục",
+      "all": "Tất cả",
+      "prod": "Sản phẩm nội bộ",
+      "outsource": "Dự án khách hàng"
+    },
+    "footnote": "Các ảnh minh hoạ lấy từ Unsplash và không phải ảnh chụp màn hình sản phẩm. Mọi trạng thái đều được ghi đúng như hiện tại thực tế.",
+    "demo": "Xem bản chạy thật"
+  },
+  "productDetail": {
+    "back": "Về danh mục",
+    "problem": "Vấn đề",
+    "targetUser": "Đối tượng",
+    "description": "Mô tả",
+    "status": "Trạng thái",
+    "category": "Danh mục",
+    "timeline": "Mốc phát triển",
+    "timelineEmpty": "Không công khai.",
+    "categoryInHouse": "Sản phẩm nội bộ",
+    "categoryOutsource": "Dự án khách hàng",
+    "open": "Tiếp theo",
+    "openBrief": "Gửi brief",
+    "allProductsCta": "Về toàn bộ danh mục",
+    "photo": "Ảnh minh hoạ, không phải ảnh chụp màn hình sản phẩm.",
+    "visualConcept": "Ảnh minh hoạ",
+    "demo": "Mở bản chạy thật",
+    "shot": {
+      "ui": "Ảnh chụp giao diện thật của ứng dụng.",
+      "brand": "Brand mark chính thức. Ứng dụng đang phát triển.",
+      "photo": "Ảnh minh hoạ, không phải ảnh chụp màn hình sản phẩm."
+    },
+    "features": "Tính năng",
+    "screens": "Các màn hình trong sản phẩm"
+  },
+  "product": {
+    "caption": {
+      "ridelink-go": "Ảnh minh hoạ — phố Đà Nẵng ban đêm (Unsplash). Sản phẩm đang phát triển, chưa có ảnh chụp thật.",
+      "glosslink-beautiful": "Ảnh minh hoạ — không gian salon (Unsplash). Sản phẩm đang thiết kế UX, chưa có ảnh chụp thật.",
+      "pawly": "Ảnh minh hoạ — dắt chó ngoài trời (Unsplash). Sản phẩm đang ở giai đoạn ý tưởng.",
+      "vibeholic": "Ảnh minh hoạ — hình khối kiến trúc (Unsplash). Tên khách hàng và phạm vi dự án được giữ kín theo thỏa thuận NDA."
+    }
+  },
+  "common": {
+    "visualConcept": "Ảnh minh hoạ",
+    "notFound": "Không tìm thấy trang",
+    "notFoundHint": "Đường dẫn này không tồn tại hoặc đã được chuyển đi. Mở danh mục sản phẩm, hoặc gửi cho chúng tôi một brief.",
+    "notFoundReturn": "Về trang chủ",
+    "notFoundBriefs": "Gửi brief",
+    "send": "Gửi",
+    "loading": "Đang tải"
+  },
+  "about": {
+    "eyebrow": "Về chúng tôi",
+    "dateline": "Đà Nẵng, Việt Nam",
+    "storyHeading": "Chuyện của chúng tôi",
+    "principlesHeading": "Bốn nguyên tắc chúng tôi không đánh đổi.",
+    "principlesLede": "Đây là tiêu chuẩn nội bộ, viết ra để cãi nhau khi cần — không phải để treo tường.",
+    "stackHeading": "Ngăn xếp kỹ thuật.",
+    "stackLede": "Những gì chúng tôi dùng cho cả sản phẩm nội bộ lẫn dự án outsource. Không đổi nhiều trong vài năm qua, vì đổi nhiều tốn thời gian hơn giá trị mang lại.",
+    "closingLede": "Nếu bạn muốn biết thêm — kể cả những phần chúng tôi chưa viết ra ở đây — hãy gửi một brief ngắn. Chúng tôi trả lời thẳng.",
+    "cta": "Gửi brief"
+  },
+  "contact": {
+    "eyebrow": "Liên hệ",
+    "title": "Bắt đầu bằng một cuộc trò chuyện.",
+    "subtitle": "Gọi, email, hoặc ghé studio. NDA một chiều hoặc hai chiều đều được, và chúng tôi sẵn sàng ký trước buổi trao đổi đầu tiên.",
+    "dateline": "Chúng tôi trả lời trong một ngày làm việc.",
+    "formNote": "Gửi điều này sẽ mở ứng dụng email của bạn với nội dung đã điền sẵn. Chúng tôi không lưu dữ liệu trên trang này.",
+    "channels": {
+      "email": "Email",
+      "location": "Địa chỉ",
+      "hours": "Giờ làm việc",
+      "response": "Thời gian phản hồi"
+    },
+    "values": {
+      "hours": "Thứ 2 đến thứ 7, 09:00 đến 18:00",
+      "response": "Trong 24 giờ làm việc"
+    },
+    "form": {
+      "name": "Họ và tên",
+      "email": "Email",
+      "message": "Vấn đề bạn đang gặp",
+      "cta": "Gửi brief",
+      "sending": "Đang mở email",
+      "errRequired": "Trường này là bắt buộc.",
+      "errSummary": "Còn trường bắt buộc chưa được điền."
+    },
+    "faq": {
+      "kicker": "Câu hỏi thường gặp",
+      "title": "Trước khi bạn viết",
+      "items": [
+        {
+          "q": "Một dự án thường kéo dài bao lâu?",
+          "a": "Từ 6 đến 12 tuần cho một sản phẩm MVP, và 3 đến 6 tháng cho một nền tảng đầy đủ. Con số thực tế phụ thuộc vào phạm vi và mức độ tích hợp, không phụ thuộc vào ngân sách."
+        },
+        {
+          "q": "Bạn ký NDA trước khi trao đổi chi tiết không?",
+          "a": "Có. Chúng tôi ký NDA một chiều hoặc hai chiều trước buổi trao đổi đầu tiên. Nếu bạn có mẫu riêng, gửi cho chúng tôi theo email."
+        },
+        {
+          "q": "Bạn nhận bao nhiêu dự án cùng lúc?",
+          "a": "Dự án khách hàng chạy song song với các sản phẩm nội bộ của chúng tôi. Lịch trình thay đổi theo từng quý, nên bạn có thể hỏi lịch trước khi gửi brief."
+        },
+        {
+          "q": "Bạn có làm việc với khách ngoài Đà Nẵng không?",
+          "a": "Có. Phần lớn khách outsource của chúng tôi ở Hà Nội, TP.HCM và Singapore. Chúng tôi làm việc qua Slack và Linear, và họp bằng video khi cần."
+        },
+        {
+          "q": "Sau khi bàn giao, tôi có tự phát triển tiếp được không?",
+          "a": "Được. Mỗi dự án bàn giao kèm tài liệu kỹ thuật, hướng dẫn vận hành và mã nguồn đầy đủ."
+        }
+      ]
+    }
+  },
+  "footer": {
+    "location": "Địa chỉ",
+    "reach": "Liên hệ",
+    "rights": "Bảo lưu mọi quyền",
+    "toTop": "Lên đầu trang",
+    "mapOpen": "Xem trên Google Maps",
+    "opensNewTab": "(mở trong tab mới)"
+  },
+  "theme": {
+    "toggle": "Đổi giao diện sáng tối",
+    "light": "Sáng",
+    "dark": "Tối"
+  },
+  "language": {
+    "toggle": "Đổi ngôn ngữ"
+  },
+  "status": {
+    "in-development": "Đang phát triển",
+    "upcoming": "Sắp ra mắt",
+    "shipped": "Đã bàn giao"
+  }
+}

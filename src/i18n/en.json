@@ -1,0 +1,220 @@
+{
+  "_comment": "Keys (en) — order locked, parity with vi.json required.",
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "about": "About",
+    "contact": "Contact",
+    "skip": "Skip to content",
+    "brief": {
+      "label": "Start a brief"
+    },
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "menuAll": "Everything we have shipped"
+  },
+  "home": {
+    "eyebrow": "Da Nang, Vietnam — founded 2026",
+    "lede": "Four products we build ourselves, and VibeHolic — the web engagement we delivered for a client in marketing. Below is the real interface of each one.",
+    "ctaPrimary": "See the work",
+    "ctaSecondary": "Send a brief",
+    "ledger": "Five items in the catalogue. A filled dot is delivered, a hollow ring is in development, a small dot is upcoming.",
+    "catalogue": {
+      "title": "Catalogue",
+      "heading": "Five things we have actually built.",
+      "lede": "This is the actual work, not illustration.",
+      "cta": "Open the full catalogue",
+      "client": "Client project"
+    },
+    "shotTip": {
+      "ui": "A real screenshot, captured from the running build.",
+      "brand": "This app does not build yet, so the brand mark stands in for a screenshot.",
+      "photo": "An illustrative photo. This product has no interface to capture yet."
+    },
+    "stack": {
+      "hint": "Scroll to walk through them one by one."
+    },
+    "practice": {
+      "title": "How we work",
+      "heading": "Four principles we do not trade away.",
+      "lede": "We value technical quality, transparency and practical value, and take sustainable long-term development as the direction for every product and project.",
+      "cta": "About the company"
+    },
+    "contact": {
+      "title": "Contact",
+      "heading": "Tell us what you are building.",
+      "lede": "Send us a few lines about your project. We read it and reply within one working day, usually with a few questions and a concrete proposal to talk through.",
+      "cta": "Send a brief"
+    },
+    "shot": {
+      "ui": "Real interface capture",
+      "brand": "Brand mark — app in development",
+      "photo": "Illustrative photograph"
+    },
+    "bench": {
+      "open": "Open the detail",
+      "demo": "See it running"
+    },
+    "place": "Da Nang, Vietnam",
+    "brandName": "RideLink Techs",
+    "titleLines": ["Software built", "in Vietnam."],
+    "hero": {
+      "eyebrow": "Independent software company · Da Nang",
+      "titleLines": ["We build it.", "We run it.", "We hand it over."],
+      "lede": "We focus on developing our own technology products, and are looking for investors and partners to develop and expand them with us.\n\nAlongside that, we take on software projects built to order, working with the client to design and ship solutions that fit what they actually need.",
+      "ctaPrimary": "See the work",
+      "ctaSecondary": "Start a brief",
+      "cue": "Scroll down"
+    },
+    "facts": {
+      "products": "products in the catalogue",
+      "inHouse": "built in-house",
+      "shipped": "client project delivered"
+    }
+  },
+  "products": {
+    "eyebrow": "Catalogue",
+    "title": "What we are building.",
+    "subtitle": "Four products we build ourselves, and one engagement already delivered to a client. Each entry states its real status, including when a product is not ready.",
+    "readMore": "Open",
+    "category": {
+      "internal": "In-house product",
+      "outsource": "Client project"
+    },
+    "nda": "Delivered",
+    "filter": {
+      "label": "Filter the catalogue",
+      "all": "All",
+      "prod": "In-house products",
+      "outsource": "Client projects"
+    },
+    "footnote": "The illustrative photographs come from Unsplash and are not product screenshots. Every status is stated exactly as it actually stands.",
+    "demo": "See it running"
+  },
+  "productDetail": {
+    "back": "Back to the catalogue",
+    "problem": "Problem",
+    "targetUser": "Who it is for",
+    "description": "Description",
+    "status": "Status",
+    "category": "Category",
+    "timeline": "Timeline",
+    "timelineEmpty": "Not public.",
+    "categoryInHouse": "In-house product",
+    "categoryOutsource": "Client project",
+    "open": "Next",
+    "openBrief": "Send a brief",
+    "allProductsCta": "Back to the full catalogue",
+    "photo": "An illustrative photograph, not a product screenshot.",
+    "visualConcept": "Visual concept",
+    "demo": "Open the live site",
+    "shot": {
+      "ui": "A real capture of the application interface.",
+      "brand": "The official brand mark. The app is in development.",
+      "photo": "An illustrative photograph, not a product screenshot."
+    },
+    "features": "What it does",
+    "screens": "Screens from the product"
+  },
+  "product": {
+    "caption": {
+      "ridelink-go": "Illustrative photograph — a Da Nang street at night (Unsplash). The product is in development; there is no public screenshot yet.",
+      "glosslink-beautiful": "Illustrative photograph — a salon interior (Unsplash). The product is in UX design; there is no public screenshot yet.",
+      "pawly": "Illustrative photograph — a dog being walked outdoors (Unsplash). The product is at idea stage.",
+      "vibeholic": "Illustrative photograph — architectural forms (Unsplash). The client’s name and the project scope are withheld under NDA."
+    }
+  },
+  "common": {
+    "visualConcept": "Visual concept",
+    "notFound": "Page not found",
+    "notFoundHint": "This address does not exist or has moved. Open the product catalogue, or send us a brief.",
+    "notFoundReturn": "Back to home",
+    "notFoundBriefs": "Send a brief",
+    "send": "Send",
+    "loading": "Loading"
+  },
+  "about": {
+    "eyebrow": "About",
+    "dateline": "Da Nang, Vietnam",
+    "storyHeading": "Our story",
+    "principlesHeading": "Four things we do not trade away.",
+    "principlesLede": "An internal standard, written down so it can be argued about — not a poster for the wall.",
+    "stackHeading": "The stack.",
+    "stackLede": "What we use for both our own products and client work. It has not changed much in a few years, because changing costs more than it returns.",
+    "closingLede": "If you want to know more — including the parts we have not written down here — send a short brief. We answer straight.",
+    "cta": "Send a brief"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Start with a conversation.",
+    "subtitle": "Call, email, or come by the office. A one-way or mutual NDA both work, and we are happy to sign before the first conversation.",
+    "dateline": "We reply within one working day.",
+    "formNote": "Submitting opens your email client with the message pre-filled. We store nothing on this page.",
+    "channels": {
+      "email": "Email",
+      "location": "Address",
+      "hours": "Working hours",
+      "response": "Response time"
+    },
+    "values": {
+      "hours": "Monday to Saturday, 09:00 to 18:00",
+      "response": "Within 24 working hours"
+    },
+    "form": {
+      "name": "Your name",
+      "email": "Email",
+      "message": "The problem you are facing",
+      "cta": "Send the brief",
+      "sending": "Opening your email",
+      "errRequired": "This field is required.",
+      "errSummary": "Some required fields are still empty."
+    },
+    "faq": {
+      "kicker": "Frequently asked",
+      "title": "Before you write",
+      "items": [
+        {
+          "q": "How long does a typical project take?",
+          "a": "Six to twelve weeks for an MVP, and three to six months for a full platform. The real number depends on scope and integration depth, not on budget."
+        },
+        {
+          "q": "Do you sign an NDA before discussing details?",
+          "a": "Yes. We sign a one-way or mutual NDA before the first conversation. If you have your own template, send it by email."
+        },
+        {
+          "q": "How many projects do you take at once?",
+          "a": "Client projects run alongside our in-house products. The schedule changes each quarter, so ask for current availability before sending a brief."
+        },
+        {
+          "q": "Do you work with clients outside Da Nang?",
+          "a": "Yes. Most of our outsource clients are in Hanoi, HCMC and Singapore. We work over Slack and Linear, and by video when it helps."
+        },
+        {
+          "q": "Can I keep developing after handover?",
+          "a": "Yes. Every project ships with technical documentation, an operations guide and the full source."
+        }
+      ]
+    }
+  },
+  "footer": {
+    "location": "Location",
+    "reach": "Contact",
+    "rights": "All rights reserved",
+    "toTop": "Back to top",
+    "mapOpen": "Open in Google Maps",
+    "opensNewTab": "(opens in a new tab)"
+  },
+  "theme": {
+    "toggle": "Toggle light and dark",
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "language": {
+    "toggle": "Change language"
+  },
+  "status": {
+    "in-development": "In development",
+    "upcoming": "Upcoming",
+    "shipped": "Delivered"
+  }
+}

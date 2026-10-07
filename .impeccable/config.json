@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "fraunces",
+        "createdAt": "2026-09-26T19:18:03.704Z",
+        "reason": "Hallmark serif discipline §6: one-time Fraunces pull-quote on /about permitted by framework. Used in exactly one class (.pull-quote, globals.css L166), loaded once via next/font, falls back to system serif. Disallowed as display default; flagged here is the sanctioned exception."
+      }
+    ]
+  }
+}
