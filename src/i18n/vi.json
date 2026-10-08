@@ -11,7 +11,8 @@
     },
     "openMenu": "Mở menu",
     "closeMenu": "Đóng menu",
-    "menuAll": "Tất cả những gì chúng tôi đã làm"
+    "menuAll": "Tất cả những gì chúng tôi đã làm",
+    "menuViewAll": "Xem tất cả sản phẩm"
   },
   "home": {
     "eyebrow": "Đà Nẵng, Việt Nam — thành lập 2026",
@@ -21,8 +22,8 @@
     "ledger": "Năm mục trong danh mục. Chấm đặc là đã bàn giao, vòng rỗng là đang phát triển, chấm nhỏ là sắp ra mắt.",
     "catalogue": {
       "title": "Danh mục",
-      "heading": "Năm thứ chúng tôi thực sự đã làm.",
-      "lede": "Đây là những gì chúng tôi đã làm, không phải ảnh minh hoạ.",
+      "heading": "Những sản phẩm chúng tôi tự làm.",
+      "lede": "Khám phá từng sản phẩm, từ ý tưởng đến thực tế.\nMỗi sản phẩm có một câu chuyện riêng — từ ý tưởng ban đầu, những tính năng đã xây dựng đến hành trình phát triển và hoàn thiện sản phẩm.",
       "cta": "Mở toàn bộ danh mục",
       "client": "Dự án khách hàng"
     },
@@ -88,7 +89,7 @@
       "prod": "Sản phẩm nội bộ",
       "outsource": "Dự án khách hàng"
     },
-    "footnote": "Các ảnh minh hoạ lấy từ Unsplash và không phải ảnh chụp màn hình sản phẩm. Mọi trạng thái đều được ghi đúng như hiện tại thực tế.",
+    "footnote": "Ảnh chụp màn hình lấy từ bản chạy thật của sản phẩm. Sản phẩm chưa có ảnh thật dùng ảnh minh hoạ, và mọi trạng thái đều được ghi đúng như hiện tại thực tế.",
     "demo": "Xem bản chạy thật"
   },
   "productDetail": {
@@ -121,7 +122,7 @@
       "ridelink-go": "Ảnh minh hoạ — phố Đà Nẵng ban đêm (Unsplash). Sản phẩm đang phát triển, chưa có ảnh chụp thật.",
       "glosslink-beautiful": "Ảnh minh hoạ — không gian salon (Unsplash). Sản phẩm đang thiết kế UX, chưa có ảnh chụp thật.",
       "pawly": "Ảnh minh hoạ — dắt chó ngoài trời (Unsplash). Sản phẩm đang ở giai đoạn ý tưởng.",
-      "vibeholic": "Ảnh minh hoạ — hình khối kiến trúc (Unsplash). Tên khách hàng và phạm vi dự án được giữ kín theo thỏa thuận NDA."
+      "vibeholic": "Ảnh chụp giao diện thật. Tên khách hàng và phạm vi hợp tác được giữ kín theo thỏa thuận NDA."
     }
   },
   "common": {

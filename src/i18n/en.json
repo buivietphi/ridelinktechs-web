@@ -11,7 +11,8 @@
     },
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
-    "menuAll": "Everything we have shipped"
+    "menuAll": "Everything we have shipped",
+    "menuViewAll": "See all products"
   },
   "home": {
     "eyebrow": "Da Nang, Vietnam — founded 2026",
@@ -21,8 +22,8 @@
     "ledger": "Five items in the catalogue. A filled dot is delivered, a hollow ring is in development, a small dot is upcoming.",
     "catalogue": {
       "title": "Catalogue",
-      "heading": "Five things we have actually built.",
-      "lede": "This is the actual work, not illustration.",
+      "heading": "The products we build ourselves.",
+      "lede": "Explore each product, from first idea to finished build.\nEach one has its own story — from the original idea, through the features built, to the journey of getting there.",
       "cta": "Open the full catalogue",
       "client": "Client project"
     },
@@ -88,7 +89,7 @@
       "prod": "In-house products",
       "outsource": "Client projects"
     },
-    "footnote": "The illustrative photographs come from Unsplash and are not product screenshots. Every status is stated exactly as it actually stands.",
+    "footnote": "Screenshots are taken from the running product. Where none exist we use an illustrative image, and every status is stated exactly as it actually stands.",
     "demo": "See it running"
   },
   "productDetail": {
@@ -121,7 +122,7 @@
       "ridelink-go": "Illustrative photograph — a Da Nang street at night (Unsplash). The product is in development; there is no public screenshot yet.",
       "glosslink-beautiful": "Illustrative photograph — a salon interior (Unsplash). The product is in UX design; there is no public screenshot yet.",
       "pawly": "Illustrative photograph — a dog being walked outdoors (Unsplash). The product is at idea stage.",
-      "vibeholic": "Illustrative photograph — architectural forms (Unsplash). The client’s name and the project scope are withheld under NDA."
+      "vibeholic": "Real screenshot. The client’s name and the scope of our work are withheld under NDA."
     }
   },
   "common": {

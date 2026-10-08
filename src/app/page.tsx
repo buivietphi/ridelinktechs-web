@@ -55,7 +55,7 @@ export default async function HomePage() {
               {t('catalogue.heading')}
             </h2>
             <div className="col-span-12 lg:col-span-4 lg:col-start-9">
-              <p className="max-w-[40ch] text-[16px] leading-[1.65] text-[var(--ink-soft)]">
+              <p className="max-w-[40ch] text-[16px] leading-[1.65] whitespace-pre-line text-[var(--ink-soft)]">
                 {t('catalogue.lede')}
               </p>
             </div>

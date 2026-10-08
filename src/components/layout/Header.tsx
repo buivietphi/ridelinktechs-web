@@ -145,7 +145,7 @@ export function Header() {
         </div>
       </div>
 
-      <div className="hidden bg-[var(--ground)]/92 backdrop-blur-xl md:block">
+      <div className="relative hidden bg-[var(--ground)]/92 backdrop-blur-xl md:block">
         <div className="mx-auto flex w-full max-w-[1560px] items-center justify-between gap-6 px-5 sm:px-8 lg:px-10">
           <nav aria-label="Primary">
             <ul className="flex items-center">
@@ -211,14 +211,23 @@ export function Header() {
           onMouseEnter={openMenu}
           onMouseLeave={scheduleClose}
           className={cn(
-            'overflow-hidden border-t transition-[max-height,opacity] duration-500 ease-[var(--ease-out-quint)]',
+            'absolute inset-x-0 top-full overflow-hidden bg-[var(--ground)]/92 backdrop-blur-xl backdrop-saturate-150 transition-[max-height,opacity] duration-500 ease-[var(--ease-out-quint)]',
             menuOpen
-              ? 'max-h-[420px] border-[var(--rule)] opacity-100'
-              : 'max-h-0 border-transparent opacity-0',
+              ? 'max-h-[420px] border-b border-[var(--rule)] opacity-100'
+              : 'pointer-events-none max-h-0 border-transparent opacity-0',
           )}
         >
           <div className="mx-auto w-full max-w-[1560px] px-5 py-8 sm:px-8 lg:px-10">
-            <p className="eyebrow">{t('menuAll')}</p>
+            <div className="flex items-baseline justify-between gap-6">
+              <p className="eyebrow">{t('menuAll')}</p>
+              <Link
+                href="/products"
+                onClick={() => setMenuOpen(false)}
+                className="link shrink-0 text-[15px]"
+              >
+                {t('menuViewAll')}
+              </Link>
+            </div>
             <ul className="mt-5 grid grid-cols-1 gap-x-8 gap-y-1 sm:grid-cols-2 lg:grid-cols-3">
               {products.map((p) => {
                 const isOutsource = p.category === 'outsource';

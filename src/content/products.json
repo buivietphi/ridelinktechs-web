@@ -39,9 +39,18 @@
       "vi": "Các nền tảng hiện tại thiếu sự minh bạch về giá và thời gian đón, đặc biệt vào giờ cao điểm và ngày mưa.",
       "en": "Existing platforms lack transparency around pricing and pickup times, especially at peak hours and rainy days."
     },
-    "image": "/products/ridelink-go.jpg",
-    "shot": "brand",
+    "image": "/products/screens/ridelink-go-01-home.jpg",
+    "shot": "ui",
     "platform": "mobile",
+    "screens": [
+      "/products/screens/ridelink-go-01-home.jpg",
+      "/products/screens/ridelink-go-02-search.jpg",
+      "/products/screens/ridelink-go-03-booking.jpg",
+      "/products/screens/ridelink-go-04-account.jpg",
+      "/products/screens/ridelink-go-05-activity.jpg",
+      "/products/screens/ridelink-go-06-trips.jpg",
+      "/products/screens/ridelink-go-07-driver.jpg"
+    ],
     "features": {
       "vi": [
         "Ghép nối tài xế theo thời gian thực",
@@ -191,12 +200,12 @@
       "en": "VibeHolic"
     },
     "tagline": {
-      "vi": "Dự án web đã bàn giao cho khách hàng. Chi tiết giữ kín theo NDA.",
-      "en": "Delivered web project for a client. Details withheld under NDA."
+      "vi": "Nền tảng cho agency media: đại diện tài năng, sản xuất media và đặt chỗ KOC.",
+      "en": "Talent representation, media production, and KOC booking."
     },
     "description": {
-      "vi": "VibeHolic là dự án web chúng tôi xây và đã bàn giao cho một khách hàng hoạt động trong ngành marketing. Phạm vi công việc, kiến trúc hệ thống và tên khách hàng không được công khai theo thỏa thuận bảo mật hai chiều.",
-      "en": "VibeHolic is a web project we built and delivered to a client working in marketing. The scope of work, the system architecture, and the client’s name are not public under a mutual NDA."
+      "vi": "VibeHolic là trang web chúng tôi xây và đã bàn giao cho một agency media tại Đà Nẵng. Trang giới thiệu dịch vụ đại diện tài năng, sản xuất media và đặt chỗ KOC, kèm bảng giá công khai và quy trình triển khai bốn bước. Tên khách hàng và phạm vi hợp tác không được công khai theo thỏa thuận bảo mật hai chiều.",
+      "en": "VibeHolic is a website we built and delivered to a media agency in Da Nang. The site presents talent representation, media production, and KOC booking services, with a public price list and a four-step delivery process. The client’s name and the scope of our work are not public under a mutual NDA."
     },
     "category": "outsource",
     "status": "shipped",
@@ -212,18 +221,8 @@
       "/products/screens/vibeholic-03.jpg"
     ],
     "features": {
-      "vi": [
-        "Đại diện tài năng",
-        "Đặt chỗ quảng cáo",
-        "Sản xuất media",
-        "Mạng xã hội chia sẻ Creator"
-      ],
-      "en": [
-        "Talent representation",
-        "Advertising placement",
-        "Media production",
-        "A social network for creators"
-      ]
+      "vi": ["Đại diện tài năng", "Sản xuất media", "Đặt chỗ KOC", "Quảng cáo đo lường hiệu suất"],
+      "en": ["Talent representation", "Media production", "KOC booking", "Performance advertising"]
     }
   }
 ]
