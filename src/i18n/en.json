@@ -15,7 +15,7 @@
     "menuViewAll": "See all products"
   },
   "home": {
-    "eyebrow": "Da Nang, Vietnam — founded 2026",
+    "eyebrow": "Da Nang, Vietnam — founded 2025",
     "lede": "Four products we build ourselves, and VibeHolic — the web engagement we delivered for a client in marketing. Below is the real interface of each one.",
     "ctaPrimary": "See the work",
     "ctaSecondary": "Send a brief",
@@ -133,17 +133,6 @@
     "notFoundBriefs": "Send a brief",
     "send": "Send",
     "loading": "Loading"
-  },
-  "about": {
-    "eyebrow": "About",
-    "dateline": "Da Nang, Vietnam",
-    "storyHeading": "Our story",
-    "principlesHeading": "Four things we do not trade away.",
-    "principlesLede": "An internal standard, written down so it can be argued about — not a poster for the wall.",
-    "stackHeading": "The stack.",
-    "stackLede": "What we use for both our own products and client work. It has not changed much in a few years, because changing costs more than it returns.",
-    "closingLede": "If you want to know more — including the parts we have not written down here — send a short brief. We answer straight.",
-    "cta": "Send a brief"
   },
   "contact": {
     "eyebrow": "Contact",

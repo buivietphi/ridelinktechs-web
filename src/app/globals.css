@@ -383,6 +383,31 @@
     box-shadow: var(--shadow-2);
   }
 
+  .spotlight {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .spotlight::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(
+      520px circle at var(--sx, 50%) var(--sy, 50%),
+      var(--signal-soft),
+      transparent 70%
+    );
+    transition: opacity var(--dur-base) var(--ease-out-quint);
+  }
+
+  .spotlight:hover::before {
+    opacity: 1;
+  }
+
   .magnetic {
     will-change: transform;
   }

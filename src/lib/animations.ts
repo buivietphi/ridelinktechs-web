@@ -35,7 +35,21 @@ type LenisLike = {
   destroy: () => void;
   on: (e: string, f: () => void) => void;
   off: (e: string, f: () => void) => void;
+  scrollTo: (target: HTMLElement, options?: { offset?: number }) => void;
 };
+
+let activeLenis: LenisLike | null = null;
+
+export function scrollToElement(el: HTMLElement, offset = 0): void {
+  if (activeLenis) {
+    activeLenis.scrollTo(el, { offset });
+    return;
+  }
+  window.scrollTo({
+    top: el.getBoundingClientRect().top + window.scrollY + offset,
+    behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+  });
+}
 
 export const EASE = {
   out: 'power4.out',
@@ -57,6 +71,7 @@ export function SmoothScroll(): null {
       if (cancelled) return;
       const lenis = new Lenis({ duration: 0.9, lerp: 0.09, smoothWheel: true });
       instance = lenis as unknown as LenisLike;
+      activeLenis = instance;
 
       tick = (time: number) => lenis.raf(time * 1000);
       gsap.ticker.add(tick);
@@ -70,6 +85,7 @@ export function SmoothScroll(): null {
       cancelled = true;
       if (tick) gsap.ticker.remove(tick);
       if (onScroll) instance?.off('scroll', onScroll);
+      if (activeLenis === instance) activeLenis = null;
       instance?.destroy();
     };
   }, []);

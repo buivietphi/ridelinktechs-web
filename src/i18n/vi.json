@@ -15,7 +15,7 @@
     "menuViewAll": "Xem tất cả sản phẩm"
   },
   "home": {
-    "eyebrow": "Đà Nẵng, Việt Nam — thành lập 2026",
+    "eyebrow": "Đà Nẵng, Việt Nam — thành lập 2025",
     "lede": "Bốn sản phẩm do chúng tôi tự xây, và VibeHolic — dự án web đã bàn giao cho khách hàng ngành marketing. Dưới đây là giao diện thật của từng sản phẩm.",
     "ctaPrimary": "Xem sản phẩm",
     "ctaSecondary": "Gửi brief",
@@ -133,17 +133,6 @@
     "notFoundBriefs": "Gửi brief",
     "send": "Gửi",
     "loading": "Đang tải"
-  },
-  "about": {
-    "eyebrow": "Về chúng tôi",
-    "dateline": "Đà Nẵng, Việt Nam",
-    "storyHeading": "Chuyện của chúng tôi",
-    "principlesHeading": "Bốn nguyên tắc chúng tôi không đánh đổi.",
-    "principlesLede": "Đây là tiêu chuẩn nội bộ, viết ra để cãi nhau khi cần — không phải để treo tường.",
-    "stackHeading": "Ngăn xếp kỹ thuật.",
-    "stackLede": "Những gì chúng tôi dùng cho cả sản phẩm nội bộ lẫn dự án outsource. Không đổi nhiều trong vài năm qua, vì đổi nhiều tốn thời gian hơn giá trị mang lại.",
-    "closingLede": "Nếu bạn muốn biết thêm — kể cả những phần chúng tôi chưa viết ra ở đây — hãy gửi một brief ngắn. Chúng tôi trả lời thẳng.",
-    "cta": "Gửi brief"
   },
   "contact": {
     "eyebrow": "Liên hệ",

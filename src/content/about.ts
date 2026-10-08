@@ -12,37 +12,333 @@ export interface TeamMember {
   bio?: LocalizedString;
 }
 
-export interface StackRow {
+export interface StackGroup {
   label: LocalizedString;
-  note: LocalizedString;
+  items: string[];
+}
+
+export interface PracticeItem {
+  id: string;
+  title: LocalizedString;
+  body: LocalizedString;
+  image: string;
+  imageAlt: LocalizedString;
+  frame: 'phone' | 'wide';
+}
+
+export interface StoryEra {
+  id: string;
+  period: LocalizedString;
+  title: LocalizedString;
+  body?: LocalizedString;
+  range?: [string, string];
+  image?: string;
+  imageAlt?: LocalizedString;
+  plans?: LocalizedString[];
+  logo?: boolean;
+  stats?: boolean;
 }
 
 export interface AboutContent {
-  heroTitle: LocalizedString;
-  heroSubtitle: LocalizedString;
-  story: LocalizedString;
-  mission: LocalizedString;
+  meta: { title: LocalizedString; description: LocalizedString };
+  hero: {
+    eyebrow: LocalizedString;
+    titleLines: LocalizedString[];
+    lede: LocalizedString;
+    shotAlt: LocalizedString;
+  };
+  intro: {
+    heading: LocalizedString;
+    paragraphs: LocalizedString[];
+    mission: LocalizedString;
+    place: LocalizedString;
+  };
+  statement: LocalizedString;
+  halves: {
+    heading: LocalizedString;
+    own: { title: LocalizedString; lede: LocalizedString; invest: LocalizedString };
+    client: {
+      title: LocalizedString;
+      lede: LocalizedString;
+      caption: LocalizedString;
+      nda: LocalizedString;
+    };
+  };
+  practice: {
+    heading: LocalizedString;
+    items: PracticeItem[];
+    stackHeading: LocalizedString;
+    stack: StackGroup[];
+  };
+  story: {
+    heading: LocalizedString;
+    lede: LocalizedString;
+    today: LocalizedString;
+    prev: LocalizedString;
+    next: LocalizedString;
+    eras: StoryEra[];
+  };
+  closing: { heading: LocalizedString; lede: LocalizedString };
+  cta: { brief: LocalizedString; journey: LocalizedString; products: LocalizedString };
   focusAreas: FocusArea[];
   teamMembers: TeamMember[];
-  stack: StackRow[];
 }
 
 export const about: AboutContent = {
-  heroTitle: {
-    vi: 'Một công ty phần mềm nhỏ ở Đà Nẵng.',
-    en: 'A small software company in Da Nang.',
+  meta: {
+    title: { vi: 'Về chúng tôi', en: 'About' },
+    description: {
+      vi: 'RideLink Techs là công ty phần mềm độc lập ở Đà Nẵng. Chúng tôi tự phát triển sản phẩm riêng, nhận xây phần mềm theo yêu cầu và bàn giao đầy đủ mã nguồn cùng tài liệu kỹ thuật.',
+      en: 'RideLink Techs is an independent software company in Da Nang. We build our own products, take on custom software projects, and hand over the full source code and technical documentation.',
+    },
   },
-  heroSubtitle: {
-    vi: 'Dự án khách hàng bắt đầu bằng việc ký NDA, rồi đi kèm tài liệu kỹ thuật và toàn bộ mã nguồn khi bàn giao.',
-    en: 'Client projects start with an NDA, and end with technical documentation and the full source code.',
+  hero: {
+    eyebrow: { vi: 'Về chúng tôi', en: 'About us' },
+    titleLines: [
+      { vi: 'Chúng tôi xây sản phẩm.', en: 'We build products.' },
+      { vi: 'Của mình, và của bạn.', en: 'Ours, and yours.' },
+    ],
+    lede: {
+      vi: 'Công ty phần mềm độc lập ở Đà Nẵng. Chúng tôi tự phát triển sản phẩm riêng và nhận xây phần mềm theo yêu cầu.',
+      en: 'An independent software company in Da Nang. We develop our own products and build custom software for clients.',
+    },
+    shotAlt: { vi: 'giao diện thật của ứng dụng', en: 'real app interface' },
+  },
+  intro: {
+    heading: { vi: 'Giới thiệu công ty.', en: 'About the company.' },
+    paragraphs: [
+      {
+        vi: 'RideLink Techs là một startup phần mềm nhỏ tại Đà Nẵng, do người sáng lập của PSDev Group thành lập năm 2025. PSDev Group là nhóm freelance làm việc cùng nhau từ năm 2019.',
+        en: 'RideLink Techs is a small software startup in Da Nang, founded in 2025 by the founder of PSDev Group, a freelance team that has worked together since 2019.',
+      },
+      {
+        vi: 'Là một startup nhỏ, chúng tôi tự xây sản phẩm của mình, nhận xây phần mềm cho khách hàng, và công khai trạng thái thật của từng sản phẩm, kể cả khi nó chưa sẵn sàng.',
+        en: 'As a small startup, we build our own products, take on software projects for clients, and publish the real status of each product, including when it is not ready.',
+      },
+    ],
+    mission: {
+      vi: 'Sứ mệnh của chúng tôi là xây phần mềm đáng tin cậy cho người dùng Việt Nam, và làm việc ở một nơi mà kỹ sư có thể đi cùng sản phẩm của mình nhiều năm, thay vì nhiều sprint.',
+      en: 'Our mission is to build software Vietnamese users can rely on, and to work somewhere an engineer can stay with their product for years instead of sprints.',
+    },
+    place: { vi: 'Đà Nẵng, Việt Nam', en: 'Da Nang, Vietnam' },
+  },
+  statement: {
+    vi: 'Một sản phẩm chỉ thật sự thuộc về bạn khi bạn hiểu nó, vận hành được nó và không bị ràng buộc vào người đã xây ra nó.',
+    en: 'A product only truly belongs to you when you understand it, can run it, and are not tied to whoever built it.',
+  },
+  halves: {
+    heading: {
+      vi: 'Hai việc, cùng một cách làm.',
+      en: 'Two kinds of work, one way of working.',
+    },
+    own: {
+      title: { vi: 'Sản phẩm của chúng tôi', en: 'Our products' },
+      lede: {
+        vi: 'Chúng tôi tự chọn bài toán, tự thiết kế và tự xây. Mỗi sản phẩm bắt đầu từ một vấn đề có thật của người dùng Việt Nam.',
+        en: 'We choose the problems, design the answers and build them ourselves. Each product starts from a real problem faced by Vietnamese users.',
+      },
+      invest: {
+        vi: 'Chúng tôi đang tìm nhà đầu tư và đối tác để cùng phát triển, mở rộng các sản phẩm này.',
+        en: 'We are looking for investors and partners to develop and expand these products with us.',
+      },
+    },
+    client: {
+      title: { vi: 'Dự án cho khách hàng', en: 'Projects for clients' },
+      lede: {
+        vi: 'Chúng tôi nhận xây phần mềm theo yêu cầu trên mobile (iOS, Android), web, desktop và backend.',
+        en: 'We build custom software for mobile (iOS, Android), web, desktop and backend.',
+      },
+      caption: {
+        vi: 'VibeHolic: website cho một agency media tại Đà Nẵng, đã bàn giao.',
+        en: 'VibeHolic: a website for a media agency in Da Nang, delivered.',
+      },
+      nda: {
+        vi: 'Tên khách hàng và phạm vi hợp tác được giữ kín theo thỏa thuận bảo mật hai chiều.',
+        en: 'The client’s name and the scope of our work are kept private under a mutual NDA.',
+      },
+    },
+  },
+  practice: {
+    heading: { vi: 'Cách chúng tôi làm việc.', en: 'How we work.' },
+    items: [
+      {
+        id: 'build',
+        title: { vi: 'Tự xây.', en: 'We build it.' },
+        body: {
+          vi: 'Từ phân tích, thiết kế đến lập trình, chúng tôi xây từng hệ thống theo đặc thù của bài toán, để chạy ổn định và mở rộng được khi người dùng tăng lên.',
+          en: 'From analysis and design to code, we build each system around the specifics of the problem, so it runs reliably and can grow as users do.',
+        },
+        image: '/products/screens/ridelink-go-03-booking.jpg',
+        imageAlt: {
+          vi: 'Màn hình đặt xe của Ridelink Go, hiển thị giá và thời gian đón trước khi đặt.',
+          en: 'Ridelink Go booking screen, showing the fare and pickup time before booking.',
+        },
+        frame: 'phone',
+      },
+      {
+        id: 'run',
+        title: { vi: 'Tự chạy.', en: 'We run it.' },
+        body: {
+          vi: 'Ra mắt chưa phải điểm kết thúc. Chúng tôi đồng hành qua triển khai, vận hành và bảo trì, và khi bạn cần, nhận quản lý hạ tầng, giám sát và xử lý sự cố. Ridelink Go ghép chuyến theo thời gian thực, nên chúng tôi buộc phải nghĩ đến vận hành ngay từ ngày đầu.',
+          en: 'Launch is not the finish line. We stay through deployment, operation and maintenance, and when you need it, we take on infrastructure, monitoring and incident handling. Ridelink Go matches rides in real time, so we had to think about operations from day one.',
+        },
+        image: '/products/screens/ridelink-go-07-driver.jpg',
+        imageAlt: {
+          vi: 'Ứng dụng tài xế của Ridelink Go, hiển thị trạng thái hoạt động, thống kê trong ngày và chuyến đang chạy.',
+          en: 'Ridelink Go driver app, showing active status, today’s stats and the current trip.',
+        },
+        frame: 'phone',
+      },
+      {
+        id: 'handover',
+        title: { vi: 'Bàn giao thật.', en: 'We hand it over.' },
+        body: {
+          vi: 'Phạm vi, chi phí, tiến độ và quyền sở hữu được thống nhất rõ từ đầu, dưới một thỏa thuận bảo mật. Khi bàn giao, bạn nhận đủ mã nguồn, tài liệu kỹ thuật và hướng dẫn vận hành để tự quản lý và phát triển tiếp, không phụ thuộc vào đội ngũ ban đầu. Kể cả không phụ thuộc vào chúng tôi.',
+          en: 'Scope, cost, timeline and ownership are agreed clearly up front, under a confidentiality agreement. At handover you receive the full source code, technical documentation and an operations guide, so you can run and extend the product without relying on the original team. Including us.',
+        },
+        image: '/products/screens/vibeholic-02.jpg',
+        imageAlt: {
+          vi: 'Trang bảng giá công khai trên website VibeHolic do chúng tôi xây và bàn giao.',
+          en: 'The public price list on the VibeHolic website we built and delivered.',
+        },
+        frame: 'wide',
+      },
+    ],
+    stackHeading: { vi: 'Công nghệ chúng tôi dùng', en: 'What we build with' },
+    stack: [
+      {
+        label: { vi: 'Ứng dụng', en: 'Applications' },
+        items: ['TypeScript', 'Next.js', 'React Native', 'Flutter', 'Swift', 'Kotlin'],
+      },
+      {
+        label: { vi: 'Backend', en: 'Backend' },
+        items: ['Next.js', 'NestJS', 'Supabase', 'Postgres', 'Edge functions'],
+      },
+      {
+        label: { vi: 'Thiết kế', en: 'Design' },
+        items: ['Figma', 'Linear', 'Notion'],
+      },
+      {
+        label: { vi: 'Triển khai', en: 'Delivery' },
+        items: ['GitHub Actions', 'Vercel', 'Docker'],
+      },
+    ],
   },
   story: {
-    vi: 'RideLink Techs bắt đầu từ một quan sát khá giản dị: phần lớn phần mềm được dùng hằng ngày ở Việt Nam được xây ở nước ngoài, cho một bối cảnh khác, và hiếm khi giải quyết đúng vấn đề của người dùng Việt.\n\nChúng tôi là một nhóm nhỏ kỹ sư và thiết kế làm việc tại Đà Nẵng. Bốn sản phẩm hiện tại đều bắt nguồn từ những vấn đề rất cụ thể: khách gọi xe không biết giá trước khi đặt, tiệm làm đẹp thất lạc lịch hẹn, chủ chó mèo thiếu nơi tra cứu dịch vụ gần nhà, và tài xế gặp sự cố giữa đường phải chờ một cuộc gọi thứ hai để biết sẽ tới trong bao lâu.\n\nChúng tôi xây những thứ giải quyết đúng các vấn đề đó, và công khai trạng thái thật của từng sản phẩm — kể cả khi nó chưa sẵn sàng. Một danh mục trông khiêm tốn còn hơn một danh mục bịa số liệu.',
-    en: 'RideLink Techs started from a fairly plain observation: most software used daily in Vietnam is built abroad, for a different context, and rarely solves the actual problem Vietnamese users have.\n\nWe are a small group of engineers and designers working in Da Nang. The four current products each come from a very specific problem: a ride-hailing customer who cannot see the price before booking, a salon that loses appointments, a dog or cat owner with nowhere local to look up services, and a rider who has broken down and has to make a second phone call to find out how long the wait will be.\n\nWe build things that solve those specific problems, and we publish the real status of each product — including when it is not ready. A modest catalogue beats an inflated one.',
+    heading: { vi: 'Hành trình của chúng tôi.', en: 'Our journey.' },
+    lede: {
+      vi: 'Từ những năm làm freelance trong thời gian rảnh đến một startup có sản phẩm của riêng mình.',
+      en: 'From years of freelancing in spare time to a startup with products of its own.',
+    },
+    today: { vi: 'Hôm nay', en: 'Today' },
+    prev: { vi: 'Chặng trước', en: 'Previous stage' },
+    next: { vi: 'Chặng sau', en: 'Next stage' },
+    eras: [
+      {
+        id: 'freelance',
+        period: { vi: '2019 - 2024', en: '2019 - 2024' },
+        title: { vi: 'Khởi đầu là PSDev Group', en: 'It began as PSDev Group' },
+        body: {
+          vi: 'Chúng tôi bắt đầu là một nhóm freelance nhỏ mang tên PSDev Group. Mỗi thành viên có công việc riêng và nhận thêm dự án trong thời gian rảnh. Những năm làm phần mềm cho khách hàng đã giúp chúng tôi có nền tảng kỹ thuật vững, và thói quen làm việc rõ ràng, đúng hẹn.',
+          en: 'We began as a small freelance team called PSDev Group. Each member had a day job and took on projects in their spare time. Those years of building software for clients gave us solid technical footing, and the habit of working clearly and on time.',
+        },
+      },
+      {
+        id: 'idea',
+        period: { vi: '2024', en: '2024' },
+        title: {
+          vi: 'Một câu hỏi, những ý tưởng đầu tiên',
+          en: 'A question, then the first ideas',
+        },
+        body: {
+          vi: 'Nhiều năm xây phần mềm khi vẫn chỉ mang danh nghĩa một nhóm, chúng tôi gặp không ít hạn chế và chưa có sản phẩm nào của riêng mình. Chúng tôi tự hỏi: vì sao không tự phát triển một sản phẩm và tự vận hành nó? Người sáng lập nhóm, cũng là người sáng lập công ty hôm nay, đưa ra những ý tưởng đầu tiên: một ứng dụng xe ghép, tiền thân của Ridelink Go, và không lâu sau là GlossLink Beautiful cho các salon làm đẹp.',
+          en: 'For years we built software as nothing more than a team, with real limits and no product of our own. So we asked ourselves: why not build a product and run it ourselves? The team’s founder, who also founded the company we are today, brought the first ideas: a shared-ride app that became Ridelink Go, and soon after, GlossLink Beautiful for beauty salons.',
+        },
+        range: ['2024-01', '2024-12'],
+        image: '/products/screens/ridelink-go-02-search.jpg',
+        imageAlt: {
+          vi: 'Màn hình tìm chuyến xe ghép trong Ridelink Go.',
+          en: 'The shared-ride search screen in Ridelink Go.',
+        },
+      },
+      {
+        id: 'refine',
+        period: { vi: '2024 - 2025', en: '2024 - 2025' },
+        title: {
+          vi: 'Chưa đủ vốn điều hành',
+          en: 'Not enough operating capital',
+        },
+        body: {
+          vi: 'Khi đó chúng tôi chưa đủ vốn điều hành, cũng chưa đủ năng lực để vận hành một dịch vụ gọi xe. Thay vì vội vàng, chúng tôi giữ lại ý tưởng thô ấy và trau chuốt nó từng chút một, cho đến khi nó đủ chín để bắt tay vào xây.',
+          en: 'At the time we had neither the operating capital nor the capacity to run a ride service. Instead of rushing, we kept that rough idea and refined it piece by piece, until it was ready to build.',
+        },
+      },
+      {
+        id: 'company',
+        period: { vi: '2025', en: '2025' },
+        title: { vi: 'RideLink Techs ra đời', en: 'RideLink Techs is founded' },
+        body: {
+          vi: 'Năm 2025, người sáng lập chính thức thành lập RideLink Techs, một startup phần mềm nhỏ tại Đà Nẵng. Cũng trong năm đó, Ridelink Go bước vào giai đoạn phát triển, với ghép chuyến theo thời gian thực, theo dõi chuyến đi trên bản đồ và giá hiển thị trước khi đặt.',
+          en: 'In 2025 the founder established RideLink Techs, a small software startup in Da Nang. The same year, Ridelink Go moved into development, with real-time ride matching, live trip tracking on a map and fares shown before booking.',
+        },
+        range: ['2025-01', '2025-12'],
+        image: '/products/screens/ridelink-go-06-trips.jpg',
+        imageAlt: {
+          vi: 'Danh sách chuyến đi trong Ridelink Go, gồm chuyến đặt trước và đơn gửi hàng.',
+          en: 'The trips list in Ridelink Go, with booked rides and deliveries.',
+        },
+        logo: true,
+      },
+      {
+        id: 'growth',
+        period: { vi: '2026', en: '2026' },
+        title: { vi: 'Một năm mở rộng', en: 'A year of expanding' },
+        body: {
+          vi: 'GlossLink Beautiful và Pawly bước vào giai đoạn phát triển. Tháng 7, chúng tôi bàn giao VibeHolic, website cho một agency media tại Đà Nẵng.',
+          en: 'GlossLink Beautiful and Pawly moved into development. In July we delivered VibeHolic, a website for a media agency in Da Nang.',
+        },
+        range: ['2026-01', '2026-12'],
+        stats: true,
+      },
+      {
+        id: 'next',
+        period: { vi: 'Tiếp theo', en: 'Next' },
+        title: { vi: 'Những việc phía trước', en: 'What comes next' },
+        plans: [
+          {
+            vi: 'Hoàn thiện Ridelink Go để mở bản beta giới hạn.',
+            en: 'Finish Ridelink Go and open a limited beta.',
+          },
+          {
+            vi: 'Đưa GlossLink Beautiful và Pawly đến tay người dùng.',
+            en: 'Bring GlossLink Beautiful and Pawly to users.',
+          },
+          {
+            vi: 'Tìm nhà đầu tư và đối tác để cùng mở rộng các sản phẩm.',
+            en: 'Find investors and partners to grow the products with us.',
+          },
+          {
+            vi: 'Tiếp tục nhận dự án cho khách hàng, với cùng một tiêu chuẩn.',
+            en: 'Keep taking on client projects, to the same standard.',
+          },
+        ],
+      },
+    ],
   },
-  mission: {
-    vi: 'Xây phần mềm đáng tin cậy cho người dùng Việt Nam, và làm việc ở một nơi mà kỹ sư có thể đi cùng sản phẩm của mình nhiều năm, thay vì nhiều sprint.',
-    en: 'Build software Vietnamese users can rely on, and work somewhere an engineer can stay with their product for years instead of sprints.',
+  closing: {
+    heading: {
+      vi: 'Bạn cần xây phần mềm, hay muốn đồng hành cùng sản phẩm của chúng tôi?',
+      en: 'Need software built, or want to build our products with us?',
+    },
+    lede: {
+      vi: 'Gửi cho chúng tôi một brief ngắn. Nếu bạn muốn, chúng tôi ký NDA trước buổi trao đổi đầu tiên, và trả lời trong một ngày làm việc.',
+      en: 'Send us a short brief. If you like, we sign an NDA before the first conversation, and we reply within one working day.',
+    },
+  },
+  cta: {
+    brief: { vi: 'Gửi brief', en: 'Send a brief' },
+    journey: { vi: 'Xem hành trình', en: 'See our journey' },
+    products: { vi: 'Xem sản phẩm', en: 'See the work' },
   },
   focusAreas: [
     {
@@ -87,31 +383,4 @@ export const about: AboutContent = {
     },
   ],
   teamMembers: [],
-  stack: [
-    {
-      label: { vi: 'Ứng dụng', en: 'Applications' },
-      note: {
-        vi: 'TypeScript · Next.js · React Native · Swift · Kotlin',
-        en: 'TypeScript · Next.js · React Native · Swift · Kotlin',
-      },
-    },
-    {
-      label: { vi: 'Dữ liệu', en: 'Data' },
-      note: {
-        vi: 'Postgres · Supabase · Edge functions',
-        en: 'Postgres · Supabase · Edge functions',
-      },
-    },
-    {
-      label: { vi: 'Thiết kế', en: 'Design' },
-      note: { vi: 'Figma · Linear · Notion', en: 'Figma · Linear · Notion' },
-    },
-    {
-      label: { vi: 'Triển khai', en: 'Delivery' },
-      note: {
-        vi: 'GitHub Actions · Vercel · Docker',
-        en: 'GitHub Actions · Vercel · Docker',
-      },
-    },
-  ],
 };

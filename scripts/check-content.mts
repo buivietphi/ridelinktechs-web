@@ -8,6 +8,8 @@
  * imported here for convenience.
  */
 
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import { products } from '../src/content/products.ts';
 import { company } from '../src/content/company.ts';
 import { about } from '../src/content/about.ts';
@@ -53,6 +55,12 @@ for (const p of products) {
     fail(`Product ${p.slug}: outsource products cannot be in-development`);
   }
 
+  for (const mark of p.timeline) {
+    if (!/^\d{4}-(0[1-9]|1[0-2])$/.test(mark.date)) {
+      fail(`Product ${p.slug}: timeline date "${mark.date}" must be YYYY-MM`);
+    }
+  }
+
   if (p.status !== 'shipped') {
     const labels = p.timeline.map((t) => t.label.en.toLowerCase());
     if (!labels.some((l) => l.includes('idea')))
@@ -72,21 +80,64 @@ if (!company.address.vi || !company.address.en) fail(`company.address missing in
 if (company.socials.length > 8) fail(`company.socials > 8 entries`);
 pass('CompanyProfile valid');
 
-if (
-  !about.heroTitle.vi ||
-  !about.heroTitle.en ||
-  about.heroTitle.vi.length > 80 ||
-  about.heroTitle.en.length > 80
-)
-  fail('about.heroTitle invalid');
-if (about.story.vi.length < 200 || about.story.vi.length > 1500)
-  fail('about.story.vi out of 200-1500 range');
-if (about.story.en.length < 200 || about.story.en.length > 1500)
-  fail('about.story.en out of 200-1500 range');
-if (about.mission.vi.length < 50 || about.mission.vi.length > 300)
-  fail('about.mission.vi out of 50-300 range');
-if (about.mission.en.length < 50 || about.mission.en.length > 300)
-  fail('about.mission.en out of 50-300 range');
+const bothLangs = (node: unknown, path: string): void => {
+  if (!node || typeof node !== 'object') return;
+  const rec = node as Record<string, unknown>;
+  if (typeof rec.vi === 'string' && typeof rec.en === 'string') {
+    if (!rec.vi.trim() || !rec.en.trim()) fail(`${path}: empty in one language`);
+    return;
+  }
+  for (const [key, value] of Object.entries(rec)) bothLangs(value, `${path}.${key}`);
+};
+bothLangs(about, 'about');
+
+const langs = ['vi', 'en'] as const;
+const within = (text: string, min: number, max: number) => text.length >= min && text.length <= max;
+
+if (about.hero.titleLines.length !== 2) fail('about.hero.titleLines must have 2 lines');
+for (const line of about.hero.titleLines) {
+  for (const lang of langs) {
+    if (!within(line[lang], 1, 36)) fail(`about.hero.titleLines ${lang} out of 1-36 range`);
+  }
+}
+for (const lang of langs) {
+  if (!within(about.hero.lede[lang], 40, 160)) fail(`about.hero.lede.${lang} out of 40-160 range`);
+  if (!within(about.statement[lang], 60, 240)) fail(`about.statement.${lang} out of 60-240 range`);
+}
+if (about.intro.paragraphs.length !== 2) fail('about.intro.paragraphs must have 2 entries');
+for (const paragraph of about.intro.paragraphs) {
+  for (const lang of langs) {
+    if (!within(paragraph[lang], 80, 420))
+      fail(`about.intro.paragraphs ${lang} out of 80-420 range`);
+  }
+}
+for (const lang of langs) {
+  if (!within(about.intro.mission[lang], 60, 260)) {
+    fail(`about.intro.mission.${lang} out of 60-260 range`);
+  }
+}
+if (about.practice.items.length !== 3) fail('about.practice.items must have 3 entries');
+for (const item of about.practice.items) {
+  for (const lang of langs) {
+    if (!within(item.body[lang], 100, 480)) {
+      fail(`about.practice ${item.id}.body.${lang} out of 100-480 range`);
+    }
+  }
+  if (!existsSync(join(process.cwd(), 'public', item.image))) {
+    fail(`about.practice ${item.id}: missing image ${item.image}`);
+  }
+}
+if (about.story.eras.length < 3 || about.story.eras.length > 8) {
+  fail('about.story.eras must be 3-8 entries');
+}
+for (const era of about.story.eras) {
+  if (era.range && era.range.some((date) => !/^\d{4}-(0[1-9]|1[0-2])$/.test(date))) {
+    fail(`about.story ${era.id}: range must be YYYY-MM`);
+  }
+  if (era.image && !existsSync(join(process.cwd(), 'public', era.image))) {
+    fail(`about.story ${era.id}: missing image ${era.image}`);
+  }
+}
 if (about.focusAreas.length < 3 || about.focusAreas.length > 6)
   fail('about.focusAreas must be 3-6 entries');
 if (about.teamMembers.length > 12) fail('about.teamMembers > 12 entries');
