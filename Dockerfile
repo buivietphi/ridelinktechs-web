@@ -5,7 +5,7 @@ WORKDIR /app
 # to run against it). Pin pnpm to the version that wrote the lockfile so the
 # image resolves the same graph every build, and use --frozen-lockfile so a
 # package.json/lock drift fails the build instead of silently resolving fresh.
-RUN npm install -g pnpm@11.20.0
+RUN npm install -g pnpm@9.15.9
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN pnpm install --frozen-lockfile
 

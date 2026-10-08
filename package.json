@@ -2,7 +2,7 @@
   "name": "ridelinks-techs-web",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@11.20.0",
+  "packageManager": "pnpm@9.15.9",
   "engines": {
     "node": "20.x"
   },

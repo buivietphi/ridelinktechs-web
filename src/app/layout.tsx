@@ -7,6 +7,7 @@ import { ThemeBinding } from '@/components/theme/ThemeBinding';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { SmoothScroll } from '@/lib/animations';
+import { RouteProgress } from '@/components/motion/RouteProgress';
 import '@/styles/tokens.css';
 import './globals.css';
 
@@ -80,6 +81,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               {skipLabel}
             </a>
             <SmoothScroll />
+            <RouteProgress />
             <Header />
             <main id="main" className="relative pt-[132px]">
               {children}
