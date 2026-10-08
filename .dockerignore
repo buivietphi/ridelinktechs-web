@@ -17,8 +17,11 @@ next-env.d.ts
 .idea
 *.log
 
-# Local env files
+# Personal overrides only. `.env.development` and `.env.production` are tracked
+# and must reach the image: the runner stage copies `.env.production` next to
+# server.js, and the standalone server loads it on startup.
 .env*.local
+.env
 
 # Source maps (large, not needed in container)
 *.map

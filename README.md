@@ -77,8 +77,36 @@ src/
 
 The Next.js standalone output ships with two builds:
 
-1. **Static-hosting-style**: build with `output: 'standalone'` (default), generate a Docker image from the included [`Dockerfile`](Dockerfile), and run with a reverse-proxy in front of `node server.js` on port 3000.
-2. **Any Node 22 host**: `npm ci && npm run build && node .next/standalone/server.js`.
+1. **Docker**: build with `output: 'standalone'` (default), generate an image from the included [`Dockerfile`](Dockerfile), and run it behind a reverse-proxy on port 3000.
+2. **Any Node 22 host**: `npm run build && node .next/standalone/server.js`.
+
+### Environment
+
+There are two tracked env files, and which one loads depends on `NODE_ENV`:
+
+| File               | Loaded by                                   | Turnstile     |
+| ------------------ | ------------------------------------------- | ------------- |
+| `.env.development` | `npm run dev` (`NODE_ENV=development`)      | dummy keys    |
+| `.env.production`  | `npm run build` and `npm start` / the image | the real keys |
+
+`.env.example` is the blank template. `.env.development` uses Cloudflare's
+official dummy Turnstile pair, which validates on any host including
+`localhost`; a production secret rejects a dummy token, so the two must never be
+mixed.
+
+Next.js resolves these automatically — the standalone server loads
+`.env.production` from its own directory on startup, and the `Dockerfile` copies
+the file next to `server.js` for that reason. **No `-e` flags and no build
+arguments are required**: a fresh clone is deployable as is.
+
+Every server variable is read per request, so nothing is baked into the bundle.
+`NEXT_PUBLIC_` values would be frozen at build time, which is why the Turnstile
+sitekey is read by a server component in `src/app/contact/page.tsx` and handed to
+the form as a prop instead.
+
+> `.env.production` holds `SUPABASE_SERVICE_ROLE_KEY`, which bypasses row level
+> security. It is tracked in git by choice. If this repository ever becomes
+> public, rotate that key in Supabase before anything else.
 
 ## Brand & content rules
 

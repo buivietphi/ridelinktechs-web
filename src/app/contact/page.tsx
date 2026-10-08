@@ -16,6 +16,24 @@ export default async function ContactPage() {
   const t = await getTranslations('contact');
   const faqItems = t.raw('faq.items') as Array<{ q: string; a: string }>;
 
+  // Read here, on the server, and hand it down as a prop rather than letting
+  // next/script inline a NEXT_PUBLIC_ value at build time. That keeps the
+  // sitekey on the same footing as every other secret in the app: whatever the
+  // container was started with, no rebuild and no build argument required.
+  const siteKey = process.env.TURNSTILE_SITE_KEY ?? '';
+
+  // The env split follows NODE_ENV, not the hostname: `next dev` reads
+  // .env.development and `next start`/the image reads .env.production. That is
+  // right, but it also means running `npm run dev` on the server over the real
+  // domain serves Cloudflare's always-pass key to real visitors — the captcha
+  // looks alive and gates nothing. The `1x` prefix is Cloudflare's documented
+  // shape for a dummy key, so this is a prefix test, not a guess.
+  if (siteKey.startsWith('1x')) {
+    console.error(
+      '[contact] Turnstile is running on a TESTING keypair — the bot gate is OFF. This is fine under `npm run dev`. If this is a public deploy, the server is running the development env.'
+    );
+  }
+
   const details = [
     { label: t('channels.email'), value: company.email, href: `mailto:${company.email}` },
     { label: t('channels.location'), value: company.address[locale] },
@@ -75,7 +93,7 @@ export default async function ContactPage() {
           </div>
 
           <div className="col-span-12 lg:col-span-7 lg:col-start-6">
-            <ContactForm />
+            <ContactForm siteKey={siteKey} />
           </div>
         </Reveal>
       </section>

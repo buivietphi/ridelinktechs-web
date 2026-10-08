@@ -167,7 +167,23 @@
       "cta": "Gửi brief",
       "sending": "Đang mở email",
       "errRequired": "Trường này là bắt buộc.",
-      "errSummary": "Còn trường bắt buộc chưa được điền."
+      "errSummary": "Còn trường bắt buộc chưa được điền.",
+      "sendingNow": "Đang gửi",
+      "errEmail": "Email chưa đúng định dạng.",
+      "errMessageShort": "Viết thêm một chút để chúng tôi hiểu vấn đề nhé.",
+      "errInvalid": "Nội dung gửi đi không hợp lệ. Kiểm tra lại phần vừa nhập rồi gửi tiếp.",
+      "errCaptcha": "Ô xác nhận người dùng chưa qua. Bấm lại vào ô đó rồi gửi.",
+      "errRate": "Bạn đã gửi khá nhiều. Thử lại sau, hoặc dùng trực tiếp số điện thoại và email ở phần trên.",
+      "errUnavailable": "Chưa gửi được. Thử lại sau vài giây, hoặc dùng trực tiếp số điện thoại và email ở phần trên.",
+      "captchaLabel": "Xác nhận người dùng",
+      "captchaLoading": "Đang tải ô xác nhận",
+      "captchaBlocked": "Không tải được ô xác nhận. Nếu trình duyệt đang chặn scripts, hãy cho phép challenges.cloudflare.com rồi gửi lại.",
+      "sent": "Đã nhận brief của bạn. Chúng tôi sẽ trả lời qua email.",
+      "sentAgain": "Gửi brief khác",
+      "phone": "Số điện thoại",
+      "from": "Bạn biết đến chúng tôi từ đâu",
+      "optional": "tuỳ chọn",
+      "errPhone": "Số này gọi không được. Bỏ trống cũng được."
     },
     "faq": {
       "kicker": "Câu hỏi thường gặp",
@@ -194,7 +210,8 @@
           "a": "Được. Mỗi dự án bàn giao kèm tài liệu kỹ thuật, hướng dẫn vận hành và mã nguồn đầy đủ."
         }
       ]
-    }
+    },
+    "formNoteStored": "Brief của bạn được lưu lại trên hệ thống của chúng tôi, và chúng tôi chỉ dùng nó để trả lời bạn."
   },
   "footer": {
     "location": "Địa chỉ",

@@ -167,7 +167,23 @@
       "cta": "Send the brief",
       "sending": "Opening your email",
       "errRequired": "This field is required.",
-      "errSummary": "Some required fields are still empty."
+      "errSummary": "Some required fields are still empty.",
+      "sendingNow": "Sending",
+      "errEmail": "That email address is not valid.",
+      "errMessageShort": "Add a little more so we understand the problem.",
+      "errInvalid": "That submission is not valid. Check what you typed and send again.",
+      "errCaptcha": "The human check did not pass. Click the box again, then send.",
+      "errRate": "You have sent a few already. Try again later, or use the phone and email above.",
+      "errUnavailable": "We could not send that. Try again in a few seconds, or use the phone and email above.",
+      "captchaLabel": "Human check",
+      "captchaLoading": "Loading the verification box",
+      "captchaBlocked": "The verification box did not load. If your browser blocks scripts, allow challenges.cloudflare.com and send again.",
+      "sent": "Brief received. We will reply by email.",
+      "sentAgain": "Send another brief",
+      "phone": "Phone number",
+      "from": "How did you hear about us",
+      "optional": "optional",
+      "errPhone": "That number cannot be dialled. Leaving it blank is fine."
     },
     "faq": {
       "kicker": "Frequently asked",
@@ -194,7 +210,8 @@
           "a": "Yes. Every project ships with technical documentation, an operations guide and the full source."
         }
       ]
-    }
+    },
+    "formNoteStored": "Your brief is stored in our system, and we only use it to reply to you."
   },
   "footer": {
     "location": "Location",

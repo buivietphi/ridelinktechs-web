@@ -24,6 +24,12 @@ COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
+# .next/standalone only traces files the server imports at runtime, so the env
+# file is not inside it. The standalone server loads .env.production from its
+# own directory on startup (verified: with nothing exported, the prod Turnstile
+# sitekey reaches the rendered HTML), so it has to sit next to server.js.
+COPY --from=builder --chown=nextjs:nodejs /app/.env.production ./.env.production
+
 USER nextjs
 EXPOSE 3000
 
