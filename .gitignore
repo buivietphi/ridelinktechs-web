@@ -38,6 +38,10 @@ yarn-error.log*
 # Vercel
 .vercel
 
+# MCP server config. Holds a Supabase personal access token in the
+# Authorization header, so it must never be committed.
+.mcp.json
+
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts

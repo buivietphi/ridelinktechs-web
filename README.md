@@ -119,11 +119,11 @@ That sharing is also why the write path is an RPC. `service_role` carries
 `BYPASSRLS`, so a key holding a plain `INSERT` grant on one table can read and
 write **every** table in the project, VibeHolic's included. Instead:
 
-| Role       | Can do                                                       |
-| ---------- | ------------------------------------------------------------ |
-| `anon`     | nothing                                                       |
-| `authed`   | nothing                                                       |
-| `service_role` | `EXECUTE ridelink_contact_submit` only, no table grant      |
+| Role           | Can do                                                 |
+| -------------- | ------------------------------------------------------ |
+| `anon`         | nothing                                                |
+| `authed`       | nothing                                                |
+| `service_role` | `EXECUTE ridelink_contact_submit` only, no table grant |
 
 The function is `SECURITY DEFINER` with an empty `search_path`, so it inserts
 as its owner and no caller-controlled `search_path` can shadow it. Postgres
@@ -131,6 +131,26 @@ grants `EXECUTE` to `PUBLIC` by default, so the migration revokes that first —
 without it, an anonymous key could call the function from a browser and skip
 Turnstile, the honeypot and the rate limit entirely. The trailing `do $$`
 block aborts the migration if any of that drifts.
+
+> **Revoking from `PUBLIC` is not sufficient on this project.** It carries
+> `ALTER DEFAULT PRIVILEGES` that grants `EXECUTE` on every new function in
+> `schema public` to `anon` and `authenticated`:
+>
+> ```
+> pg_default_acl: {defaclobjtype='f', defaclrole='postgres',
+>                  acl={postgres=X, anon=X, authenticated=X, service_role=X}}
+> ```
+>
+> Every new function is therefore born with `anon=X` regardless of the `PUBLIC`
+> default, so the migration must revoke by role name as well:
+>
+> ```sql
+> revoke execute on function public.ridelink_contact_submit(...) from anon;
+> revoke execute on function public.ridelink_contact_submit(...) from authenticated;
+> ```
+>
+> The migration's trailing guard fails loudly if this ever regresses. Do not
+> "simplify" it back to revoking from `PUBLIC` only.
 
 A leaked key now costs one blind write endpoint instead of the whole project.
 
