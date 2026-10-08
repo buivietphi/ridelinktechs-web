@@ -13,7 +13,7 @@ const ALLOWED_HOSTNAMES = (process.env.CONTACT_ALLOWED_HOSTNAMES ?? '')
   .map((s) => s.trim())
   .filter(Boolean);
 
-const TABLE = 'ridelink_contact_message';
+const RPC = 'ridelink_contact_submit';
 const SITEVERIFY = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 const WIDGET_ACTION = 'contact';
 
@@ -119,7 +119,7 @@ export async function submitContact(
   if (!token || token.length > MAX.token) return { ok: false, code: 'captcha', field: null };
 
   // Cheapest gate first: a rejected bot never reaches Cloudflare or Postgres.
-  if (ipHash && (hitRate(ipHash) || (await overRateLimit(ipHash)))) {
+  if (ipHash && hitRate(ipHash)) {
     return { ok: false, code: 'rate', field: null };
   }
 
@@ -130,34 +130,53 @@ export async function submitContact(
     return { ok: false, code: 'captcha', field: null };
   }
 
+  // The write goes through ridelink_contact_submit, not a table INSERT. The key
+  // has no grant on the table itself — service_role carries BYPASSRLS, so a
+  // table-level grant would hand it every table in this shared project, not
+  // just this one. See the function's definition for the full reasoning.
+  //
+  // The DB-side rate limit moved into that function: the in-memory one above
+  // dies on restart, and only counts this one process. That is why
+  // overRateLimit() is gone rather than merely unused.
   let res: Response;
   try {
-    res = await fetch(`${SUPABASE_URL}/rest/v1/${TABLE}`, {
+    res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${RPC}`, {
       method: 'POST',
-      headers: dbHeaders({ 'Content-Type': 'application/json', Prefer: 'return=minimal' }),
+      headers: dbHeaders({ 'Content-Type': 'application/json' }),
       body: JSON.stringify({
-        name,
-        email,
-        message,
-        phone: phone === '' ? null : phoneClean,
-        from_source: from === '' ? null : from,
-        locale,
-        status: 'new',
-        ip_hash: ipHash,
-        source_url: refererPath(h),
+        p_name: name,
+        p_email: email,
+        p_message: message,
+        p_phone: phone === '' ? null : phoneClean,
+        p_from_source: from === '' ? null : from,
+        p_source_url: refererPath(h),
+        p_locale: locale,
+        p_ip_hash: ipHash,
+        p_rate_limit: RATE_LIMIT,
+        p_window_secs: Math.round(RATE_WINDOW_MS / 1000),
       }),
       cache: 'no-store',
       signal: AbortSignal.timeout(8_000),
     });
   } catch (err) {
-    console.error('[contact] insert unreachable', err);
+    console.error('[contact] submit unreachable', err);
     return { ok: false, code: 'unavailable', field: null };
   }
 
   if (!res.ok) {
     // The PostgREST error body is {code, details, hint, message} and carries no
-    // request headers, so logging it cannot leak the service key.
-    console.error('[contact] insert failed', res.status, (await res.text()).slice(0, 500));
+    // request headers, so logging it cannot leak the service key. A 401 here is
+    // the expected shape if the migration has not been applied yet.
+    console.error('[contact] submit failed', res.status, (await res.text()).slice(0, 500));
+    return { ok: false, code: 'unavailable', field: null };
+  }
+
+  const body = (await res.json()) as { ok?: boolean; code?: string };
+  if (body?.ok !== true) {
+    // The only rejection the function returns is the rate limit; anything else
+    // would have thrown inside plpgsql and failed the request above.
+    if (body?.code === 'rate') return { ok: false, code: 'rate', field: null };
+    console.error('[contact] submit returned', body);
     return { ok: false, code: 'unavailable', field: null };
   }
 
@@ -188,24 +207,6 @@ function recordHit(ipHash: string): void {
   seen.push(Date.now());
   hits.set(ipHash, seen);
   if (hits.size > MAX_TRACKED_IPS) hits.clear();
-}
-
-async function overRateLimit(ipHash: string): Promise<boolean> {
-  const since = new Date(Date.now() - RATE_WINDOW_MS).toISOString();
-  try {
-    const res = await fetch(
-      `${SUPABASE_URL}/rest/v1/${TABLE}?select=id&ip_hash=eq.${ipHash}` +
-        `&submitted_at=gt.${since}&limit=${RATE_LIMIT + 1}`,
-      { headers: dbHeaders(), cache: 'no-store', signal: AbortSignal.timeout(8_000) },
-    );
-    // Never lock the form out because the limiter itself is unavailable.
-    if (!res.ok) return false;
-    const rows: unknown = await res.json();
-    return Array.isArray(rows) && rows.length > RATE_LIMIT;
-  } catch (err) {
-    console.error('[contact] rate limit check failed', err);
-    return false;
-  }
 }
 
 async function turnstileOk(token: string, h: Headers): Promise<boolean> {

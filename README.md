@@ -108,6 +108,36 @@ the form as a prop instead.
 > security. It is tracked in git by choice. If this repository ever becomes
 > public, rotate that key in Supabase before anything else.
 
+### The Supabase project is shared with VibeHolic
+
+`qyqhoegexqmzdzrosztm` ("vibeholic-media") backs both products. The contact
+table is therefore **dedicated** — `ridelink_contact_message`, never merged
+into VibeHolic's `contact_lead`, which its admin dashboard reads through
+`rpc/list_admin_leads`.
+
+That sharing is also why the write path is an RPC. `service_role` carries
+`BYPASSRLS`, so a key holding a plain `INSERT` grant on one table can read and
+write **every** table in the project, VibeHolic's included. Instead:
+
+| Role       | Can do                                                       |
+| ---------- | ------------------------------------------------------------ |
+| `anon`     | nothing                                                       |
+| `authed`   | nothing                                                       |
+| `service_role` | `EXECUTE ridelink_contact_submit` only, no table grant      |
+
+The function is `SECURITY DEFINER` with an empty `search_path`, so it inserts
+as its owner and no caller-controlled `search_path` can shadow it. Postgres
+grants `EXECUTE` to `PUBLIC` by default, so the migration revokes that first —
+without it, an anonymous key could call the function from a browser and skip
+Turnstile, the honeypot and the rate limit entirely. The trailing `do $$`
+block aborts the migration if any of that drifts.
+
+A leaked key now costs one blind write endpoint instead of the whole project.
+
+Run the migration once, in the SQL Editor of project `qyqhoegexqmzdzrosztm`:
+[`supabase/migrations/20260930120000_ridelink_contact.sql`](supabase/migrations/20260930120000_ridelink_contact.sql).
+Without it, every submit fails with `PGRST205`.
+
 ## Brand & content rules
 
 - **Bilingual is non-negotiable**: every string lives in both `vi.json` and `en.json`. Validation (`npm run check:i18n`) fails CI when they diverge.
