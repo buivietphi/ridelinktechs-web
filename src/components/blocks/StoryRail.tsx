@@ -11,6 +11,7 @@ import { StatCounter } from '@/components/motion/StatCounter';
 import { LogoMark } from '@/components/ui/LogoMark';
 import { prefersReducedMotion } from '@/lib/animations';
 import { cn } from '@/lib/cn';
+import { railGoTo, railStep } from '@/lib/rail';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -173,29 +174,8 @@ export function StoryRail({
   const prev = useRef<HTMLButtonElement | null>(null);
   const next = useRef<HTMLButtonElement | null>(null);
 
-  const items = () =>
-    Array.from(track.current?.querySelectorAll<HTMLElement>('[data-story-card]') ?? []);
-  const inset = () =>
-    track.current ? parseFloat(getComputedStyle(track.current).scrollPaddingLeft) || 0 : 0;
-
-  const goTo = (index: number) => {
-    const el = track.current;
-    const list = items();
-    const item = list[Math.max(0, Math.min(list.length - 1, index))];
-    if (!el || !item) return;
-    el.scrollTo({
-      left: item.offsetLeft - inset(),
-      behavior: prefersReducedMotion() ? 'auto' : 'smooth',
-    });
-  };
-
-  const step = (dir: 1 | -1) => {
-    const el = track.current;
-    if (!el) return;
-    const edge = el.scrollLeft + inset() + 8;
-    const current = items().reduce((found, item, i) => (item.offsetLeft <= edge ? i : found), 0);
-    goTo(current + dir);
-  };
+  const goTo = (index: number) => railGoTo(track.current, '[data-story-card]', index);
+  const step = (dir: 1 | -1) => railStep(track.current, '[data-story-card]', dir);
 
   useGSAP(
     () => {

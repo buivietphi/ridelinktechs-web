@@ -1,20 +1,23 @@
 [
   {
     "slug": "ridelink-go",
+    "kind": { "vi": "Gọi xe và vận chuyển", "en": "Ride-hailing and delivery" },
+    "icon": "car",
     "name": {
       "vi": "Ridelink Go",
       "en": "Ridelink Go"
     },
     "tagline": {
-      "vi": "Gọi xe và vận chuyển theo thời gian thực — bắt đầu từ Đà Nẵng.",
+      "vi": "Gọi xe và vận chuyển theo thời gian thực, bắt đầu từ Đà Nẵng.",
       "en": "Real-time ride-hailing and delivery, starting in Da Nang."
     },
     "description": {
-      "vi": "Ridelink Go là sản phẩm chủ lực của chúng tôi — một ứng dụng mobile kết nối hành khách với tài xế trong khu vực Đà Nẵng và các thành phố lân cận. Hệ thống xử lý ghép nối theo thời gian thực, theo dõi chuyến đi trực tiếp trên bản đồ, và thanh toán không tiền mặt qua ví nội bộ. Đang trong quá trình hoàn thiện với phiên bản beta giới hạn dự kiến ra mắt trong năm tới.",
-      "en": "Ridelink Go is our flagship product — a mobile app that connects riders with drivers across Da Nang and nearby cities. Real-time matching, live trip tracking on the map, and cashless payment through an in-app wallet. Currently in active development with a limited beta planned for the next year."
+      "vi": "Ridelink Go là sản phẩm chủ lực của chúng tôi, một ứng dụng mobile kết nối hành khách với tài xế trong khu vực Đà Nẵng và các thành phố lân cận. Hệ thống xử lý ghép nối theo thời gian thực, theo dõi chuyến đi trực tiếp trên bản đồ, và thanh toán không tiền mặt qua ví nội bộ. Đang trong quá trình hoàn thiện với phiên bản beta giới hạn dự kiến ra mắt trong năm tới.",
+      "en": "Ridelink Go is our flagship product, a mobile app that connects riders with drivers across Da Nang and nearby cities. Real-time matching, live trip tracking on the map, and cashless payment through an in-app wallet. Currently in active development with a limited beta planned for the next year."
     },
     "category": "prod",
     "status": "in-development",
+    "featured": true,
     "timeline": [
       {
         "label": {
@@ -51,6 +54,15 @@
       "/products/screens/ridelink-go-06-trips.jpg",
       "/products/screens/ridelink-go-07-driver.jpg"
     ],
+    "screenCaptions": [
+      { "vi": "Trang chủ", "en": "Home" },
+      { "vi": "Tìm chuyến xe ghép", "en": "Find a shared ride" },
+      { "vi": "Bao xe và chọn loại xe", "en": "Book a private car and pick a type" },
+      { "vi": "Tài khoản, điểm tích lũy và ví", "en": "Account, points and wallet" },
+      { "vi": "Hoạt động và thương lượng giá", "en": "Activity and fare negotiation" },
+      { "vi": "Danh sách chuyến đi", "en": "Trips list" },
+      { "vi": "Ứng dụng dành cho tài xế", "en": "The driver app" }
+    ],
     "features": {
       "vi": [
         "Ghép nối tài xế theo thời gian thực",
@@ -64,21 +76,96 @@
         "Cashless payment in the app",
         "Fare shown before you book"
       ]
-    }
+    },
+    "howItWorks": [
+      {
+        "title": { "vi": "Chọn cách đi", "en": "Pick how you travel" },
+        "body": {
+          "vi": "Ở trang chủ, chọn xe ghép để đi chung chuyến cho tiết kiệm, hoặc bao xe để đi riêng.",
+          "en": "From the home screen, choose a shared ride to travel together and save, or a private car just for you."
+        }
+      },
+      {
+        "title": { "vi": "Nhập hành trình", "en": "Set the trip" },
+        "body": {
+          "vi": "Điền điểm đón, điểm đến, ngày giờ và số hành khách. Với bao xe, chọn loại xe 4 chỗ, 7 chỗ hoặc VIP, giá hiện ngay trước khi đặt.",
+          "en": "Enter pickup, destination, date, time and passengers. For a private car, pick a 4-seat, 7-seat or VIP vehicle and see the fare before you book."
+        }
+      },
+      {
+        "title": { "vi": "Chốt giá", "en": "Settle the fare" },
+        "body": {
+          "vi": "Xem đề xuất từ tài xế trong mục Hoạt động, rồi chấp nhận hoặc đề xuất lại mức giá ngay trong ứng dụng.",
+          "en": "Review driver proposals under Activity, then accept or counter with your own price inside the app."
+        }
+      },
+      {
+        "title": { "vi": "Đi và theo dõi", "en": "Ride and follow along" },
+        "body": {
+          "vi": "Theo dõi chuyến đi trên bản đồ và trong danh sách chuyến, gọi cho tài xế khi cần, rồi thanh toán không tiền mặt trong ứng dụng.",
+          "en": "Follow the trip on the map and in the trips list, call the driver when needed, and pay cashless in the app."
+        }
+      }
+    ],
+    "faq": [
+      {
+        "q": { "vi": "Ridelink Go đã ra mắt chưa?", "en": "Is Ridelink Go available yet?" },
+        "a": {
+          "vi": "Chưa. Ứng dụng đang trong quá trình hoàn thiện, và phiên bản đầu tiên dự kiến là một bản beta giới hạn.",
+          "en": "Not yet. The app is still being finished, and the first release is planned as a limited beta."
+        }
+      },
+      {
+        "q": {
+          "vi": "Ridelink Go phục vụ khu vực nào?",
+          "en": "Which areas will Ridelink Go serve?"
+        },
+        "a": {
+          "vi": "Khu vực Đà Nẵng và các thành phố lân cận, bắt đầu từ Đà Nẵng.",
+          "en": "Da Nang and nearby cities, starting with Da Nang."
+        }
+      },
+      {
+        "q": {
+          "vi": "Xe ghép và bao xe khác nhau thế nào?",
+          "en": "How do a shared ride and a private car differ?"
+        },
+        "a": {
+          "vi": "Xe ghép là đi chung chuyến với hành khách khác để tiết kiệm chi phí. Bao xe là thuê riêng cả chiếc xe, chọn loại 4 chỗ, 7 chỗ hoặc VIP, và giá hiển thị trước khi đặt.",
+          "en": "A shared ride means travelling with other passengers to cut the cost. A private car is yours alone: choose a 4-seat, 7-seat or VIP vehicle, with the fare shown before you book."
+        }
+      },
+      {
+        "q": { "vi": "Giá được xác định như thế nào?", "en": "How is the fare decided?" },
+        "a": {
+          "vi": "Giá hiển thị trước khi đặt. Với một số yêu cầu, người đặt và tài xế có thể đề xuất giá qua lại ngay trong mục Hoạt động trước khi chốt.",
+          "en": "The fare is shown before you book. For some requests, rider and driver can propose prices back and forth under Activity before settling."
+        }
+      },
+      {
+        "q": { "vi": "Tài xế tham gia bằng cách nào?", "en": "How do drivers join?" },
+        "a": {
+          "vi": "Từ mục Tài khoản, người dùng đăng ký làm tài xế và chuyển qua lại giữa chế độ khách hàng và tài xế. Ở chế độ tài xế, có thể đăng chuyến mới hoặc tìm khách ở gần.",
+          "en": "From the Account screen, a user signs up as a driver and switches between rider and driver modes. In driver mode they can post a new trip or find riders nearby."
+        }
+      }
+    ]
   },
   {
     "slug": "glosslink-beautiful",
+    "kind": { "vi": "Đặt lịch làm đẹp", "en": "Beauty booking" },
+    "icon": "sparkle",
     "name": {
       "vi": "GlossLink Beautiful",
       "en": "GlossLink Beautiful"
     },
     "tagline": {
-      "vi": "Đặt lịch salon và chăm sóc sắc đẹp — không còn trùng lịch.",
-      "en": "Salon and beauty-care booking — no more double bookings."
+      "vi": "Đặt lịch salon và chăm sóc sắc đẹp, không còn trùng lịch.",
+      "en": "Salon and beauty-care booking, with no more double bookings."
     },
     "description": {
-      "vi": "GlossLink Beautiful kết nối khách hàng với các salon và thợ làm đẹp độc lập. Đặt lịch trực tiếp, theo dõi lịch sử dịch vụ, thanh toán tích hợp và hệ thống đánh giá — tất cả trong một ứng dụng duy nhất. Hiện đang trong giai đoạn thiết kế UX; phiên bản đầu tiên dự kiến ra mắt giữa năm 2026.",
-      "en": "GlossLink Beautiful connects customers with independent salons and beauticians. Direct booking, service history, integrated payments, and reviews — all in one app. Currently in UX design; the first release is targeted for mid-2026."
+      "vi": "GlossLink Beautiful kết nối khách hàng với các salon và thợ làm đẹp độc lập. Đặt lịch trực tiếp, theo dõi lịch sử dịch vụ, thanh toán tích hợp và hệ thống đánh giá, tất cả trong một ứng dụng duy nhất. Sản phẩm đã bước vào giai đoạn phát triển và sắp ra mắt.",
+      "en": "GlossLink Beautiful connects customers with independent salons and beauticians. Direct booking, service history, integrated payments, and reviews, all in one app. The product has entered development and is coming soon."
     },
     "category": "prod",
     "status": "upcoming",
@@ -115,6 +202,12 @@
       "/products/screens/glosslink-03-appointment.jpg",
       "/products/screens/glosslink-04-booking.jpg"
     ],
+    "screenCaptions": [
+      { "vi": "Trang chủ", "en": "Home" },
+      { "vi": "Tìm dịch vụ và salon", "en": "Search services and salons" },
+      { "vi": "Chi tiết lịch hẹn", "en": "Appointment details" },
+      { "vi": "Chọn lịch còn trống", "en": "Pick an open slot" }
+    ],
     "features": {
       "vi": [
         "Tìm salon gần bạn theo vị trí",
@@ -130,21 +223,78 @@
         "Browse services by popular category",
         "Redeem promo codes"
       ]
-    }
+    },
+    "howItWorks": [
+      {
+        "title": { "vi": "Tìm dịch vụ", "en": "Find a service" },
+        "body": {
+          "vi": "Tìm theo dịch vụ, salon hoặc thợ làm đẹp, hoặc đi nhanh bằng các lối tắt: đặt hôm nay, thợ tới nhà, gần nhất.",
+          "en": "Search by service, salon or beautician, or use the shortcuts: book today, at home, nearest."
+        }
+      },
+      {
+        "title": { "vi": "Chọn lịch trống", "en": "Pick an open slot" },
+        "body": {
+          "vi": "Xem các lịch còn trống theo ngày, lọc theo tại salon, studio riêng hoặc tới nhà, rồi chọn khung giờ phù hợp.",
+          "en": "See open slots by day, filter by salon, private studio or at home, then pick a time that suits you."
+        }
+      },
+      {
+        "title": { "vi": "Xác nhận và quản lý", "en": "Confirm and manage" },
+        "body": {
+          "vi": "Lịch hẹn hiện đủ dịch vụ, thời lượng và giá, kèm các nút nhắc thợ, đổi lịch và hủy lịch.",
+          "en": "The appointment shows the service, duration and price, with buttons to remind the beautician, reschedule or cancel."
+        }
+      }
+    ],
+    "faq": [
+      {
+        "q": {
+          "vi": "GlossLink Beautiful đã dùng được chưa?",
+          "en": "Is GlossLink Beautiful available yet?"
+        },
+        "a": {
+          "vi": "Chưa. Sản phẩm đang trong giai đoạn phát triển và sắp ra mắt.",
+          "en": "Not yet. The product is in development and coming soon."
+        }
+      },
+      {
+        "q": {
+          "vi": "Tôi đặt lịch tại salon hay gọi thợ tới nhà đều được không?",
+          "en": "Can I book at a salon or have someone come to me?"
+        },
+        "a": {
+          "vi": "Được. Khi chọn lịch có thể lọc theo tại salon, studio riêng hoặc tới nhà, và mỗi kết quả ghi rõ hình thức phục vụ.",
+          "en": "Both work. When picking a slot you can filter by salon, private studio or at home, and every result states how it is served."
+        }
+      },
+      {
+        "q": {
+          "vi": "Có đổi hoặc hủy lịch hẹn được không?",
+          "en": "Can I change or cancel an appointment?"
+        },
+        "a": {
+          "vi": "Được. Mỗi lịch hẹn có nút đổi lịch và hủy lịch, cùng nút nhắc thợ trước giờ hẹn.",
+          "en": "Yes. Each appointment has reschedule and cancel buttons, plus a button to remind the beautician before the visit."
+        }
+      }
+    ]
   },
   {
     "slug": "pawly",
+    "kind": { "vi": "Chăm sóc thú cưng", "en": "Pet care" },
+    "icon": "paw",
     "name": {
       "vi": "Pawly",
       "en": "Pawly"
     },
     "tagline": {
-      "vi": "Mạng xã hội và dịch vụ chăm sóc thú cưng — mọi thứ ở một nơi.",
-      "en": "Pet social and care network — everything in one home."
+      "vi": "Mạng xã hội và dịch vụ chăm sóc thú cưng, mọi thứ ở một nơi.",
+      "en": "Pet social and care network, everything in one home."
     },
     "description": {
-      "vi": "Pawly kết hợp mạng xã hội cho chủ thú cưng với các dịch vụ đi kèm — tìm bạn đời cho thú cưng, đặt dịch vụ chăm sóc, theo dõi sức khỏe và chia sẻ hành trình nuôi dưỡng. Đang ở giai đoạn hoàn thiện ý tưởng; dự kiến bắt đầu phát triển giữa năm 2026.",
-      "en": "Pawly combines a pet-owner social network with care services — finding companions for pets, booking care, health tracking, and sharing the ownership journey. Idea stage through end of 2025, with development starting mid-2026."
+      "vi": "Pawly kết hợp mạng xã hội cho chủ thú cưng với các dịch vụ đi kèm: tìm bạn đời cho thú cưng, đặt dịch vụ chăm sóc, theo dõi sức khỏe, tra cứu cẩm nang nuôi thú và chia sẻ hành trình nuôi dưỡng. Sản phẩm đã bước vào giai đoạn phát triển và sắp ra mắt.",
+      "en": "Pawly combines a pet-owner social network with care services: finding companions for pets, booking care, health tracking, a pet care handbook, and sharing the ownership journey. The product has entered development and is coming soon."
     },
     "category": "prod",
     "status": "upcoming",
@@ -176,25 +326,98 @@
     "shot": "ui",
     "platform": "mobile",
     "screens": ["/products/screens/pawly-01-home.jpg"],
+    "screenCaptions": [
+      { "vi": "Trang chủ: hồ sơ thú cưng và lịch nhắc", "en": "Home: pet profile and reminders" }
+    ],
     "features": {
       "vi": [
         "Hồ sơ riêng cho từng thú cưng",
         "Nhắc lịch tiêm vaccine",
-        "Nhật ký tắm, tấm, uống thuốc",
+        "Nhật ký tắm và uống thuốc",
         "Cân nặng gần nhất",
-        "Nhắc lịch khám định kỳ"
+        "Nhắc lịch khám định kỳ",
+        "Cẩm nang nuôi thú cưng"
       ],
       "en": [
         "A profile for each pet",
         "Vaccination reminders",
-        "A log for walks, baths and medication",
+        "A log for baths and medication",
         "Latest weight",
-        "Vet appointment reminders"
+        "Vet appointment reminders",
+        "A pet care handbook"
       ]
-    }
+    },
+    "howItWorks": [
+      {
+        "title": { "vi": "Tạo hồ sơ cho từng bé", "en": "Create a profile for each pet" },
+        "body": {
+          "vi": "Mỗi thú cưng có hồ sơ riêng với ngày sinh, giống và cân nặng. Chuyển qua lại giữa các bé ngay ở đầu trang chủ.",
+          "en": "Each pet gets a profile with birthday, breed and weight. Switch between pets at the top of the home screen."
+        }
+      },
+      {
+        "title": { "vi": "Đặt nhắc nhở", "en": "Set reminders" },
+        "body": {
+          "vi": "Thêm lịch tiêm vaccine, tắm, uống thuốc, grooming và các việc khác. Việc sắp tới hiện sẵn trên hồ sơ, kèm ngày giờ.",
+          "en": "Add vaccines, baths, medication, grooming and more. Upcoming tasks appear on the profile with their date and time."
+        }
+      },
+      {
+        "title": { "vi": "Ghi nhật ký và cân nặng", "en": "Keep a diary and weight log" },
+        "body": {
+          "vi": "Ghi lại nhật ký và cân nặng của từng bé, rồi xem mục gần nhất ngay trên trang chủ.",
+          "en": "Record a diary and weight for each pet, and see the latest of each on the home screen."
+        }
+      },
+      {
+        "title": { "vi": "Tra cẩm nang", "en": "Look it up in the handbook" },
+        "body": {
+          "vi": "Cần hướng dẫn chăm sóc thì mở cẩm nang nuôi thú cưng ngay trong ứng dụng.",
+          "en": "When you need care advice, open the pet care handbook in the app."
+        }
+      }
+    ],
+    "faq": [
+      {
+        "q": { "vi": "Pawly đã dùng được chưa?", "en": "Is Pawly available yet?" },
+        "a": {
+          "vi": "Chưa. Sản phẩm đang trong giai đoạn phát triển và sắp ra mắt.",
+          "en": "Not yet. The product is in development and coming soon."
+        }
+      },
+      {
+        "q": {
+          "vi": "Nuôi nhiều thú cưng thì quản lý thế nào?",
+          "en": "How does it work with several pets?"
+        },
+        "a": {
+          "vi": "Mỗi bé có hồ sơ riêng cùng lịch nhắc của bé đó, và nút thêm bé mới nằm ngay đầu trang chủ.",
+          "en": "Each pet has its own profile and its own reminders, and the button to add another pet sits at the top of the home screen."
+        }
+      },
+      {
+        "q": { "vi": "Pawly nhắc những việc gì?", "en": "What does Pawly remind me about?" },
+        "a": {
+          "vi": "Các việc chăm sóc thường gặp như tiêm vaccine, tắm, uống thuốc, grooming và khám định kỳ. Mỗi nhắc nhở có ngày và giờ cụ thể.",
+          "en": "Common care tasks such as vaccines, baths, medication, grooming and check-ups. Every reminder has a specific date and time."
+        }
+      },
+      {
+        "q": {
+          "vi": "Pawly có cẩm nang nuôi thú cưng không?",
+          "en": "Does Pawly include a pet care handbook?"
+        },
+        "a": {
+          "vi": "Có. Ngoài hồ sơ, lịch nhắc và nhật ký, Pawly còn có cẩm nang nuôi thú cưng để tra cứu khi cần.",
+          "en": "Yes. Besides profiles, reminders and the diary, Pawly has a pet care handbook to look things up in."
+        }
+      }
+    ]
   },
   {
     "slug": "vibeholic",
+    "kind": { "vi": "Website agency media", "en": "Media agency website" },
+    "icon": "megaphone",
     "name": {
       "vi": "VibeHolic",
       "en": "VibeHolic"
@@ -209,20 +432,67 @@
     },
     "category": "outsource",
     "status": "shipped",
-    "timeline": [],
+    "timeline": [
+      {
+        "label": {
+          "vi": "Bàn giao",
+          "en": "Delivered"
+        },
+        "date": "2026-07"
+      }
+    ],
     "clientName": "withheld",
     "image": "/products/vibeholic.jpg",
     "shot": "ui",
     "demoUrl": "https://vibeholic.media/",
     "platform": "web",
-    "screens": [
-      "/products/screens/vibeholic-01-home.jpg",
-      "/products/screens/vibeholic-02.jpg",
-      "/products/screens/vibeholic-03.jpg"
+    "screens": ["/products/screens/vibeholic-01-home.jpg", "/products/screens/vibeholic-02.jpg"],
+    "screenCaptions": [
+      { "vi": "Trang chủ", "en": "Home page" },
+      { "vi": "Bảng giá công khai", "en": "Public price list" }
     ],
     "features": {
       "vi": ["Đại diện tài năng", "Sản xuất media", "Đặt chỗ KOC", "Quảng cáo đo lường hiệu suất"],
       "en": ["Talent representation", "Media production", "KOC booking", "Performance advertising"]
-    }
+    },
+    "howItWorks": [
+      {
+        "title": { "vi": "Xem dịch vụ", "en": "Browse the services" },
+        "body": {
+          "vi": "Trang chủ giới thiệu các mảng dịch vụ chính: quảng cáo, sản xuất media, đại diện tài năng và đặt chỗ KOC.",
+          "en": "The home page presents the main services: advertising, media production, talent representation and KOC booking."
+        }
+      },
+      {
+        "title": { "vi": "Xem bảng giá", "en": "Read the price list" },
+        "body": {
+          "vi": "Bảng giá công khai theo từng gói, ghi rõ các hạng mục đi kèm.",
+          "en": "A public price list by package, with the inclusions of each spelled out."
+        }
+      },
+      {
+        "title": { "vi": "Đặt gói hoặc liên hệ", "en": "Order or get in touch" },
+        "body": {
+          "vi": "Mỗi gói có nút đặt ngay, và nút Zalo cùng điện thoại luôn hiện trên trang để liên hệ trực tiếp.",
+          "en": "Each package has an order button, and Zalo and phone buttons stay on screen for direct contact."
+        }
+      }
+    ],
+    "faq": [
+      {
+        "q": { "vi": "Trang này đã chạy thật chưa?", "en": "Is this site live?" },
+        "a": {
+          "vi": "Rồi. Trang đã được bàn giao cho khách hàng vào tháng 7 năm 2026 và đang chạy tại vibeholic.media.",
+          "en": "Yes. It was handed over to the client in July 2026 and runs at vibeholic.media."
+        }
+      },
+      {
+        "q": { "vi": "Trang có hỗ trợ tiếng Anh không?", "en": "Does the site support English?" },
+        "a": {
+          "vi": "Có. Trang có bản tiếng Việt và tiếng Anh, đổi ngôn ngữ ngay trên thanh điều hướng.",
+          "en": "Yes. It has Vietnamese and English versions, switched from the navigation bar."
+        }
+      }
+    ]
   }
 ]

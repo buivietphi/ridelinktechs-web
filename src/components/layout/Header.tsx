@@ -4,7 +4,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
-import { CaretDown } from 'phosphor-react';
+import { ArrowRight, CaretDown, Car, Cube, Megaphone, PawPrint, Sparkle } from 'phosphor-react';
+import type { Icon } from 'phosphor-react';
 import { LanguageSwitcher } from '@/i18n/LanguageSwitcher';
 import { CelestialToggle } from '@/components/theme/CelestialToggle';
 import { LogoMark } from '@/components/ui/LogoMark';
@@ -12,7 +13,15 @@ import { MobileNav } from './MobileNav';
 import { cn } from '@/lib/cn';
 import { company } from '@/content/company';
 import { products } from '@/content/products';
+import type { ProductIcon } from '@/content/products';
 import type { Locale } from '@/i18n/config';
+
+const productIcons: Record<ProductIcon, Icon> = {
+  car: Car,
+  sparkle: Sparkle,
+  paw: PawPrint,
+  megaphone: Megaphone,
+};
 
 const navKeys = ['home', 'products', 'about', 'contact'] as const;
 type NavKey = (typeof navKeys)[number];
@@ -115,14 +124,14 @@ export function Header() {
             className="group flex shrink-0 items-center gap-4"
           >
             <LogoMark
-              size={scrolled ? 36 : 50}
+              size={scrolled ? 46 : 62}
               priority
               className="transition-transform duration-500 ease-[var(--ease-out-quint)] group-hover:scale-105"
             />
             <span
               className="hidden leading-none font-semibold tracking-[-0.03em] text-[var(--ink)] transition-all duration-500 ease-[var(--ease-out-quint)] sm:block"
               style={{
-                fontSize: scrolled ? '18px' : '25px',
+                fontSize: scrolled ? '20px' : '28px',
                 fontVariationSettings: "'opsz' 60, 'wdth' 100, 'wght' 640",
               }}
             >
@@ -158,17 +167,24 @@ export function Header() {
                       onMouseEnter={openMenu}
                       onMouseLeave={scheduleClose}
                       onFocus={openMenu}
+                      onBlur={(e) => {
+                        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
+                          scheduleClose();
+                        }
+                      }}
                     >
                       <Link
                         href={navHref[k]}
                         aria-expanded={menuOpen}
-                        aria-haspopup="true"
+                        aria-controls="products-menu"
                         className={cn(
                           'relative flex items-center gap-1.5 px-5 py-4 text-[15px] leading-none',
                           'border-b-2 transition-colors duration-200',
-                          on || menuOpen
+                          on
                             ? 'border-[var(--signal)] text-[var(--ink)]'
-                            : 'border-transparent text-[var(--ink-soft)] hover:border-[var(--rule)] hover:text-[var(--ink)]',
+                            : menuOpen
+                              ? 'border-[var(--rule)] text-[var(--ink)]'
+                              : 'border-transparent text-[var(--ink-soft)] hover:border-[var(--rule)] hover:text-[var(--ink)]',
                         )}
                       >
                         {t(k)}
@@ -182,6 +198,86 @@ export function Header() {
                           )}
                         />
                       </Link>
+
+                      <div
+                        id="products-menu"
+                        className={cn(
+                          'absolute inset-x-0 top-full z-10 border-b border-[var(--rule)] bg-[var(--ground-raise)] shadow-[var(--shadow-2)] transition-[clip-path,visibility] duration-300 ease-[var(--ease-out-quint)]',
+                          menuOpen
+                            ? 'visible [clip-path:inset(0_0_-64px_0)]'
+                            : 'pointer-events-none invisible [clip-path:inset(0_0_100%_0)]',
+                        )}
+                      >
+                        <div className="mx-auto w-full max-w-[1560px] px-5 py-7 sm:px-8 lg:px-10">
+                          <div className="flex items-baseline justify-between gap-6 border-b border-[var(--rule)] pb-4">
+                            <p className="text-[14px] font-medium text-[var(--ink-soft)]">
+                              {t('menuAll')}
+                            </p>
+                            <Link
+                              href="/products"
+                              onClick={() => setMenuOpen(false)}
+                              className="link inline-flex shrink-0 items-center gap-2 text-[15px] font-medium"
+                            >
+                              {t('menuViewAll')}
+                              <ArrowRight aria-hidden size={14} weight="bold" />
+                            </Link>
+                          </div>
+                          <ul className="mt-3 grid grid-cols-1 gap-x-6 sm:grid-cols-2 lg:grid-cols-3">
+                            {products.map((p) => {
+                              const current = pathname === `/products/${p.slug}`;
+                              const ProductGlyph = (p.icon && productIcons[p.icon]) || Cube;
+                              return (
+                                <li key={p.slug} className="border-b border-[var(--rule)] py-1">
+                                  <Link
+                                    href={`/products/${p.slug}`}
+                                    aria-current={current ? 'page' : undefined}
+                                    onClick={() => setMenuOpen(false)}
+                                    className="group grid grid-cols-[2.75rem_1fr] items-center gap-x-4 gap-y-2.5 rounded-[var(--radius-lg)] px-3.5 py-3 transition-colors duration-200 hover:bg-[var(--ground-lift)] focus-visible:bg-[var(--ground-lift)] xl:grid-cols-[2.75rem_1fr_auto]"
+                                  >
+                                    <span
+                                      aria-hidden
+                                      className={cn(
+                                        'grid size-11 shrink-0 place-items-center rounded-xl border border-[var(--rule)] bg-[var(--ground-sink)] transition-colors duration-200 group-hover:text-[var(--signal)]',
+                                        current ? 'text-[var(--signal)]' : 'text-[var(--ink)]',
+                                      )}
+                                    >
+                                      <ProductGlyph size={22} weight="duotone" />
+                                    </span>
+                                    <span className="min-w-0">
+                                      <span
+                                        className={cn(
+                                          'block text-[17px] leading-tight font-medium transition-colors duration-200 group-hover:text-[var(--signal)]',
+                                          current ? 'text-[var(--signal)]' : 'text-[var(--ink)]',
+                                        )}
+                                      >
+                                        {p.name[locale]}
+                                      </span>
+                                      <span className="mt-1 block truncate text-[13px] leading-tight text-[var(--ink-soft)]">
+                                        {p.kind[locale]}
+                                      </span>
+                                    </span>
+                                    <span
+                                      className={cn(
+                                        'col-start-2 inline-flex items-center gap-1.5 justify-self-start rounded-full border px-2.5 py-1 text-[12px] leading-none xl:col-start-3 xl:row-start-1 xl:justify-self-end',
+                                        p.status === 'in-development'
+                                          ? 'border-[var(--signal)] text-[var(--signal)]'
+                                          : 'border-[var(--rule)] text-[var(--ink-soft)]',
+                                      )}
+                                    >
+                                      <span
+                                        aria-hidden
+                                        className="status-dot"
+                                        {...markFor(p.status)}
+                                      />
+                                      {p.category === 'outsource' ? 'NDA' : tStatus(p.status)}
+                                    </span>
+                                  </Link>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        </div>
+                      </div>
                     </li>
                   );
                 }
@@ -205,52 +301,6 @@ export function Header() {
               })}
             </ul>
           </nav>
-        </div>
-
-        <div
-          onMouseEnter={openMenu}
-          onMouseLeave={scheduleClose}
-          className={cn(
-            'absolute inset-x-0 top-full overflow-hidden bg-[var(--ground)]/92 backdrop-blur-xl backdrop-saturate-150 transition-[max-height,opacity] duration-500 ease-[var(--ease-out-quint)]',
-            menuOpen
-              ? 'max-h-[420px] border-b border-[var(--rule)] opacity-100'
-              : 'pointer-events-none max-h-0 border-transparent opacity-0',
-          )}
-        >
-          <div className="mx-auto w-full max-w-[1560px] px-5 py-8 sm:px-8 lg:px-10">
-            <div className="flex items-baseline justify-between gap-6">
-              <p className="eyebrow">{t('menuAll')}</p>
-              <Link
-                href="/products"
-                onClick={() => setMenuOpen(false)}
-                className="link shrink-0 text-[15px]"
-              >
-                {t('menuViewAll')}
-              </Link>
-            </div>
-            <ul className="mt-5 grid grid-cols-1 gap-x-8 gap-y-1 sm:grid-cols-2 lg:grid-cols-3">
-              {products.map((p) => {
-                const isOutsource = p.category === 'outsource';
-                return (
-                  <li key={p.slug}>
-                    <Link
-                      href={`/products/${p.slug}`}
-                      onClick={() => setMenuOpen(false)}
-                      className="group flex items-center gap-3 rounded-[var(--radius-md)] px-3 py-3 transition-colors duration-200 hover:bg-[var(--ground-raise)]"
-                    >
-                      <span aria-hidden className="status-dot" {...markFor(p.status)} />
-                      <span className="flex-1 text-[15px] leading-tight text-[var(--ink)] transition-colors duration-200 group-hover:text-[var(--signal)]">
-                        {p.name[locale]}
-                      </span>
-                      <span className="font-mono text-[11px] leading-none text-[var(--ink-faint)]">
-                        {isOutsource ? 'NDA' : tStatus(p.status)}
-                      </span>
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
         </div>
       </div>
     </header>

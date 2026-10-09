@@ -2,7 +2,9 @@
 
 import { createHmac } from 'node:crypto';
 import { headers } from 'next/headers';
+import { inHouseProducts } from '@/content/products';
 import { defaultLocale, isLocale } from '@/i18n/config';
+import { isInquiry } from './inquiry';
 
 const SUPABASE_URL = process.env.SUPABASE_URL ?? '';
 const KEY = process.env.SUPABASE_SERVICE_ROLE_KEY ?? '';
@@ -29,7 +31,7 @@ const PHONE = /^\+?[0-9]{6,20}$/;
 export type ContactState = {
   ok: boolean;
   code: 'invalid' | 'captcha' | 'rate' | 'unavailable' | null;
-  field: 'name' | 'email' | 'message' | 'phone' | 'from' | null;
+  field: 'name' | 'email' | 'inquiry' | 'message' | 'phone' | 'from' | 'project' | null;
 };
 
 const hits = new Map<string, number[]>();
@@ -56,6 +58,7 @@ export async function submitContact(
     message: str(formData.get('message')),
     phone: str(formData.get('phone')),
     from: str(formData.get('from')),
+    project: str(formData.get('project')),
   };
   for (const v of Object.values(raw)) {
     if (v.length > RAW_CAP) return { ok: false, code: 'invalid', field: null };
@@ -70,9 +73,14 @@ export async function submitContact(
   const phoneClean = phone.startsWith('+') ? `+${phoneDigits}` : phoneDigits;
 
   const from = raw.from.replace(/\s+/g, ' ').replace(CONTROL, '').trim();
+  const inquiry = str(formData.get('inquiry'));
 
   const localeRaw = str(formData.get('locale'));
   const locale = isLocale(localeRaw) ? localeRaw : defaultLocale;
+
+  const projectSlug = raw.project.trim();
+  const product = inHouseProducts.find((p) => p.slug === projectSlug);
+  const project = product?.name[locale] ?? '';
 
   const token = str(formData.get('cf-turnstile-response'));
 
@@ -82,6 +90,7 @@ export async function submitContact(
   if (email.length > MAX.email || !EMAIL.test(email)) {
     return { ok: false, code: 'invalid', field: 'email' };
   }
+  if (!isInquiry(inquiry)) return { ok: false, code: 'invalid', field: 'inquiry' };
   if (message.length < 10 || message.length > MAX.message) {
     return { ok: false, code: 'invalid', field: 'message' };
   }
@@ -89,6 +98,7 @@ export async function submitContact(
     return { ok: false, code: 'invalid', field: 'phone' };
   }
   if (from.length > MAX.from) return { ok: false, code: 'invalid', field: 'from' };
+  if (projectSlug !== '' && !product) return { ok: false, code: 'invalid', field: 'project' };
   if (!token || token.length > MAX.token) return { ok: false, code: 'captcha', field: null };
 
   if (ipHash && hitRate(ipHash)) {
@@ -115,6 +125,8 @@ export async function submitContact(
         p_ip_hash: ipHash,
         p_rate_limit: RATE_LIMIT,
         p_window_secs: Math.round(RATE_WINDOW_MS / 1000),
+        p_inquiry_type: inquiry,
+        p_project: project === '' ? null : project,
       }),
       cache: 'no-store',
       signal: AbortSignal.timeout(8_000),

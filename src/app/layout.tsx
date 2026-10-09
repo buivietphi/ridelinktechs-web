@@ -83,7 +83,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <SmoothScroll />
             <RouteProgress />
             <Header />
-            <main id="main" className="relative pt-[132px]">
+            <main id="main" className="relative pt-[92px] md:pt-[132px]">
               {children}
             </main>
             <Footer />

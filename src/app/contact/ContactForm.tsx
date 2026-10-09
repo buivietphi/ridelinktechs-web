@@ -3,11 +3,14 @@ import Script from 'next/script';
 import { useActionState, useCallback, useEffect, useId, useRef, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useTheme } from 'next-themes';
+import { CaretDown } from 'phosphor-react';
 import { company } from '@/content/company';
+import { cn } from '@/lib/cn';
 import { submitContact, type ContactState } from './actions';
-type Field = 'name' | 'email' | 'message';
+import { INQUIRIES, type Inquiry } from './inquiry';
+type Field = 'name' | 'email' | 'inquiry' | 'message';
 type Captcha = 'loading' | 'ready' | 'failed';
-const FIELDS: Field[] = ['name', 'email', 'message'];
+const FIELDS: Field[] = ['name', 'email', 'inquiry', 'message'];
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const TURNSTILE_SRC = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
 const INITIAL: ContactState = { ok: false, code: null, field: null };
@@ -18,7 +21,17 @@ type TurnstileApi = {
 function api(): TurnstileApi | undefined {
   return (window as unknown as { turnstile?: TurnstileApi }).turnstile;
 }
-export function ContactForm({ siteKey }: { siteKey: string }) {
+export function ContactForm({
+  siteKey,
+  projects,
+  initialInquiry,
+  initialProject,
+}: {
+  siteKey: string;
+  projects: { slug: string; name: string }[];
+  initialInquiry?: Inquiry;
+  initialProject?: string;
+}) {
   const t = useTranslations('contact');
   const locale = useLocale();
   const formId = useId();
@@ -33,6 +46,7 @@ export function ContactForm({ siteKey }: { siteKey: string }) {
   const [form, setForm] = useState<Record<Field, string>>({
     name: '',
     email: '',
+    inquiry: initialInquiry ?? '',
     message: '',
   });
   const hostRef = useRef<HTMLDivElement | null>(null);
@@ -100,7 +114,11 @@ export function ContactForm({ siteKey }: { siteKey: string }) {
   const invalid = (k: Field) => fieldError(k) !== null;
   const hasErrors = FIELDS.some(invalid);
   const errorText = (k: Field) =>
-    fieldError(k) === 'email' ? t('form.errEmail') : t('form.errRequired');
+    k === 'inquiry'
+      ? t('form.errInquiry')
+      : fieldError(k) === 'email'
+        ? t('form.errEmail')
+        : t('form.errRequired');
   const guard = (e: React.FormEvent<HTMLFormElement>) => {
     const missing = FIELDS.filter((f) => form[f].trim() === '');
     const badEmail = form.email.trim() !== '' && !EMAIL_RE.test(form.email.trim());
@@ -118,7 +136,7 @@ export function ContactForm({ siteKey }: { siteKey: string }) {
     setServerError(null);
     setClientError(false);
     setTouched({});
-    setForm({ name: '', email: '', message: '' });
+    setForm({ name: '', email: '', inquiry: initialInquiry ?? '', message: '' });
   };
   const phoneRejected = serverError?.code === 'invalid' && serverError.field === 'phone';
   const serverErrorText =
@@ -205,6 +223,78 @@ export function ContactForm({ siteKey }: { siteKey: string }) {
                     {errorText('email')}
                   </p>
                 ) : null}
+              </div>
+              <fieldset
+                role="radiogroup"
+                aria-required="true"
+                aria-invalid={invalid('inquiry') || undefined}
+                aria-describedby={invalid('inquiry') ? `${formId}-inquiry-err` : undefined}
+                className="min-w-0"
+              >
+                <legend className="label">{t('form.inquiry')}</legend>
+                <div className="grid gap-3 sm:grid-cols-3">
+                  {INQUIRIES.map((value, i) => (
+                    <label
+                      key={value}
+                      className={cn(
+                        'grid cursor-pointer grid-cols-[18px_1fr] content-start gap-x-3 gap-y-1 rounded-[var(--radius-field)] border bg-[var(--ground-sink)] px-4 py-3.5 transition-[border-color,box-shadow] duration-150 hover:border-[var(--ink-faint)] has-[:checked]:border-[var(--signal)] has-[:focus-visible]:shadow-[0_0_0_4px_var(--signal-soft)]',
+                        invalid('inquiry') ? 'border-[var(--warn)]' : 'border-[var(--rule)]',
+                      )}
+                    >
+                      <input
+                        type="radio"
+                        id={i === 0 ? `${formId}-inquiry` : undefined}
+                        name="inquiry"
+                        value={value}
+                        checked={form.inquiry === value}
+                        onChange={() => onChange('inquiry', value)}
+                        className="peer sr-only"
+                      />
+                      <span
+                        aria-hidden
+                        className="row-span-2 mt-[3px] grid size-[18px] place-items-center rounded-full border border-[var(--ink-faint)] transition-colors duration-150 peer-checked:border-[var(--signal)] after:size-2 after:scale-0 after:rounded-full after:bg-[var(--signal)] after:transition-transform after:duration-200 peer-checked:after:scale-100"
+                      />
+                      <span className="text-[15px] leading-[1.4] font-medium text-[var(--ink)]">
+                        {t(`form.inquiryOptions.${value}.label`)}
+                      </span>
+                      <span className="text-[13px] leading-[1.5] text-[var(--ink-soft)]">
+                        {t(`form.inquiryOptions.${value}.hint`)}
+                      </span>
+                    </label>
+                  ))}
+                </div>
+                {invalid('inquiry') ? (
+                  <p id={`${formId}-inquiry-err`} className="mt-2 text-[12px] text-[var(--warn)]">
+                    {errorText('inquiry')}
+                  </p>
+                ) : null}
+              </fieldset>
+              <div hidden={form.inquiry === 'build'}>
+                <label htmlFor={`${formId}-project`} className="label">
+                  {t('form.project')}
+                </label>
+                <div className="relative sm:max-w-[17rem]">
+                  <select
+                    id={`${formId}-project`}
+                    name="project"
+                    defaultValue={initialProject ?? ''}
+                    disabled={form.inquiry === 'build'}
+                    className="field min-h-10 cursor-pointer appearance-none py-2 pr-10 pl-3.5 text-[14px]"
+                  >
+                    <option value="">{t('form.projectAll')}</option>
+                    {projects.map((project) => (
+                      <option key={project.slug} value={project.slug}>
+                        {project.name}
+                      </option>
+                    ))}
+                  </select>
+                  <CaretDown
+                    aria-hidden
+                    size={14}
+                    weight="regular"
+                    className="pointer-events-none absolute top-1/2 right-3.5 -translate-y-1/2 text-[var(--ink-faint)]"
+                  />
+                </div>
               </div>
               <div>
                 <label htmlFor={`${formId}-message`} className="label">

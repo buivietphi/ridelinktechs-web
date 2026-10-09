@@ -13,6 +13,7 @@ export function findProduct(slug: string): Product | undefined {
 export type {
   Product,
   ProductCategory,
+  ProductIcon,
   ProductStatus,
   LocalizedString,
   TimelineMark,

@@ -1,17 +1,51 @@
-import { notFound } from 'next/navigation';
-import Image from 'next/image';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { findProduct, products } from '@/content/products';
-import { imageRatio, isPortrait } from '@/content/image-ratio';
 import type { Locale } from '@/i18n/config';
-import { PageIntro } from '@/components/motion/PageIntro';
-import { Reveal } from '@/components/motion/Reveal';
-import { Parallax } from '@/components/motion/Parallax';
-import { ScreenGallery } from '@/components/ui/ScreenGallery';
+import { DeviceStage } from '@/components/blocks/DeviceStage';
+import { GridBackdrop } from '@/components/blocks/GridBackdrop';
+import { ScreenCarousel } from '@/components/blocks/ScreenCarousel';
 import { Magnetic } from '@/components/motion/Magnetic';
+import { PageIntro } from '@/components/motion/PageIntro';
+import { Reveal, RevealGroup } from '@/components/motion/Reveal';
+import { Spotlight } from '@/components/motion/Spotlight';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/Accordion';
+import { Badge } from '@/components/ui/Badge';
+import { ArrowLeft, ArrowUpRight } from '@/components/ui/Icons';
+import { JumpLink } from '@/components/ui/JumpLink';
+import { cn } from '@/lib/cn';
+import { clip, pageMetadata } from '@/lib/seo';
 
-export default async function ProductDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+type Params = { params: Promise<{ slug: string }> };
+
+const wrap = 'mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-10';
+
+const formatDate = (date: string) => {
+  const [year, month] = date.split('-');
+  return `${month}/${year}`;
+};
+
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const { slug } = await params;
+  const product = findProduct(slug);
+  if (!product) return {};
+  const locale = (await getLocale()) as Locale;
+  const lead = product.problem?.[locale] ?? product.description[locale];
+  return pageMetadata({
+    title: product.name[locale],
+    description: clip(`${product.tagline[locale]} ${lead}`, 165),
+    path: `/products/${product.slug}`,
+  });
+}
+
+export default async function ProductDetailPage({ params }: Params) {
   const { slug } = await params;
   const product = findProduct(slug);
   if (!product) notFound();
@@ -19,245 +53,316 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations('productDetail');
   const tStatus = await getTranslations('status');
-  const tCaption = await getTranslations('product.caption');
+  const tCategory = await getTranslations('products.category');
 
-  const isOutsource = product.category === 'outsource';
-  const displayName = product.name[locale];
-  const statusLabel = tStatus(product.status);
+  const isClient = product.category === 'outsource';
+  const name = product.name[locale];
+  const phone = product.platform === 'mobile';
+  const host = product.demoUrl ? new URL(product.demoUrl).host : undefined;
 
-  const mark = {
-    'data-state': product.status === 'upcoming' ? ('upcoming' as const) : undefined,
-    style: {
-      backgroundColor:
-        product.status === 'shipped'
-          ? 'var(--signal)'
-          : product.status === 'upcoming'
-            ? 'var(--quiet)'
-            : 'transparent',
-      border:
-        product.status === 'in-development'
-          ? '1.5px solid var(--signal)'
-          : product.status === 'shipped' || product.status === 'upcoming'
-            ? 'none'
-            : '1.5px solid var(--quiet)',
-    },
-  } as const;
+  const files = product.screens?.length ? product.screens : product.image ? [product.image] : [];
+  const captionOf = (i: number) => product.screenCaptions?.[i]?.[locale] ?? '';
+  const altOf = (i: number) => (captionOf(i) ? `${name}: ${captionOf(i)}` : name);
+  const stageShots = files.map((src, i) => ({ src, alt: altOf(i) }));
+  const carouselShots = files.map((src, i) => ({ src, caption: captionOf(i), alt: altOf(i) }));
+
+  const facts = [
+    { label: t('facts.status'), value: tStatus(product.status) },
+    { label: t('facts.platform'), value: t(`platform.${product.platform}`) },
+    ...product.timeline.map((mark) => ({
+      label: mark.label[locale],
+      value: formatDate(mark.date),
+    })),
+  ];
+  const factCols = facts.length >= 4 ? 'lg:grid-cols-4' : 'lg:grid-cols-3';
+  const stepCols =
+    product.howItWorks?.length === 4 ? 'md:grid-cols-2 lg:grid-cols-4' : 'md:grid-cols-3';
+  const briefHref = isClient
+    ? '/contact?type=build'
+    : `/contact?project=${product.slug}&type=invest`;
+
+  const next = products[(products.indexOf(product) + 1) % products.length];
 
   return (
     <>
-      <section>
-        <div className="mx-auto w-full max-w-[1440px] px-5 py-10 sm:px-8 lg:px-10">
-          <Link href="/products" className="link text-[14px]">
-            {t('allProductsCta')}
-          </Link>
-        </div>
-      </section>
+      <section className="relative isolate overflow-hidden">
+        <GridBackdrop className="-z-10" glowId="product-hero-grid" />
+        <div
+          className={cn(
+            wrap,
+            'grid min-h-[calc(100dvh-132px)] grid-cols-1 items-center gap-12 py-10 lg:grid-cols-12 lg:gap-8 lg:py-12',
+          )}
+        >
+          <PageIntro className="lg:col-span-6">
+            <Link
+              data-intro-meta
+              href="/products"
+              className="link hit inline-flex items-center gap-2 text-[14px] text-[var(--ink-soft)]"
+            >
+              <ArrowLeft aria-hidden size={14} weight="bold" />
+              {t('back')}
+            </Link>
 
-      <section>
-        <PageIntro>
-          <div className="mx-auto w-full max-w-[1440px] px-5 pb-12 sm:px-8 lg:px-10 lg:pb-16">
-            <div className="flex flex-wrap items-end justify-between gap-4 pb-6" data-intro-meta>
-              <div>
-                <p className="font-mono text-[11px] tracking-[0.1em] text-[var(--ink-faint)] uppercase">
-                  {isOutsource ? t('categoryOutsource') : t('categoryInHouse')}
-                </p>
-                <h1 className="display-xl mt-3">
-                  <span className="block overflow-hidden pb-[0.08em]">
-                    <span className="block" data-intro-line>
-                      {displayName}
-                    </span>
-                  </span>
-                </h1>
-              </div>
-              <span className="flex items-center gap-2.5 pb-2" data-intro-action>
-                <span aria-hidden className="status-dot" {...mark} />
-                <span className="text-[12px] leading-none text-[var(--ink-soft)]">
-                  {statusLabel}
+            <div data-intro-meta className="mt-8 flex flex-wrap items-center gap-2">
+              <Badge
+                variant={product.status === 'upcoming' ? 'outline' : 'signal'}
+                className="px-3 py-1 text-[12px]"
+              >
+                {tStatus(product.status)}
+              </Badge>
+              <Badge variant="outline" className="px-3 py-1 text-[12px]">
+                {isClient ? tCategory('outsource') : tCategory('internal')}
+              </Badge>
+            </div>
+
+            <h1 className="mt-6 text-[clamp(2.6rem,6vw,5rem)] leading-[1.02] font-extrabold tracking-[-0.045em]">
+              <span className="hero-line-mask block overflow-hidden">
+                <span data-intro-line className="block">
+                  {name}
                 </span>
               </span>
-            </div>
-            {product.image && isPortrait(product.image) ? (
-              <div className="flex justify-center">
-                <div
-                  className="relative h-[min(500px,58vh)] overflow-hidden rounded-[2.2rem] bg-[var(--ground-sink)] p-2 shadow-[var(--shadow-device)] ring-1 ring-white/10 lg:h-[min(580px,64vh)]"
-                  style={{ aspectRatio: imageRatio(product.image) }}
-                >
-                  <div className="absolute inset-2 overflow-hidden rounded-[1.7rem] bg-black">
-                    <Image
-                      src={product.image}
-                      alt={`${product.name[locale]} — ảnh minh hoạ`}
-                      fill
-                      priority
-                      sizes="(min-width: 1024px) 270px, 58vh"
-                      className="object-cover"
-                    />
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className="photo aspect-[16/9] w-full lg:aspect-[21/9]">
-                <Parallax className="absolute inset-0" distance={40}>
-                  {product.image ? (
-                    <Image
-                      src={product.image}
-                      alt={`${product.name[locale]} — ảnh minh hoạ`}
-                      fill
-                      priority
-                      sizes="100vw"
-                      className="object-cover"
-                    />
-                  ) : null}
-                </Parallax>
-              </div>
-            )}
-          </div>
-        </PageIntro>
-      </section>
+            </h1>
 
-      <section className="mx-auto w-full max-w-[1440px] px-5 py-16 sm:px-8 lg:px-10 lg:py-24">
-        <Reveal className="grid grid-cols-12 gap-x-0 gap-y-14 lg:gap-x-8">
-          <div className="col-span-12 lg:col-span-7">
-            <Reveal>
-              <p className="text-[21px] leading-[1.5] text-[var(--ink)]">
-                {product.tagline[locale]}
-              </p>
-            </Reveal>
+            <p
+              data-intro-meta
+              className="mt-6 max-w-[40ch] text-[clamp(1.05rem,1.5vw,1.3rem)] leading-[1.55] text-[var(--ink-soft)]"
+            >
+              {product.tagline[locale]}
+            </p>
 
-            {product.problem ? (
-              <div className="mt-12">
-                <h2 className="display-md text-[var(--ink-faint)]">{t('problem')}</h2>
-                <p className="mt-3 max-w-[60ch] text-[16px] leading-[1.7] text-[var(--ink-soft)]">
-                  {product.problem[locale]}
-                </p>
-              </div>
-            ) : null}
-
-            {product.targetUser ? (
-              <div className="mt-10">
-                <h2 className="display-md text-[var(--ink-faint)]">{t('targetUser')}</h2>
-                <p className="mt-3 max-w-[60ch] text-[16px] leading-[1.7] text-[var(--ink-soft)]">
-                  {product.targetUser[locale]}
-                </p>
-              </div>
-            ) : null}
-
-            <div className="mt-10">
-              <h2 className="display-md text-[var(--ink-faint)]">{t('description')}</h2>
-              <p className="mt-3 max-w-[60ch] text-[16px] leading-[1.7] text-[var(--ink-soft)]">
-                {product.description[locale]}
-              </p>
-            </div>
-
-            {product.imageCredit ? (
-              <p className="mt-12 max-w-[62ch] border-t border-[var(--rule-2)] pt-4 text-[12px] leading-[1.6] text-[var(--ink-faint)]">
-                {tCaption(product.slug)}
-              </p>
-            ) : null}
-          </div>
-
-          <div className="col-span-12 lg:col-span-7">
-            <p className="eyebrow mt-14">{t('features')}</p>
-            <ul className="mt-6 flex flex-col">
-              {product.features[locale].map((f) => (
-                <li
-                  key={f}
-                  className="flex items-baseline gap-4 border-t border-[var(--rule)] py-4 text-[16px] leading-[1.55] text-[var(--ink)]"
-                >
-                  <span aria-hidden className="h-px w-5 shrink-0 bg-[var(--signal)]" />
-                  {f}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <aside className="col-span-12 lg:col-span-4 lg:col-start-9">
-            <dl className="flex flex-col">
-              <div className="border-t border-[var(--rule)] py-5">
-                <dt className="font-mono text-[11px] tracking-[0.12em] text-[var(--ink-faint)] uppercase">
-                  {t('status')}
-                </dt>
-                <dd className="mt-2.5 flex items-center gap-2.5 text-[15px] text-[var(--ink)]">
-                  <span aria-hidden className="status-dot" {...mark} />
-                  {statusLabel}
-                </dd>
-              </div>
-
-              <div className="border-t border-[var(--rule)] py-5">
-                <dt className="font-mono text-[11px] tracking-[0.12em] text-[var(--ink-faint)] uppercase">
-                  {t('category')}
-                </dt>
-                <dd className="mt-2.5 text-[15px] text-[var(--ink)]">
-                  {isOutsource ? t('categoryOutsource') : t('categoryInHouse')}
-                </dd>
-              </div>
-
-              <div className="border-t border-[var(--rule)] py-5">
-                <dt className="font-mono text-[11px] tracking-[0.12em] text-[var(--ink-faint)] uppercase">
-                  {t('timeline')}
-                </dt>
-                <dd className="mt-2.5 flex flex-col gap-2.5">
-                  {product.timeline.length > 0 ? (
-                    product.timeline.map((m) => (
-                      <span
-                        key={m.date}
-                        className="flex items-baseline justify-between gap-4 text-[15px] text-[var(--ink-soft)]"
-                      >
-                        <span>{m.label[locale]}</span>
-                        <span className="font-mono text-[12px] text-[var(--ink-faint)]">
-                          {m.date}
-                        </span>
-                      </span>
-                    ))
-                  ) : (
-                    <span className="text-[15px] text-[var(--ink-soft)]">{t('timelineEmpty')}</span>
-                  )}
-                </dd>
-              </div>
-
-              <div className="border-y border-[var(--rule)] py-5">
-                <dt className="font-mono text-[11px] tracking-[0.12em] text-[var(--ink-faint)] uppercase">
-                  {t('open')}
-                </dt>
-                <dd className="mt-3 flex flex-col gap-2">
-                  {product.demoUrl ? (
+            <div className="mt-9 flex flex-wrap items-center gap-4">
+              {product.demoUrl ? (
+                <>
+                  <Magnetic>
                     <a
+                      data-intro-action
                       href={product.demoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn btn-primary w-full"
+                      className="btn btn-primary"
                     >
-                      {t('demo')}
+                      {t('openDemo')}
+                      <ArrowUpRight aria-hidden size={16} weight="bold" />
                     </a>
-                  ) : null}
+                  </Magnetic>
+                  <Link data-intro-action href={briefHref} className="btn">
+                    {t('brief')}
+                  </Link>
+                </>
+              ) : (
+                <>
                   <Magnetic>
-                    <Link href="/contact" className="btn w-full">
-                      {t('openBrief')}
+                    <Link data-intro-action href={briefHref} className="btn btn-primary">
+                      {t('brief')}
                     </Link>
                   </Magnetic>
-                </dd>
-              </div>
-            </dl>
-          </aside>
-        </Reveal>
+                  {files.length > 0 ? (
+                    <JumpLink data-intro-action to="man-hinh" className="btn">
+                      {t('seeScreens')}
+                    </JumpLink>
+                  ) : null}
+                </>
+              )}
+            </div>
+          </PageIntro>
+
+          <div className="lg:col-span-6">
+            <DeviceStage kind={phone ? 'phone' : 'web'} shots={stageShots} label={host} />
+          </div>
+        </div>
       </section>
 
-      {product.screens && product.screens.length > 0 ? (
-        <section className="mx-auto w-full max-w-[1440px] px-5 pb-20 sm:px-8 lg:px-10 lg:pb-28">
-          <p className="eyebrow">{t('screens')}</p>
-          <ScreenGallery screens={product.screens} name={product.name[locale]} />
+      <section className="border-y border-[var(--rule)]">
+        <div className={wrap}>
+          <RevealGroup
+            className={cn('grid grid-cols-2 gap-x-6 gap-y-8 py-8 lg:gap-0 lg:py-0', factCols)}
+            stagger={0.08}
+            y={20}
+          >
+            {facts.map((fact) => (
+              <div
+                key={fact.label}
+                data-reveal-item
+                className="lg:border-l lg:border-[var(--rule)] lg:px-8 lg:py-9 lg:first:border-l-0 lg:first:pl-0"
+              >
+                <p className="data-label">{fact.label}</p>
+                <p className="mt-2 text-[clamp(1.2rem,2vw,1.6rem)] leading-[1.2] font-semibold tracking-[-0.02em]">
+                  {fact.value}
+                </p>
+              </div>
+            ))}
+          </RevealGroup>
+        </div>
+      </section>
+
+      <section className={cn(wrap, 'py-20 lg:py-28')}>
+        {product.problem ? (
+          <>
+            <div className="grid grid-cols-12 gap-x-8 gap-y-12">
+              <Reveal className="col-span-12 lg:col-span-7">
+                <h2 className="display-md text-[var(--ink-faint)]">{t('problemHeading')}</h2>
+                <p className="mt-5 text-[clamp(1.5rem,2.8vw,2.3rem)] leading-[1.25] font-semibold tracking-[-0.03em] text-balance">
+                  {product.problem[locale]}
+                </p>
+              </Reveal>
+              {product.targetUser ? (
+                <Reveal className="col-span-12 lg:col-span-4 lg:col-start-9">
+                  <h2 className="display-md text-[var(--ink-faint)]">{t('audienceHeading')}</h2>
+                  <p className="mt-5 text-[16px] leading-[1.75] text-[var(--ink-soft)]">
+                    {product.targetUser[locale]}
+                  </p>
+                </Reveal>
+              ) : null}
+            </div>
+            <Reveal>
+              <p className="mt-14 max-w-[68ch] text-[17px] leading-[1.8] text-[var(--ink-soft)]">
+                {product.description[locale]}
+              </p>
+            </Reveal>
+          </>
+        ) : (
+          <Reveal className="max-w-[64ch]">
+            <h2 className="display-md text-[var(--ink-faint)]">{t('aboutHeading')}</h2>
+            <p className="mt-5 text-[clamp(1.2rem,1.9vw,1.55rem)] leading-[1.6] text-[var(--ink)]">
+              {product.description[locale]}
+            </p>
+          </Reveal>
+        )}
+      </section>
+
+      <section className={wrap}>
+        <Reveal>
+          <h2 className="display-xl">{t('featuresHeading')}</h2>
+        </Reveal>
+        <RevealGroup
+          className="mt-10 grid grid-cols-1 gap-x-12 border-b border-[var(--rule)] md:grid-cols-2"
+          stagger={0.07}
+        >
+          {product.features[locale].map((feature) => (
+            <div
+              key={feature}
+              data-reveal-item
+              className="flex items-baseline gap-4 border-t border-[var(--rule)] py-5 text-[17px] leading-[1.5]"
+            >
+              <span
+                aria-hidden
+                className="h-px w-5 shrink-0 -translate-y-[0.3em] bg-[var(--signal)]"
+              />
+              {feature}
+            </div>
+          ))}
+        </RevealGroup>
+      </section>
+
+      {product.howItWorks?.length ? (
+        <section className={cn(wrap, 'pt-20 lg:pt-28')}>
+          <Reveal>
+            <h2 className="display-xl">{t('howHeading')}</h2>
+          </Reveal>
+          <RevealGroup
+            className={cn('mt-12 grid grid-cols-1 gap-x-10 gap-y-12', stepCols)}
+            stagger={0.1}
+          >
+            {product.howItWorks.map((step) => (
+              <div
+                key={step.title.en}
+                data-reveal-item
+                className="relative border-t border-[var(--rule)] pt-7"
+              >
+                <span
+                  aria-hidden
+                  className="absolute top-0 left-0 size-2.5 -translate-y-1/2 rounded-full bg-[var(--signal)]"
+                />
+                <h3 className="text-[20px] leading-[1.3] font-semibold tracking-[-0.02em]">
+                  {step.title[locale]}
+                </h3>
+                <p className="mt-3 max-w-[36ch] text-[15px] leading-[1.7] text-[var(--ink-soft)]">
+                  {step.body[locale]}
+                </p>
+              </div>
+            ))}
+          </RevealGroup>
         </section>
       ) : null}
 
-      <section className="border-t border-[var(--rule)] bg-[var(--ground-raise)]">
-        <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between gap-4 px-5 py-8 sm:px-8 lg:px-10">
-          <Link href="/products" className="link text-[15px]">
-            {t('allProductsCta')}
-          </Link>
-          <span className="font-mono text-[12px] text-[var(--ink-faint)]">
-            {String(products.indexOf(product) + 1).padStart(2, '0')} /{' '}
-            {String(products.length).padStart(2, '0')}
-          </span>
-        </div>
+      {carouselShots.length > 0 ? (
+        <ScreenCarousel
+          id="man-hinh"
+          heading={t('screensHeading')}
+          shots={carouselShots}
+          kind={phone ? 'phone' : 'web'}
+          label={host}
+          prevLabel={t('carouselPrev')}
+          nextLabel={t('carouselNext')}
+        />
+      ) : null}
+
+      {product.faq?.length ? (
+        <section className={cn(wrap, 'py-20 lg:py-28')}>
+          <Reveal className="grid grid-cols-12 items-start gap-x-0 gap-y-10 lg:gap-x-8">
+            <div className="col-span-12 lg:col-span-4">
+              <h2 className="display-xl max-w-[12ch]">{t('faqHeading')}</h2>
+            </div>
+            <div className="col-span-12 lg:col-span-7 lg:col-start-6">
+              <Accordion type="single" collapsible defaultValue="item-0">
+                {product.faq.map((item, i) => (
+                  <AccordionItem key={item.q.en} value={`item-${i}`}>
+                    <AccordionTrigger>{item.q[locale]}</AccordionTrigger>
+                    <AccordionContent>{item.a[locale]}</AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+          </Reveal>
+        </section>
+      ) : null}
+
+      <section className={cn(wrap, 'pb-8 lg:pb-12')}>
+        <Reveal>
+          <div className="panel relative isolate overflow-hidden px-7 py-14 sm:px-12 lg:px-16 lg:py-20">
+            <GridBackdrop className="-z-10" glowId="product-cta-grid" />
+            <h2 className="display-xl max-w-[24ch]">
+              {isClient ? t('ctaClient', { name }) : t('ctaInHouse', { name })}
+            </h2>
+            <p className="mt-5 max-w-[52ch] text-[17px] leading-[1.7] text-[var(--ink-soft)]">
+              {isClient ? t('ctaClientLede') : t('ctaInHouseLede')}
+            </p>
+            <div className="mt-9 flex flex-wrap items-center gap-4">
+              <Magnetic>
+                <Link href={briefHref} className="btn btn-primary">
+                  {t('brief')}
+                </Link>
+              </Magnetic>
+            </div>
+          </div>
+        </Reveal>
+      </section>
+
+      <section className={cn(wrap, 'pb-4')}>
+        <Reveal>
+          <Spotlight className="panel">
+            <Link
+              href={`/products/${next.slug}`}
+              className="group flex items-center justify-between gap-6 p-7 sm:p-9"
+            >
+              <div>
+                <p className="data-label">{t('next')}</p>
+                <p className="display-lg mt-3 transition-colors duration-300 group-hover:text-[var(--signal)]">
+                  {next.name[locale]}
+                </p>
+                <p className="mt-2 max-w-[48ch] text-[15px] leading-[1.65] text-[var(--ink-soft)]">
+                  {next.tagline[locale]}
+                </p>
+              </div>
+              <ArrowUpRight
+                aria-hidden
+                size={28}
+                weight="bold"
+                className="shrink-0 text-[var(--ink-faint)] transition-[transform,color] duration-500 ease-[var(--ease-out-quint)] group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-[var(--signal)]"
+              />
+            </Link>
+          </Spotlight>
+        </Reveal>
       </section>
     </>
   );

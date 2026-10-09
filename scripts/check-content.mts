@@ -37,6 +37,11 @@ for (const p of products) {
   if (!slugRe.test(p.slug)) fail(`Product ${p.slug}: invalid slug`);
 
   if (!p.name.vi || !p.name.en) fail(`Product ${p.slug}: name must be non-empty in both languages`);
+  if (!p.kind?.vi || !p.kind?.en) {
+    fail(`Product ${p.slug}: kind is required in both languages (shown in the header menu)`);
+  } else if (p.kind.vi.length > 32 || p.kind.en.length > 32) {
+    fail(`Product ${p.slug}: kind must stay under 32 characters`);
+  }
 
   if (p.tagline.vi.length > 80) fail(`Product ${p.slug}: tagline.vi > 80 chars`);
   if (p.tagline.en.length > 80) fail(`Product ${p.slug}: tagline.en > 80 chars`);
@@ -61,6 +66,25 @@ for (const p of products) {
     }
   }
 
+  for (const file of [p.image, ...(p.screens ?? [])]) {
+    if (file && !existsSync(join(process.cwd(), 'public', file))) {
+      fail(`Product ${p.slug}: missing image ${file}`);
+    }
+  }
+  if (p.screenCaptions && p.screenCaptions.length !== (p.screens?.length ?? 0)) {
+    fail(`Product ${p.slug}: screenCaptions must match screens one to one`);
+  }
+  if (!p.screenCaptions && p.screens?.length) {
+    fail(`Product ${p.slug}: screens need screenCaptions`);
+  }
+
+  if (p.howItWorks && (p.howItWorks.length < 3 || p.howItWorks.length > 4)) {
+    fail(`Product ${p.slug}: howItWorks must have 3-4 steps`);
+  }
+  if (p.faq && (p.faq.length < 2 || p.faq.length > 6)) {
+    fail(`Product ${p.slug}: faq must have 2-6 entries`);
+  }
+
   if (p.status !== 'shipped') {
     const labels = p.timeline.map((t) => t.label.en.toLowerCase());
     if (!labels.some((l) => l.includes('idea')))
@@ -70,7 +94,20 @@ for (const p of products) {
   }
 }
 
+if (products.filter((p) => p.featured).length > 1) fail('Only one product can be featured');
 pass(`Checked ${products.length} products, ${seenSlugs.size} unique slugs`);
+
+const dashes = (node: unknown, path: string): void => {
+  if (typeof node === 'string') {
+    if (/[—–]/.test(node)) fail(`${path}: contains an em or en dash`);
+    return;
+  }
+  if (node && typeof node === 'object') {
+    for (const [key, value] of Object.entries(node)) dashes(value, `${path}.${key}`);
+  }
+};
+dashes(products, 'products');
+dashes(about, 'about');
 
 if (!company.name || company.name.length > 60) fail(`company.name invalid`);
 if (!emailRe.test(company.email)) fail(`company.email invalid`);
@@ -90,6 +127,7 @@ const bothLangs = (node: unknown, path: string): void => {
   for (const [key, value] of Object.entries(rec)) bothLangs(value, `${path}.${key}`);
 };
 bothLangs(about, 'about');
+bothLangs(products, 'products');
 
 const langs = ['vi', 'en'] as const;
 const within = (text: string, min: number, max: number) => text.length >= min && text.length <= max;

@@ -1,5 +1,7 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { getLocale, getTranslations } from 'next-intl/server';
+import { pageMetadata } from '@/lib/seo';
 import { products } from '@/content/products';
 import { about } from '@/content/about';
 import type { Locale } from '@/i18n/config';
@@ -11,6 +13,15 @@ import { Magnetic } from '@/components/motion/Magnetic';
 
 const shipped = products.filter((p) => p.status === 'shipped').length;
 const inHouse = products.filter((p) => p.category === 'prod').length;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('meta.home');
+  return pageMetadata({
+    title: { absolute: t('title') },
+    description: t('description'),
+    path: '/',
+  });
+}
 
 export default async function HomePage() {
   const locale = (await getLocale()) as Locale;

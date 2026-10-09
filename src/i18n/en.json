@@ -73,60 +73,63 @@
       "shipped": "client project delivered"
     }
   },
+  "meta": {
+    "home": {
+      "title": "RideLink Techs: Software from Da Nang",
+      "description": "An independent software company in Da Nang. We build our own products and take on custom software projects, handing over the full source code and documentation."
+    },
+    "products": {
+      "description": "The products RideLink Techs develops itself, and the projects it has built and delivered for clients."
+    },
+    "contact": {
+      "description": "Send RideLink Techs a brief. We are happy to sign an NDA before the first conversation and reply within one working day."
+    }
+  },
   "products": {
-    "eyebrow": "Catalogue",
     "title": "What we are building.",
-    "subtitle": "Four products we build ourselves, and one engagement already delivered to a client. Each entry states its real status, including when a product is not ready.",
-    "readMore": "Open",
+    "subtitle": "The products we develop ourselves, and the projects we have built and delivered for clients.",
     "category": {
       "internal": "In-house product",
       "outsource": "Client project"
     },
-    "nda": "Delivered",
     "filter": {
       "label": "Filter the catalogue",
       "all": "All",
       "prod": "In-house products",
       "outsource": "Client projects"
     },
-    "footnote": "Screenshots are taken from the running product. Where none exist we use an illustrative image, and every status is stated exactly as it actually stands.",
-    "demo": "See it running"
+    "viewDetail": "View details",
+    "footnote": "For client projects, the client’s name and the scope of our work are kept confidential under a mutual NDA."
   },
   "productDetail": {
-    "back": "Back to the catalogue",
-    "problem": "Problem",
-    "targetUser": "Who it is for",
-    "description": "Description",
-    "status": "Status",
-    "category": "Category",
-    "timeline": "Timeline",
-    "timelineEmpty": "Not public.",
-    "categoryInHouse": "In-house product",
-    "categoryOutsource": "Client project",
-    "open": "Next",
-    "openBrief": "Send a brief",
-    "allProductsCta": "Back to the full catalogue",
-    "photo": "An illustrative photograph, not a product screenshot.",
-    "visualConcept": "Visual concept",
-    "demo": "Open the live site",
-    "shot": {
-      "ui": "A real capture of the application interface.",
-      "brand": "The official brand mark. The app is in development.",
-      "photo": "An illustrative photograph, not a product screenshot."
+    "back": "All products",
+    "brief": "Send a brief",
+    "openDemo": "See it running",
+    "seeScreens": "See the screens",
+    "problemHeading": "The problem we solve",
+    "audienceHeading": "Who it is for",
+    "aboutHeading": "About",
+    "featuresHeading": "What it does",
+    "howHeading": "How it works",
+    "screensHeading": "Screens",
+    "faqHeading": "Frequently asked questions",
+    "carouselPrev": "Previous screen",
+    "carouselNext": "Next screen",
+    "facts": {
+      "status": "Status",
+      "platform": "Platform"
     },
-    "features": "What it does",
-    "screens": "Screens from the product"
-  },
-  "product": {
-    "caption": {
-      "ridelink-go": "Illustrative photograph — a Da Nang street at night (Unsplash). The product is in development; there is no public screenshot yet.",
-      "glosslink-beautiful": "Illustrative photograph — a salon interior (Unsplash). The product is in UX design; there is no public screenshot yet.",
-      "pawly": "Illustrative photograph — a dog being walked outdoors (Unsplash). The product is at idea stage.",
-      "vibeholic": "Real screenshot. The client’s name and the scope of our work are withheld under NDA."
-    }
+    "platform": {
+      "mobile": "Mobile",
+      "web": "Web"
+    },
+    "ctaInHouse": "Interested in {name}?",
+    "ctaInHouseLede": "We are looking for investors and partners to develop this product with us. Send us a short brief and we reply within one working day.",
+    "ctaClient": "Need a product like {name}?",
+    "ctaClientLede": "Tell us what you are building. We are happy to sign an NDA before the first conversation, and we reply within one working day.",
+    "next": "Next product"
   },
   "common": {
-    "visualConcept": "Visual concept",
     "notFound": "Page not found",
     "notFoundHint": "This address does not exist or has moved. Open the product catalogue, or send us a brief.",
     "notFoundReturn": "Back to home",
@@ -142,6 +145,7 @@
     "formNote": "Submitting opens your email client with the message pre-filled. We store nothing on this page.",
     "channels": {
       "email": "Email",
+      "phone": "Phone",
       "location": "Address",
       "hours": "Working hours",
       "response": "Response time"
@@ -153,14 +157,32 @@
     "form": {
       "name": "Your name",
       "email": "Email",
-      "message": "The problem you are facing",
+      "inquiry": "What would you like to do",
+      "inquiryOptions": {
+        "invest": {
+          "label": "Invest in a project",
+          "hint": "Invest in, or partner on, one of our products."
+        },
+        "build": {
+          "label": "Build a product",
+          "hint": "Have us build a product for you."
+        },
+        "other": {
+          "label": "Other",
+          "hint": "Anything else we can help with."
+        }
+      },
+      "project": "Project",
+      "projectAll": "All",
+      "errInquiry": "Please choose one option.",
+      "message": "Your message",
       "cta": "Send the brief",
       "sending": "Opening your email",
       "errRequired": "This field is required.",
       "errSummary": "Some required fields are still empty.",
       "sendingNow": "Sending",
       "errEmail": "That email address is not valid.",
-      "errMessageShort": "Add a little more so we understand the problem.",
+      "errMessageShort": "Add a little more so we understand what you need.",
       "errInvalid": "That submission is not valid. Check what you typed and send again.",
       "errCaptcha": "The human check did not pass. Click the box again, then send.",
       "errRate": "You have sent a few already. Try again later, or use the phone and email above.",

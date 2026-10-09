@@ -38,7 +38,7 @@ export function MobileNav() {
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger
         aria-label={t('openMenu')}
-        className="inline-flex h-10 w-10 items-center justify-center border border-[var(--rule)] text-[var(--ink)] transition-colors duration-150 hover:border-[var(--ink-faint)]"
+        className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--rule)] text-[var(--ink)] transition-colors duration-150 hover:border-[var(--ink-faint)]"
       >
         <List size={18} weight="regular" aria-hidden />
       </SheetTrigger>
@@ -55,7 +55,7 @@ export function MobileNav() {
           </SheetTitle>
           <SheetClose
             aria-label={t('closeMenu')}
-            className="inline-flex h-9 w-9 items-center justify-center border border-[var(--rule)] text-[var(--ink)] transition-colors duration-150 hover:border-[var(--ink-faint)]"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--rule)] text-[var(--ink)] transition-colors duration-150 hover:border-[var(--ink-faint)]"
           >
             <X size={16} weight="regular" aria-hidden />
           </SheetClose>

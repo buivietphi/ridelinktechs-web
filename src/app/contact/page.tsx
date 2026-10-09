@@ -1,4 +1,6 @@
+import type { Metadata } from 'next';
 import { getLocale, getTranslations } from 'next-intl/server';
+import { pageMetadata } from '@/lib/seo';
 import {
   Accordion,
   AccordionItem,
@@ -6,20 +8,39 @@ import {
   AccordionContent,
 } from '@/components/ui/Accordion';
 import { company } from '@/content/company';
+import { inHouseProducts } from '@/content/products';
 import type { Locale } from '@/i18n/config';
 import { ContactForm } from './ContactForm';
+import { isInquiry } from './inquiry';
 import { PageIntro } from '@/components/motion/PageIntro';
 import { Reveal } from '@/components/motion/Reveal';
 
-export default async function ContactPage() {
+export async function generateMetadata(): Promise<Metadata> {
+  const tNav = await getTranslations('nav');
+  const t = await getTranslations('meta.contact');
+  return pageMetadata({
+    title: tNav('contact'),
+    description: t('description'),
+    path: '/contact',
+  });
+}
+
+type Props = { searchParams: Promise<{ project?: string | string[]; type?: string | string[] }> };
+
+export default async function ContactPage({ searchParams }: Props) {
+  const { project, type } = await searchParams;
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations('contact');
   const faqItems = t.raw('faq.items') as Array<{ q: string; a: string }>;
 
   const siteKey = process.env.TURNSTILE_SITE_KEY ?? '';
+  const projects = inHouseProducts.map((p) => ({ slug: p.slug, name: p.name[locale] }));
+  const initialProject = projects.find((p) => p.slug === project)?.slug;
+  const inquiry = isInquiry(type) ? type : undefined;
 
   const details = [
     { label: t('channels.email'), value: company.email, href: `mailto:${company.email}` },
+    { label: t('channels.phone'), value: company.phoneDisplay, href: `tel:${company.phoneHref}` },
     { label: t('channels.location'), value: company.address[locale] },
     { label: t('channels.hours'), value: t('values.hours') },
     { label: t('channels.response'), value: t('values.response') },
@@ -37,7 +58,7 @@ export default async function ContactPage() {
               {t('dateline')}
             </p>
             <h1 className="display-hero mt-6 max-w-[15ch]">
-              <span className="block overflow-hidden pb-[0.08em]">
+              <span className="hero-line-mask block overflow-hidden">
                 <span className="block" data-intro-line>
                   {t('title')}
                 </span>
@@ -77,7 +98,13 @@ export default async function ContactPage() {
           </div>
 
           <div className="col-span-12 lg:col-span-7 lg:col-start-6">
-            <ContactForm siteKey={siteKey} />
+            <ContactForm
+              key={`${initialProject ?? ''}:${inquiry ?? ''}`}
+              siteKey={siteKey}
+              projects={projects}
+              initialInquiry={inquiry}
+              initialProject={initialProject}
+            />
           </div>
         </Reveal>
       </section>

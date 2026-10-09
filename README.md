@@ -154,9 +154,18 @@ block aborts the migration if any of that drifts.
 
 A leaked key now costs one blind write endpoint instead of the whole project.
 
-Run the migration once, in the SQL Editor of project `qyqhoegexqmzdzrosztm`:
-[`supabase/migrations/20260930120000_ridelink_contact.sql`](supabase/migrations/20260930120000_ridelink_contact.sql).
-Without it, every submit fails with `PGRST205`.
+Run the migrations once each, in filename order, in the SQL Editor of project
+`qyqhoegexqmzdzrosztm`:
+
+1. [`supabase/migrations/20260930120000_ridelink_contact.sql`](supabase/migrations/20260930120000_ridelink_contact.sql)
+   creates the table and the function. Without it, every submit fails with `PGRST205`.
+2. [`supabase/migrations/20261009120000_ridelink_contact_inquiry.sql`](supabase/migrations/20261009120000_ridelink_contact_inquiry.sql)
+   adds `inquiry_type` (`invest`, `build` or `other`) and `project`, and replaces the function with a
+   12-argument version. The server action sends both new arguments, so every submit fails with
+   `PGRST202` until it has run.
+
+Never re-run the first migration after the second: it recreates the 10-argument function next to
+the new one, and PostgREST cannot choose between them.
 
 ## Brand & content rules
 

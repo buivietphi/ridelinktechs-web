@@ -1,11 +1,11 @@
 'use client';
 
-import Image from 'next/image';
 import { useRef, type ReactNode } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Reveal } from '@/components/motion/Reveal';
+import { BrowserFrame, PhoneFrame } from '@/components/ui/Frames';
 import { prefersReducedMotion } from '@/lib/animations';
 import { cn } from '@/lib/cn';
 
@@ -23,66 +23,26 @@ export type PracticeChapter = {
 };
 
 function PhoneShot({ chapter, className }: { chapter: PracticeChapter; className?: string }) {
-  return (
-    <div
-      className={cn(
-        'relative aspect-[554/1200] rounded-[2.1rem] bg-[var(--ground-sink)] p-[3px] shadow-[var(--shadow-device)] ring-1 ring-white/12',
-        className,
-      )}
-    >
-      <div className="relative h-full w-full overflow-hidden rounded-[1.8rem] bg-black">
-        <Image
-          src={chapter.image}
-          alt={chapter.alt}
-          fill
-          sizes="300px"
-          className="object-cover object-top"
-        />
-      </div>
-    </div>
-  );
-}
-
-function Window({
-  src,
-  alt,
-  sizes,
-  className,
-}: {
-  src: string;
-  alt: string;
-  sizes: string;
-  className?: string;
-}) {
-  return (
-    <div
-      className={cn(
-        'absolute overflow-hidden rounded-[var(--radius-lg)] bg-[var(--ground-sink)] shadow-[var(--shadow-device)] ring-1 ring-white/12',
-        className,
-      )}
-    >
-      <Image src={src} alt={alt} fill sizes={sizes} className="object-cover object-left-top" />
-    </div>
-  );
+  return <PhoneFrame src={chapter.image} alt={chapter.alt} sizes="300px" className={className} />;
 }
 
 function WideShot({ chapter, className }: { chapter: PracticeChapter; className?: string }) {
   return (
     <div className={cn('relative', className)}>
       {chapter.secondary ? (
-        <Window
+        <BrowserFrame
           src={chapter.secondary.src}
           alt={chapter.secondary.alt}
           sizes="(min-width: 1024px) 400px, 75vw"
-          className="top-0 right-0 aspect-[1200/758] w-[80%] opacity-80"
+          className="absolute top-0 right-0 w-[80%] opacity-80"
         />
       ) : null}
-      <Window
+      <BrowserFrame
         src={chapter.image}
         alt={chapter.alt}
         sizes="(min-width: 1024px) 440px, 85vw"
         className={cn(
-          'left-0 aspect-[1380/875]',
+          'absolute left-0',
           chapter.secondary ? 'bottom-0 w-[88%]' : 'top-1/2 w-full -translate-y-1/2',
         )}
       />

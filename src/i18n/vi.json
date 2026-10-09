@@ -73,60 +73,63 @@
       "shipped": "dự án đã bàn giao cho khách hàng"
     }
   },
+  "meta": {
+    "home": {
+      "title": "RideLink Techs: Phần mềm tại Đà Nẵng",
+      "description": "Công ty phần mềm độc lập tại Đà Nẵng. Chúng tôi tự phát triển sản phẩm riêng và nhận xây phần mềm theo yêu cầu, bàn giao đầy đủ mã nguồn và tài liệu."
+    },
+    "products": {
+      "description": "Các sản phẩm do RideLink Techs tự phát triển và những dự án đã xây dựng, bàn giao cho khách hàng."
+    },
+    "contact": {
+      "description": "Gửi brief cho RideLink Techs. Chúng tôi sẵn sàng ký NDA trước buổi trao đổi đầu tiên và trả lời trong một ngày làm việc."
+    }
+  },
   "products": {
-    "eyebrow": "Danh mục",
     "title": "Những gì chúng tôi đang xây.",
-    "subtitle": "Bốn sản phẩm chúng tôi tự xây, và một dự án đã bàn giao cho khách hàng. Mỗi mục ghi rõ trạng thái thật, kể cả khi sản phẩm chưa sẵn sàng.",
-    "readMore": "Mở",
+    "subtitle": "Những sản phẩm do chúng tôi tự phát triển, cùng các dự án đã xây dựng và bàn giao cho khách hàng.",
     "category": {
       "internal": "Sản phẩm nội bộ",
       "outsource": "Dự án khách hàng"
     },
-    "nda": "Đã bàn giao",
     "filter": {
       "label": "Lọc danh mục",
       "all": "Tất cả",
       "prod": "Sản phẩm nội bộ",
       "outsource": "Dự án khách hàng"
     },
-    "footnote": "Ảnh chụp màn hình lấy từ bản chạy thật của sản phẩm. Sản phẩm chưa có ảnh thật dùng ảnh minh hoạ, và mọi trạng thái đều được ghi đúng như hiện tại thực tế.",
-    "demo": "Xem bản chạy thật"
+    "viewDetail": "Xem chi tiết",
+    "footnote": "Với dự án khách hàng, tên khách hàng và phạm vi hợp tác được giữ kín theo thỏa thuận bảo mật hai chiều."
   },
   "productDetail": {
-    "back": "Về danh mục",
-    "problem": "Vấn đề",
-    "targetUser": "Đối tượng",
-    "description": "Mô tả",
-    "status": "Trạng thái",
-    "category": "Danh mục",
-    "timeline": "Mốc phát triển",
-    "timelineEmpty": "Không công khai.",
-    "categoryInHouse": "Sản phẩm nội bộ",
-    "categoryOutsource": "Dự án khách hàng",
-    "open": "Tiếp theo",
-    "openBrief": "Gửi brief",
-    "allProductsCta": "Về toàn bộ danh mục",
-    "photo": "Ảnh minh hoạ, không phải ảnh chụp màn hình sản phẩm.",
-    "visualConcept": "Ảnh minh hoạ",
-    "demo": "Mở bản chạy thật",
-    "shot": {
-      "ui": "Ảnh chụp giao diện thật của ứng dụng.",
-      "brand": "Brand mark chính thức. Ứng dụng đang phát triển.",
-      "photo": "Ảnh minh hoạ, không phải ảnh chụp màn hình sản phẩm."
+    "back": "Tất cả sản phẩm",
+    "brief": "Gửi brief",
+    "openDemo": "Xem bản chạy thật",
+    "seeScreens": "Xem các màn hình",
+    "problemHeading": "Vấn đề cần giải quyết",
+    "audienceHeading": "Dành cho ai",
+    "aboutHeading": "Giới thiệu",
+    "featuresHeading": "Tính năng",
+    "howHeading": "Cách hoạt động",
+    "screensHeading": "Các màn hình",
+    "faqHeading": "Câu hỏi thường gặp",
+    "carouselPrev": "Màn hình trước",
+    "carouselNext": "Màn hình sau",
+    "facts": {
+      "status": "Trạng thái",
+      "platform": "Nền tảng"
     },
-    "features": "Tính năng",
-    "screens": "Các màn hình trong sản phẩm"
-  },
-  "product": {
-    "caption": {
-      "ridelink-go": "Ảnh minh hoạ — phố Đà Nẵng ban đêm (Unsplash). Sản phẩm đang phát triển, chưa có ảnh chụp thật.",
-      "glosslink-beautiful": "Ảnh minh hoạ — không gian salon (Unsplash). Sản phẩm đang thiết kế UX, chưa có ảnh chụp thật.",
-      "pawly": "Ảnh minh hoạ — dắt chó ngoài trời (Unsplash). Sản phẩm đang ở giai đoạn ý tưởng.",
-      "vibeholic": "Ảnh chụp giao diện thật. Tên khách hàng và phạm vi hợp tác được giữ kín theo thỏa thuận NDA."
-    }
+    "platform": {
+      "mobile": "Mobile",
+      "web": "Web"
+    },
+    "ctaInHouse": "Quan tâm đến {name}?",
+    "ctaInHouseLede": "Chúng tôi đang tìm nhà đầu tư và đối tác để cùng phát triển sản phẩm này. Gửi cho chúng tôi một brief ngắn, chúng tôi trả lời trong một ngày làm việc.",
+    "ctaClient": "Cần một sản phẩm như {name}?",
+    "ctaClientLede": "Kể cho chúng tôi nghe bạn đang làm. Chúng tôi sẵn sàng ký NDA trước buổi trao đổi đầu tiên và trả lời trong một ngày làm việc.",
+    "next": "Sản phẩm tiếp theo"
   },
   "common": {
-    "visualConcept": "Ảnh minh hoạ",
     "notFound": "Không tìm thấy trang",
     "notFoundHint": "Đường dẫn này không tồn tại hoặc đã được chuyển đi. Mở danh mục sản phẩm, hoặc gửi cho chúng tôi một brief.",
     "notFoundReturn": "Về trang chủ",
@@ -142,6 +145,7 @@
     "formNote": "Gửi điều này sẽ mở ứng dụng email của bạn với nội dung đã điền sẵn. Chúng tôi không lưu dữ liệu trên trang này.",
     "channels": {
       "email": "Email",
+      "phone": "Điện thoại",
       "location": "Địa chỉ",
       "hours": "Giờ làm việc",
       "response": "Thời gian phản hồi"
@@ -153,14 +157,32 @@
     "form": {
       "name": "Họ và tên",
       "email": "Email",
-      "message": "Vấn đề bạn đang gặp",
+      "inquiry": "Bạn muốn",
+      "inquiryOptions": {
+        "invest": {
+          "label": "Đầu tư dự án",
+          "hint": "Đầu tư hoặc đồng hành cùng sản phẩm của chúng tôi."
+        },
+        "build": {
+          "label": "Làm sản phẩm",
+          "hint": "Nhờ chúng tôi xây dựng một sản phẩm cho bạn."
+        },
+        "other": {
+          "label": "Khác",
+          "hint": "Một việc khác cần chúng tôi hỗ trợ."
+        }
+      },
+      "project": "Dự án",
+      "projectAll": "Tất cả",
+      "errInquiry": "Hãy chọn một lựa chọn.",
+      "message": "Nội dung trao đổi",
       "cta": "Gửi brief",
       "sending": "Đang mở email",
       "errRequired": "Trường này là bắt buộc.",
       "errSummary": "Còn trường bắt buộc chưa được điền.",
       "sendingNow": "Đang gửi",
       "errEmail": "Email chưa đúng định dạng.",
-      "errMessageShort": "Viết thêm một chút để chúng tôi hiểu vấn đề nhé.",
+      "errMessageShort": "Viết thêm một chút để chúng tôi hiểu bạn cần gì nhé.",
       "errInvalid": "Nội dung gửi đi không hợp lệ. Kiểm tra lại phần vừa nhập rồi gửi tiếp.",
       "errCaptcha": "Ô xác nhận người dùng chưa qua. Bấm lại vào ô đó rồi gửi.",
       "errRate": "Bạn đã gửi khá nhiều. Thử lại sau, hoặc dùng trực tiếp số điện thoại và email ở phần trên.",

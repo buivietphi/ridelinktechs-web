@@ -1,6 +1,12 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { Reveal } from '@/components/motion/Reveal';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('common');
+  return { title: t('notFound') };
+}
 
 export default async function NotFound() {
   const t = await getTranslations('common');

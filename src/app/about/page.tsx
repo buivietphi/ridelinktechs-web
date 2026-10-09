@@ -10,6 +10,7 @@ import { GridBackdrop } from '@/components/blocks/GridBackdrop';
 import { ProductRows } from '@/components/blocks/ProductRows';
 import { PromiseStage } from '@/components/blocks/PromiseStage';
 import { StoryRail } from '@/components/blocks/StoryRail';
+import { PhoneFrame } from '@/components/ui/Frames';
 import { JumpLink } from '@/components/ui/JumpLink';
 import { LogoMark } from '@/components/ui/LogoMark';
 import { CardSwap } from '@/components/motion/CardSwap';
@@ -20,16 +21,18 @@ import { Reveal, RevealGroup } from '@/components/motion/Reveal';
 import { ScrollWords } from '@/components/motion/ScrollWords';
 import { Spotlight } from '@/components/motion/Spotlight';
 import { cn } from '@/lib/cn';
+import { pageMetadata } from '@/lib/seo';
 
 const PHONE_RATIO = 1200 / 554;
 const wrap = 'mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-10';
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as Locale;
-  return {
+  return pageMetadata({
     title: about.meta.title[locale],
     description: about.meta.description[locale],
-  };
+    path: '/about',
+  });
 }
 
 export default async function AboutPage() {
@@ -165,21 +168,14 @@ export default async function AboutPage() {
               className="[--cw:196px] sm:[--cw:224px] lg:[--cw:clamp(150px,calc((100dvh_-_244px)/2.534),256px)]"
             >
               {heroShots.map((shot) => (
-                <div
+                <PhoneFrame
                   key={shot.slug}
-                  className="relative h-full w-full rounded-[2.1rem] bg-[var(--ground-sink)] p-[3px] shadow-[var(--shadow-device)] ring-1 ring-white/12"
-                >
-                  <div className="relative h-full w-full overflow-hidden rounded-[1.8rem] bg-black">
-                    <Image
-                      src={shot.src}
-                      alt={`${shot.name}: ${hero.shotAlt[locale]}`}
-                      fill
-                      priority
-                      sizes="240px"
-                      className="object-cover object-top"
-                    />
-                  </div>
-                </div>
+                  src={shot.src}
+                  alt={`${shot.name}: ${hero.shotAlt[locale]}`}
+                  sizes="240px"
+                  priority
+                  className="h-full w-full"
+                />
               ))}
             </CardSwap>
           </div>

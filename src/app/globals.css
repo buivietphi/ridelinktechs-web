@@ -244,6 +244,12 @@
     transform: scaleX(1);
   }
 
+  .hit::before {
+    content: '';
+    position: absolute;
+    inset: -0.45rem -0.25rem;
+  }
+
   .f-out {
     position: relative;
     display: inline-block;
@@ -381,6 +387,21 @@
     background-image: var(--surface-tint);
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-2);
+  }
+
+  .wash {
+    background-color: var(--ground-sink);
+    background-image:
+      radial-gradient(
+        62% 80% at 88% 0%,
+        color-mix(in oklab, var(--signal-violet) 26%, transparent),
+        transparent 70%
+      ),
+      radial-gradient(
+        58% 72% at 0% 100%,
+        color-mix(in oklab, var(--signal-cyan) 20%, transparent),
+        transparent 70%
+      );
   }
 
   .spotlight {
