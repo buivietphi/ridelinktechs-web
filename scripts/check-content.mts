@@ -123,8 +123,10 @@ for (const item of about.practice.items) {
       fail(`about.practice ${item.id}.body.${lang} out of 100-480 range`);
     }
   }
-  if (!existsSync(join(process.cwd(), 'public', item.image))) {
-    fail(`about.practice ${item.id}: missing image ${item.image}`);
+  for (const image of [item.image, item.image2]) {
+    if (image && !existsSync(join(process.cwd(), 'public', image))) {
+      fail(`about.practice ${item.id}: missing image ${image}`);
+    }
   }
 }
 if (about.story.eras.length < 3 || about.story.eras.length > 8) {

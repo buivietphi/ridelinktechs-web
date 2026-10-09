@@ -18,35 +18,74 @@ export type PracticeChapter = {
   image: string;
   alt: string;
   frame: 'phone' | 'wide';
+  secondary?: { src: string; alt: string };
   extra?: ReactNode;
 };
 
-function Shot({ chapter, className }: { chapter: PracticeChapter; className?: string }) {
-  const phone = chapter.frame === 'phone';
+function PhoneShot({ chapter, className }: { chapter: PracticeChapter; className?: string }) {
   return (
     <div
       className={cn(
-        'relative bg-[var(--ground-sink)] shadow-[var(--shadow-device)] ring-1 ring-white/12',
-        phone
-          ? 'aspect-[554/1200] rounded-[2.1rem] p-[3px]'
-          : 'aspect-[1200/758] rounded-[var(--radius-lg)]',
+        'relative aspect-[554/1200] rounded-[2.1rem] bg-[var(--ground-sink)] p-[3px] shadow-[var(--shadow-device)] ring-1 ring-white/12',
         className,
       )}
     >
-      <div
-        className={cn(
-          'relative h-full w-full overflow-hidden bg-black',
-          phone ? 'rounded-[1.8rem]' : 'rounded-[var(--radius-lg)]',
-        )}
-      >
+      <div className="relative h-full w-full overflow-hidden rounded-[1.8rem] bg-black">
         <Image
           src={chapter.image}
           alt={chapter.alt}
           fill
-          sizes={phone ? '300px' : '(min-width: 1024px) 480px, 90vw'}
-          className={phone ? 'object-cover object-top' : 'object-cover object-left-top'}
+          sizes="300px"
+          className="object-cover object-top"
         />
       </div>
+    </div>
+  );
+}
+
+function Window({
+  src,
+  alt,
+  sizes,
+  className,
+}: {
+  src: string;
+  alt: string;
+  sizes: string;
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        'absolute overflow-hidden rounded-[var(--radius-lg)] bg-[var(--ground-sink)] shadow-[var(--shadow-device)] ring-1 ring-white/12',
+        className,
+      )}
+    >
+      <Image src={src} alt={alt} fill sizes={sizes} className="object-cover object-left-top" />
+    </div>
+  );
+}
+
+function WideShot({ chapter, className }: { chapter: PracticeChapter; className?: string }) {
+  return (
+    <div className={cn('relative', className)}>
+      {chapter.secondary ? (
+        <Window
+          src={chapter.secondary.src}
+          alt={chapter.secondary.alt}
+          sizes="(min-width: 1024px) 400px, 75vw"
+          className="top-0 right-0 aspect-[1200/758] w-[80%] opacity-80"
+        />
+      ) : null}
+      <Window
+        src={chapter.image}
+        alt={chapter.alt}
+        sizes="(min-width: 1024px) 440px, 85vw"
+        className={cn(
+          'left-0 aspect-[1380/875]',
+          chapter.secondary ? 'bottom-0 w-[88%]' : 'top-1/2 w-full -translate-y-1/2',
+        )}
+      />
     </div>
   );
 }
@@ -108,14 +147,11 @@ export function PromiseStage({ chapters }: { chapters: PracticeChapter[] }) {
                   i > 0 && 'invisible opacity-0',
                 )}
               >
-                <Shot
-                  chapter={chapter}
-                  className={
-                    chapter.frame === 'phone'
-                      ? 'h-[88%]'
-                      : 'w-[104%] shrink-0 [transform:perspective(1400px)_rotateY(-9deg)_rotateX(3deg)]'
-                  }
-                />
+                {chapter.frame === 'phone' ? (
+                  <PhoneShot chapter={chapter} className="h-[88%]" />
+                ) : (
+                  <WideShot chapter={chapter} className="h-[72%] w-full" />
+                )}
               </div>
             ))}
           </div>
@@ -138,10 +174,11 @@ export function PromiseStage({ chapters }: { chapters: PracticeChapter[] }) {
                 {chapter.body}
               </p>
               <div className="mt-8 lg:hidden">
-                <Shot
-                  chapter={chapter}
-                  className={chapter.frame === 'phone' ? 'mx-auto w-[min(220px,62%)]' : 'w-full'}
-                />
+                {chapter.frame === 'phone' ? (
+                  <PhoneShot chapter={chapter} className="mx-auto w-[min(220px,62%)]" />
+                ) : (
+                  <WideShot chapter={chapter} className="aspect-[4/3] w-full" />
+                )}
               </div>
               {chapter.extra}
             </Reveal>

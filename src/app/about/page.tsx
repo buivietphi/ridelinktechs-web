@@ -89,15 +89,16 @@ export default async function AboutPage() {
     image: item.image,
     alt: item.imageAlt[locale],
     frame: item.frame,
+    secondary: item.image2 ? { src: item.image2, alt: item.image2Alt?.[locale] ?? '' } : undefined,
     extra:
       i === 0 ? (
         <div className="mt-10">
           <p className="display-sm">{practice.stackHeading[locale]}</p>
           <dl className="mt-4 flex flex-col gap-3">
             {practice.stack.map((group) => (
-              <div key={group.label.en} className="flex flex-wrap items-center gap-x-3 gap-y-2">
-                <dt className="data-label w-24 shrink-0">{group.label[locale]}</dt>
-                <dd className="flex flex-wrap gap-2">
+              <div key={group.label.en} className="flex items-start gap-x-3">
+                <dt className="data-label w-20 shrink-0 pt-[7px] sm:w-24">{group.label[locale]}</dt>
+                <dd className="flex min-w-0 flex-wrap gap-2">
                   {group.items.map((item) => (
                     <span
                       key={item}

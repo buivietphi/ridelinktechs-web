@@ -23,6 +23,8 @@ export interface PracticeItem {
   body: LocalizedString;
   image: string;
   imageAlt: LocalizedString;
+  image2?: string;
+  image2Alt?: LocalizedString;
   frame: 'phone' | 'wide';
 }
 
@@ -196,10 +198,15 @@ export const about: AboutContent = {
           vi: 'Phạm vi, chi phí, tiến độ và quyền sở hữu được thống nhất rõ từ đầu, dưới một thỏa thuận bảo mật. Khi bàn giao, bạn nhận đủ mã nguồn, tài liệu kỹ thuật và hướng dẫn vận hành để tự quản lý và phát triển tiếp, không phụ thuộc vào đội ngũ ban đầu. Kể cả không phụ thuộc vào chúng tôi.',
           en: 'Scope, cost, timeline and ownership are agreed clearly up front, under a confidentiality agreement. At handover you receive the full source code, technical documentation and an operations guide, so you can run and extend the product without relying on the original team. Including us.',
         },
-        image: '/products/screens/vibeholic-02.jpg',
+        image: '/products/screens/vibeholic-01-home.jpg',
         imageAlt: {
-          vi: 'Trang bảng giá công khai trên website VibeHolic do chúng tôi xây và bàn giao.',
-          en: 'The public price list on the VibeHolic website we built and delivered.',
+          vi: 'Trang chủ website VibeHolic do chúng tôi xây và bàn giao.',
+          en: 'The home page of the VibeHolic website we built and delivered.',
+        },
+        image2: '/products/screens/vibeholic-02.jpg',
+        image2Alt: {
+          vi: 'Trang bảng giá công khai trên website VibeHolic.',
+          en: 'The public price list on the VibeHolic website.',
         },
         frame: 'wide',
       },
@@ -207,12 +214,24 @@ export const about: AboutContent = {
     stackHeading: { vi: 'Công nghệ chúng tôi dùng', en: 'What we build with' },
     stack: [
       {
-        label: { vi: 'Ứng dụng', en: 'Applications' },
-        items: ['TypeScript', 'Next.js', 'React Native', 'Flutter', 'Swift', 'Kotlin'],
+        label: { vi: 'Web', en: 'Web' },
+        items: ['TypeScript', 'React', 'Next.js', 'Tailwind CSS', 'shadcn/ui', 'GSAP'],
+      },
+      {
+        label: { vi: 'Mobile', en: 'Mobile' },
+        items: ['React Native', 'Flutter', 'Dart', 'Swift', 'Kotlin'],
       },
       {
         label: { vi: 'Backend', en: 'Backend' },
-        items: ['Next.js', 'NestJS', 'Supabase', 'Postgres', 'Edge functions'],
+        items: [
+          'Node.js',
+          'Next.js',
+          'NestJS',
+          'Supabase',
+          'Firebase',
+          'Postgres',
+          'Edge functions',
+        ],
       },
       {
         label: { vi: 'Thiết kế', en: 'Design' },
@@ -265,12 +284,17 @@ export const about: AboutContent = {
         id: 'refine',
         period: { vi: '2024 - 2025', en: '2024 - 2025' },
         title: {
-          vi: 'Chưa đủ vốn điều hành',
-          en: 'Not enough operating capital',
+          vi: 'Trau chuốt trước khi xây',
+          en: 'Refining before building',
         },
         body: {
-          vi: 'Khi đó chúng tôi chưa đủ vốn điều hành, cũng chưa đủ năng lực để vận hành một dịch vụ gọi xe. Thay vì vội vàng, chúng tôi giữ lại ý tưởng thô ấy và trau chuốt nó từng chút một, cho đến khi nó đủ chín để bắt tay vào xây.',
-          en: 'At the time we had neither the operating capital nor the capacity to run a ride service. Instead of rushing, we kept that rough idea and refined it piece by piece, until it was ready to build.',
+          vi: 'Một dịch vụ gọi xe cần nhiều hơn một ứng dụng: cần cả một bộ máy vận hành và nền tảng vững phía sau. Vì vậy chúng tôi không vội ra mắt, mà dành thời gian trau chuốt ý tưởng ban đầu từng chút một, từ cách ghép chuyến đến cách tài xế và hành khách thương lượng giá, cho đến khi sẵn sàng bắt tay vào xây.',
+          en: 'A ride service needs more than an app: it needs an operation and solid groundwork behind it. So we did not rush to launch. We took the time to refine the original idea piece by piece, from how rides are matched to how drivers and riders agree on a fare, until we were ready to start building.',
+        },
+        image: '/products/screens/ridelink-go-05-activity.jpg',
+        imageAlt: {
+          vi: 'Màn hình hoạt động trong Ridelink Go, với các chuyến xe ghép đang tìm tài xế và thương lượng giá.',
+          en: 'The activity screen in Ridelink Go, with shared rides looking for drivers and negotiating fares.',
         },
       },
       {

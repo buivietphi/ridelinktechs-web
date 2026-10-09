@@ -6,6 +6,7 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowLeft, ArrowRight } from 'phosphor-react';
+import { GridBackdrop } from '@/components/blocks/GridBackdrop';
 import { StatCounter } from '@/components/motion/StatCounter';
 import { LogoMark } from '@/components/ui/LogoMark';
 import { prefersReducedMotion } from '@/lib/animations';
@@ -45,7 +46,8 @@ const formatDate = (date: string) => {
 
 function StoryCardView({ card, todayLabel }: { card: StoryCard; todayLabel: string }) {
   const future = Boolean(card.plans);
-  const plain = !card.image && !card.stats && !future;
+  const textured = !card.image && !future;
+  const plain = textured && !card.stats;
 
   return (
     <article
@@ -60,15 +62,7 @@ function StoryCardView({ card, todayLabel }: { card: StoryCard; todayLabel: stri
             : 'lg:w-[420px]',
       )}
     >
-      {plain ? (
-        <span
-          aria-hidden
-          data-story-drift
-          className="pointer-events-none absolute -right-6 -bottom-12 -z-10 hidden text-[10rem] leading-none font-extrabold tracking-[-0.06em] text-[var(--ink-ghost)] select-none lg:block"
-        >
-          {card.period.slice(0, 4)}
-        </span>
-      ) : null}
+      {textured ? <GridBackdrop className="-z-10" glowId={`story-${card.id}`} /> : null}
 
       {card.logo ? (
         <LogoMark
@@ -84,10 +78,12 @@ function StoryCardView({ card, todayLabel }: { card: StoryCard; todayLabel: stri
         <p className="tabnum text-[clamp(2.1rem,3.2vw,2.9rem)] leading-none font-extrabold tracking-[-0.045em] text-[var(--ink)]">
           {card.period}
         </p>
-        <h3 className="display-lg mt-5 max-w-[22ch]">{card.title}</h3>
-        {card.body ? (
-          <p className="mt-3 text-[15px] leading-[1.7] text-[var(--ink-soft)]">{card.body}</p>
-        ) : null}
+        <div className={cn(plain && 'lg:mt-auto')}>
+          <h3 className="display-lg mt-5 max-w-[22ch]">{card.title}</h3>
+          {card.body ? (
+            <p className="mt-3 text-[15px] leading-[1.7] text-[var(--ink-soft)]">{card.body}</p>
+          ) : null}
+        </div>
 
         {card.plans ? (
           <ul className="mt-6 flex flex-col gap-4">
@@ -278,25 +274,6 @@ export function StoryRail({
             },
           },
         );
-        const drift = item.querySelector<HTMLElement>('[data-story-drift]');
-        if (drift) {
-          gsap.fromTo(
-            drift,
-            { xPercent: 14 },
-            {
-              xPercent: -14,
-              ease: 'none',
-              scrollTrigger: {
-                scroller: el,
-                horizontal: true,
-                trigger: item,
-                start: 'left right',
-                end: 'right left',
-                scrub: true,
-              },
-            },
-          );
-        }
       });
     },
     { scope: root },
