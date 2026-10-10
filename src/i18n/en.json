@@ -37,7 +37,7 @@
     "facts": {
       "products": "products built in-house",
       "shipped": "client project delivered",
-      "founded": "founded in Da Nang"
+      "handover": "delivered with full source code"
     },
     "stack": {
       "title": "What we build with"
@@ -48,27 +48,27 @@
       "items": [
         {
           "title": "Product design",
-          "body": "User flows, interfaces and a design system in Figma, before the first line of code.",
+          "body": "User flows, interfaces and a design system built in Figma and Linear, before the first line of code.",
           "tags": ["Figma", "Linear", "Notion"]
         },
         {
           "title": "Mobile apps",
-          "body": "Native apps for iOS and Android, or one codebase across both with Flutter and React Native.",
-          "tags": ["Swift", "Kotlin", "Java", "Flutter", "React Native"]
+          "body": "Native apps for iOS and Android with SwiftUI, Kotlin and Java, or one codebase across both with Flutter and React Native.",
+          "tags": ["SwiftUI", "Kotlin", "Java", "Flutter", "React Native"]
         },
         {
           "title": "Web platforms",
-          "body": "Websites and web apps with Next.js and TypeScript: fast, easy to find and easy to extend.",
+          "body": "Websites and web apps with Next.js, React and TypeScript, styled with Tailwind CSS for a consistent interface that is easy to extend.",
           "tags": ["Next.js", "React", "TypeScript", "Tailwind CSS"]
         },
         {
           "title": "Backend and data",
-          "body": "APIs, databases, sign-in and payments with NestJS, Supabase, Firebase and Postgres.",
-          "tags": ["NestJS", "Supabase", "Firebase", "Postgres"]
+          "body": "APIs and databases with NestJS, Spring Boot, Postgres, MongoDB and Redis, including the real-time part.",
+          "tags": ["NestJS", "Spring Boot", "Postgres", "MongoDB", "Redis"]
         },
         {
           "title": "Infrastructure and operations",
-          "body": "Deployment, monitoring, incident handling and maintenance after handover, when you want us to stay.",
+          "body": "The product is packaged, automated with GitHub Actions, and set up on the infrastructure that fits where you already run. Monitoring, incident handling and maintenance continue after handover.",
           "tags": ["Docker", "GitHub Actions", "Vercel"]
         }
       ],
@@ -150,6 +150,7 @@
   },
   "productDetail": {
     "back": "All products",
+    "breadcrumb": "Breadcrumb",
     "brief": "Send a brief",
     "openDemo": "See it running",
     "seeScreens": "See the screens",

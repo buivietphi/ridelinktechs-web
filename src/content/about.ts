@@ -90,7 +90,7 @@ export const about: AboutContent = {
   meta: {
     title: { vi: 'Về chúng tôi', en: 'About' },
     description: {
-      vi: 'RideLink Techs là studio phần mềm ở Đà Nẵng. Chúng tôi tự phát triển sản phẩm riêng, nhận làm dự án phần mềm trọn gói và bàn giao đầy đủ mã nguồn cùng tài liệu kỹ thuật.',
+      vi: 'RideLink Techs là công ty phần mềm ở Đà Nẵng. Chúng tôi tự phát triển sản phẩm riêng, nhận làm dự án phần mềm trọn gói và bàn giao đầy đủ mã nguồn cùng tài liệu kỹ thuật.',
       en: 'RideLink Techs is a software company in Da Nang. We build our own products, take on end to end software projects, and hand over the full source code and technical documentation.',
     },
   },
@@ -244,7 +244,7 @@ export const about: AboutContent = {
       },
       {
         label: { vi: 'Triển khai', en: 'Delivery' },
-        items: ['GitHub Actions', 'Vercel', 'Docker'],
+        items: ['GitHub Actions', 'Docker', 'Vercel', 'AWS', 'VPS'],
       },
     ],
   },

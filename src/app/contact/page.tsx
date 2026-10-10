@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { pageMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/JsonLd';
+import { contactPage } from '@/lib/schema';
 import {
   Accordion,
   AccordionItem,
@@ -48,6 +50,7 @@ export default async function ContactPage({ searchParams }: Props) {
 
   return (
     <>
+      <JsonLd data={contactPage(locale, company.tagline[locale])} />
       <section>
         <div className="mx-auto w-full max-w-[1440px] px-5 py-16 sm:px-8 lg:px-10 lg:py-24">
           <PageIntro>

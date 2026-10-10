@@ -1,7 +1,7 @@
 import { CountUp } from '@/components/motion/CountUp';
 import { RevealGroup } from '@/components/motion/Reveal';
 
-type Fact = { to: number; from?: number; label: string };
+type Fact = { to: number; from?: number; suffix?: string; label: string };
 
 export function FactsStrip({ facts }: { facts: Fact[] }) {
   return (
@@ -11,14 +11,21 @@ export function FactsStrip({ facts }: { facts: Fact[] }) {
           <div
             key={fact.label}
             data-reveal-item
-            className="panel flex items-end justify-between gap-6 border border-[var(--rule)] px-7 py-8 sm:min-h-[250px] sm:flex-col sm:items-start sm:gap-10 sm:py-9"
+            className="panel group/fact flex flex-col gap-7 border border-[var(--rule)] px-7 py-8 transition-colors duration-500 hover:border-[color-mix(in_oklab,var(--signal-violet)_30%,var(--rule))] sm:py-9"
           >
-            <p className="text-brand text-[clamp(3.25rem,6vw,5.5rem)] leading-[0.85] font-extrabold tracking-[-0.05em]">
+            <p className="text-brand flex items-baseline text-[clamp(2.75rem,4.5vw,4rem)] leading-[0.9] font-extrabold tracking-[-0.04em]">
               <CountUp to={fact.to} from={fact.from} />
+              {fact.suffix ? (
+                <span className="text-[0.55em] font-bold tracking-normal">{fact.suffix}</span>
+              ) : null}
             </p>
-            <p className="max-w-[18ch] text-right text-[15px] leading-[1.45] text-[var(--ink-soft)] sm:text-left">
-              {fact.label}
-            </p>
+            <div className="mt-auto flex flex-col gap-3.5">
+              <span
+                aria-hidden
+                className="h-px w-9 origin-left bg-[linear-gradient(90deg,var(--signal-violet),transparent)] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/fact:w-16"
+              />
+              <p className="text-[15px] leading-[1.45] text-[var(--ink-soft)]">{fact.label}</p>
+            </div>
           </div>
         ))}
       </RevealGroup>

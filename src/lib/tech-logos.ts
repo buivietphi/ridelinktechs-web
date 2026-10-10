@@ -9,6 +9,7 @@ const ALIAS: Record<string, string> = {
   swiftui: 'swift',
   'spring boot': 'spring',
   'kotlin multiplatform': 'kotlin',
+  aws: 'amazonwebservices',
 };
 
 export function techLogoSlug(name: string): string {

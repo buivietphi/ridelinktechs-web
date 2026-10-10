@@ -6,6 +6,8 @@ import { GridBackdrop } from '@/components/blocks/GridBackdrop';
 import { PageIntro } from '@/components/motion/PageIntro';
 import { Reveal } from '@/components/motion/Reveal';
 import { pageMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/JsonLd';
+import { productList } from '@/lib/schema';
 import { ProductGrid } from './_product/ProductGrid';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -22,6 +24,7 @@ export default async function ProductsPage() {
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations('products');
   const tStatus = await getTranslations('status');
+  const tNav = await getTranslations('nav');
 
   const statusLabels: Record<string, string> = {
     'in-development': tStatus('in-development'),
@@ -31,6 +34,7 @@ export default async function ProductsPage() {
 
   return (
     <>
+      <JsonLd data={productList(locale, tNav('products'))} />
       <section className="relative isolate overflow-hidden">
         <GridBackdrop
           className="-z-10 [mask-image:linear-gradient(to_bottom,black_50%,transparent)]"

@@ -22,6 +22,8 @@ import { ArrowLeft, ArrowUpRight } from '@/components/ui/Icons';
 import { JumpLink } from '@/components/ui/JumpLink';
 import { cn } from '@/lib/cn';
 import { clip, pageMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/JsonLd';
+import { breadcrumb, faqPage, graph, softwareApplication } from '@/lib/schema';
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -54,6 +56,7 @@ export default async function ProductDetailPage({ params }: Params) {
   const t = await getTranslations('productDetail');
   const tStatus = await getTranslations('status');
   const tCategory = await getTranslations('products.category');
+  const tCrumb = await getTranslations('nav');
 
   const isClient = product.category === 'outsource';
   const name = product.name[locale];
@@ -85,6 +88,20 @@ export default async function ProductDetailPage({ params }: Params) {
 
   return (
     <>
+      <JsonLd
+        data={graph(
+          softwareApplication(product, locale),
+          faqPage(product.faq ?? [], locale),
+          breadcrumb(
+            [
+              { name: tCrumb('home'), path: '/' },
+              { name: tCrumb('products'), path: '/products' },
+              { name, path: `/products/${product.slug}` },
+            ],
+            locale,
+          ),
+        )}
+      />
       <section className="relative isolate overflow-hidden">
         <GridBackdrop className="-z-10" glowId="product-hero-grid" />
         <div
@@ -94,14 +111,26 @@ export default async function ProductDetailPage({ params }: Params) {
           )}
         >
           <PageIntro className="lg:col-span-6">
-            <Link
+            <nav
               data-intro-meta
-              href="/products"
-              className="link hit inline-flex items-center gap-2 text-[14px] text-[var(--ink-soft)]"
+              aria-label={t('breadcrumb')}
+              className="text-[14px] text-[var(--ink-soft)]"
             >
-              <ArrowLeft aria-hidden size={14} weight="bold" />
-              {t('back')}
-            </Link>
+              <ol className="flex flex-wrap items-center gap-x-1.5 gap-y-1">
+                <li className="flex items-center gap-1.5">
+                  <Link href="/products" className="link hit inline-flex items-center gap-2">
+                    <ArrowLeft aria-hidden size={14} weight="bold" />
+                    {t('back')}
+                  </Link>
+                  <span aria-hidden className="text-[var(--ink-faint)]">
+                    /
+                  </span>
+                </li>
+                <li aria-current="page" className="font-medium text-[var(--ink)]">
+                  {name}
+                </li>
+              </ol>
+            </nav>
 
             <div data-intro-meta className="mt-8 flex flex-wrap items-center gap-2">
               <Badge

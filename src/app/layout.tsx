@@ -1,9 +1,12 @@
 import type { Metadata, Viewport } from 'next';
 import { getLocale, getMessages } from 'next-intl/server';
+import type { Locale } from '@/i18n/config';
 import { Be_Vietnam_Pro, IBM_Plex_Mono } from 'next/font/google';
 import { I18nProvider } from '@/i18n/I18nProvider';
 import { ThemeProvider } from '@/components/theme/ThemeProvider';
 import { ThemeBinding } from '@/components/theme/ThemeBinding';
+import { JsonLd } from '@/components/JsonLd';
+import { graph, organization, website } from '@/lib/schema';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { SmoothScroll } from '@/lib/animations';
@@ -43,12 +46,36 @@ export const metadata: Metadata = {
   applicationName: 'RideLink Techs',
   authors: [{ name: 'RideLink Techs' }],
   creator: 'RideLink Techs',
+  keywords: [
+    'công ty phần mềm Đà Nẵng',
+    'phát triển phần mềm theo yêu cầu',
+    'ứng dụng mobile Việt Nam',
+    'lập trình web Đà Nẵng',
+    'bàn giao mã nguồn',
+    'software company Da Nang',
+    'custom software development Vietnam',
+  ],
+  category: 'technology',
   openGraph: {
     type: 'website',
     siteName: 'RideLink Techs',
     title: 'RideLink Techs — Phần mềm tại Đà Nẵng',
     description:
       'Công ty phần mềm tại Đà Nẵng — sản phẩm của riêng mình và dự án phần mềm trọn gói, bàn giao đủ mã nguồn.',
+    images: [
+      {
+        url: 'https://ridelinktechs.com/og.png',
+        width: 1200,
+        height: 630,
+        alt: 'RideLink Techs — Công ty phần mềm tại Đà Nẵng',
+      },
+    ],
+    locale: 'vi_VN',
+    alternateLocale: ['en_US'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: ['https://ridelinktechs.com/og.png'],
   },
   robots: { index: true, follow: true },
 };
@@ -74,6 +101,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       suppressHydrationWarning
     >
       <body className="bg-[var(--ground)] font-[var(--font-body)] text-[var(--ink)]">
+        <JsonLd data={graph(organization(locale as Locale), website(locale as Locale))} />
         <ThemeProvider defaultTheme="dark">
           <ThemeBinding />
           <I18nProvider locale={locale} messages={messages}>

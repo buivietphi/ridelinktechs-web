@@ -37,7 +37,7 @@
     "facts": {
       "products": "sản phẩm tự phát triển",
       "shipped": "dự án khách hàng đã bàn giao",
-      "founded": "năm thành lập tại Đà Nẵng"
+      "handover": "dự án bàn giao kèm đủ mã nguồn"
     },
     "stack": {
       "title": "Công nghệ chúng tôi dùng"
@@ -48,27 +48,27 @@
       "items": [
         {
           "title": "Thiết kế sản phẩm",
-          "body": "Luồng người dùng, giao diện và hệ thống thiết kế trong Figma, trước khi viết dòng code đầu tiên.",
+          "body": "Luồng người dùng, giao diện và hệ thống được dựng trong Figma và Linear trước khi viết dòng code đầu tiên.",
           "tags": ["Figma", "Linear", "Notion"]
         },
         {
           "title": "Ứng dụng di động",
-          "body": "Ứng dụng native cho iOS và Android, hoặc chạy một codebase trên cả hai bằng Flutter và React Native.",
-          "tags": ["Swift", "Kotlin", "Java", "Flutter", "React Native"]
+          "body": "Ứng dụng native cho iOS và Android bằng SwiftUI, Kotlin và Java, hoặc một codebase chạy được cả hai bằng Flutter và React Native.",
+          "tags": ["SwiftUI", "Kotlin", "Java", "Flutter", "React Native"]
         },
         {
           "title": "Nền tảng web",
-          "body": "Website và web app với Next.js và TypeScript: nhanh, dễ tìm thấy và dễ mở rộng.",
+          "body": "Website và web app với Next.js, React và TypeScript, dựng trên Tailwind CSS để giao diện nhất quán và dễ mở rộng.",
           "tags": ["Next.js", "React", "TypeScript", "Tailwind CSS"]
         },
         {
           "title": "Backend và dữ liệu",
-          "body": "API, cơ sở dữ liệu, đăng nhập và thanh toán với NestJS, Supabase, Firebase và Postgres.",
-          "tags": ["NestJS", "Supabase", "Firebase", "Postgres"]
+          "body": "API và cơ sở dữ liệu với NestJS, Spring Boot, Postgres, MongoDB và Redis, kể cả phần xử lý thời gian thực.",
+          "tags": ["NestJS", "Spring Boot", "Postgres", "MongoDB", "Redis"]
         },
         {
           "title": "Hạ tầng và vận hành",
-          "body": "Triển khai, giám sát, xử lý sự cố và bảo trì sau bàn giao, khi bạn cần chúng tôi ở lại.",
+          "body": "Đóng gói sản phẩm, tự động hoá bằng GitHub Actions, và dựng trên hạ tầng phù hợp với chỗ bạn đang chạy. Giám sát, xử lý sự cố và bảo trì tiếp tục sau khi bàn giao.",
           "tags": ["Docker", "GitHub Actions", "Vercel"]
         }
       ],
@@ -150,6 +150,7 @@
   },
   "productDetail": {
     "back": "Tất cả sản phẩm",
+    "breadcrumb": "Đường dẫn",
     "brief": "Gửi brief",
     "openDemo": "Xem bản chạy thật",
     "seeScreens": "Xem các màn hình",
@@ -187,7 +188,7 @@
   "contact": {
     "eyebrow": "Liên hệ",
     "title": "Bắt đầu bằng một cuộc trò chuyện.",
-    "subtitle": "Gọi, email, hoặc ghé studio. NDA một chiều hoặc hai chiều đều được, và chúng tôi sẵn sàng ký trước buổi trao đổi đầu tiên.",
+    "subtitle": "Gọi, email, hoặc ghé văn phòng. NDA một chiều hoặc hai chiều đều được, và chúng tôi sẵn sàng ký trước buổi trao đổi đầu tiên.",
     "dateline": "Chúng tôi trả lời trong một ngày làm việc.",
     "formNote": "Gửi điều này sẽ mở ứng dụng email của bạn với nội dung đã điền sẵn. Chúng tôi không lưu dữ liệu trên trang này.",
     "channels": {

@@ -17,7 +17,6 @@ import { Magnetic } from '@/components/motion/Magnetic';
 import { Reveal } from '@/components/motion/Reveal';
 import { ScrollWords } from '@/components/motion/ScrollWords';
 
-const FOUNDED = 2025;
 const wrap = 'mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-10';
 const h2 =
   'text-[clamp(2rem,4.6vw,3.75rem)] leading-[1.05] font-extrabold tracking-[-0.04em] text-balance';
@@ -39,7 +38,7 @@ export default async function HomePage() {
   const facts = [
     { to: inHouseProducts.length, label: t('facts.products') },
     { to: products.filter((p) => p.status === 'shipped').length, label: t('facts.shipped') },
-    { to: FOUNDED, from: FOUNDED - 25, label: t('facts.founded') },
+    { to: 100, suffix: '%', label: t('facts.handover') },
   ];
 
   const groups = about.practice.stack;
