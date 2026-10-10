@@ -12,6 +12,7 @@ const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 const nextConfig = {
   output: 'standalone',
   reactStrictMode: true,
+  htmlLimitedBots: /.*/,
   turbopack: {
     root: projectRoot,
   },

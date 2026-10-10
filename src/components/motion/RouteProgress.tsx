@@ -16,16 +16,11 @@ export function RouteProgress() {
     if (prefersReducedMotion()) return;
 
     let active = false;
+    let failsafe = 0;
     gsap.set(node, { transformOrigin: 'left center', opacity: 1 });
 
-    const start = () => {
-      if (active) return;
-      active = true;
-      gsap.killTweensOf(node);
-      gsap.fromTo(node, { scaleX: 0 }, { scaleX: 0.92, duration: 3.4, ease: 'power2.out' });
-    };
-
     const done = () => {
+      window.clearTimeout(failsafe);
       gsap.killTweensOf(node);
       if (!active) gsap.set(node, { scaleX: 0 });
       active = false;
@@ -39,9 +34,19 @@ export function RouteProgress() {
       });
     };
 
+    const start = () => {
+      if (active) return;
+      active = true;
+      gsap.killTweensOf(node);
+      gsap.fromTo(node, { scaleX: 0 }, { scaleX: 0.92, duration: 3.4, ease: 'power2.out' });
+      failsafe = window.setTimeout(done, 6000);
+    };
+
     run.current = { start, done };
 
     const onClick = (event: MouseEvent) => {
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (event.button !== 0) return;
       const anchor = (event.target as Element | null)?.closest('a');
       if (!anchor || anchor.target === '_blank' || anchor.hasAttribute('download')) return;
       const url = new URL(anchor.href);
@@ -53,6 +58,7 @@ export function RouteProgress() {
     document.addEventListener('click', onClick, true);
     return () => {
       document.removeEventListener('click', onClick, true);
+      window.clearTimeout(failsafe);
       gsap.killTweensOf(node);
     };
   }, []);

@@ -2,17 +2,25 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { pageMetadata } from '@/lib/seo';
-import { products } from '@/content/products';
+import { inHouseProducts, products } from '@/content/products';
 import { about } from '@/content/about';
 import type { Locale } from '@/i18n/config';
-import { HomeHero } from '@/components/blocks/HomeHero';
-import { ProductRail } from '@/components/blocks/ProductRail';
-import { ScrollProgress } from '@/components/blocks/ScrollProgress';
-import { Reveal, RevealGroup } from '@/components/motion/Reveal';
+import { FactsStrip } from '@/components/home/FactsStrip';
+import { HeroSection } from '@/components/home/HeroSection';
+import { HomeCta } from '@/components/home/HomeCta';
+import { ProductTiles } from '@/components/home/ProductTiles';
+import { ServicesList } from '@/components/home/ServicesList';
+import { TechStack } from '@/components/home/TechStack';
+import { WorkSteps } from '@/components/home/WorkSteps';
+import { ScrollDial } from '@/components/home/ScrollDial';
 import { Magnetic } from '@/components/motion/Magnetic';
+import { Reveal } from '@/components/motion/Reveal';
+import { ScrollWords } from '@/components/motion/ScrollWords';
 
-const shipped = products.filter((p) => p.status === 'shipped').length;
-const inHouse = products.filter((p) => p.category === 'prod').length;
+const FOUNDED = 2025;
+const wrap = 'mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-10';
+const h2 =
+  'text-[clamp(2rem,4.6vw,3.75rem)] leading-[1.05] font-extrabold tracking-[-0.04em] text-balance';
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('meta.home');
@@ -26,121 +34,118 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function HomePage() {
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations('home');
+  const tStatus = await getTranslations('status');
 
   const facts = [
-    { value: products.length, label: t('facts.products') },
-    { value: inHouse, label: t('facts.inHouse') },
-    { value: shipped, label: t('facts.shipped') },
+    { to: inHouseProducts.length, label: t('facts.products') },
+    { to: products.filter((p) => p.status === 'shipped').length, label: t('facts.shipped') },
+    { to: FOUNDED, from: FOUNDED - 25, label: t('facts.founded') },
   ];
+
+  const groups = about.practice.stack;
+
+  const tiles = products.map((p) => ({
+    slug: p.slug,
+    name: p.name[locale],
+    kind: p.kind[locale],
+    icon: p.icon,
+    status: p.status,
+    statusLabel: tStatus(p.status),
+    client: p.category === 'outsource',
+  }));
 
   return (
     <>
-      <ScrollProgress />
-      <HomeHero />
+      <ScrollDial />
+      <HeroSection />
 
-      <section className="border-y border-[var(--rule)]">
-        <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-10">
-          <RevealGroup className="grid grid-cols-1 sm:grid-cols-3" stagger={0.09} y={24}>
-            {facts.map((f) => (
-              <div
-                key={f.label}
-                data-reveal-item
-                className="flex items-baseline gap-4 border-t border-[var(--rule)] py-7 first:border-t-0 sm:border-t-0 sm:border-l sm:px-8 sm:first:border-l-0 sm:first:pl-0"
-              >
-                <p className="tabnum text-[clamp(3rem,7vw,5.25rem)] leading-[0.85] font-extrabold tracking-[-0.05em] text-[var(--ink)]">
-                  {f.value}
-                </p>
-                <p className="max-w-[16ch] text-[14px] leading-[1.45] text-[var(--ink-soft)]">
-                  {f.label}
-                </p>
-              </div>
-            ))}
-          </RevealGroup>
-        </div>
-      </section>
+      <FactsStrip facts={facts} />
 
-      <section className="py-20 lg:py-28">
-        <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-10">
-          <Reveal className="grid grid-cols-12 items-end gap-x-0 gap-y-6 lg:gap-x-8">
-            <h2 className="display-xl col-span-12 max-w-[16ch] lg:col-span-7">
-              {t('catalogue.heading')}
-            </h2>
-            <div className="col-span-12 lg:col-span-4 lg:col-start-9">
-              <p className="max-w-[40ch] text-[16px] leading-[1.65] whitespace-pre-line text-[var(--ink-soft)]">
-                {t('catalogue.lede')}
-              </p>
-            </div>
-          </Reveal>
-        </div>
+      <TechStack title={t('stack.title')} groups={groups} locale={locale} />
 
-        <div className="mx-auto mt-12 w-full max-w-[1440px] px-5 sm:px-8 lg:mt-16 lg:px-10">
-          <ProductRail products={products} locale={locale} />
-        </div>
-
-        <Reveal>
-          <div className="mx-auto mt-10 w-full max-w-[1440px] px-5 sm:px-8 lg:px-10">
-            <Link href="/products" className="link text-[15px]">
-              {t('catalogue.cta')}
-            </Link>
-          </div>
-        </Reveal>
-      </section>
-
-      <section className="relative overflow-hidden">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.03) 32%, rgba(255,255,255,0.03) 68%, transparent 100%)',
-          }}
-        />
-        <div className="relative mx-auto w-full max-w-[1440px] px-5 py-24 sm:px-8 lg:px-10 lg:py-32">
-          <Reveal className="grid grid-cols-12 items-end gap-x-0 gap-y-6 lg:gap-x-8">
-            <h2 className="display-xl col-span-12 max-w-[18ch] lg:col-span-7">
-              {t('practice.heading')}
-            </h2>
-            <p className="col-span-12 max-w-[40ch] text-[16px] leading-[1.65] text-[var(--ink-soft)] lg:col-span-4 lg:col-start-9">
-              {t('practice.lede')}
-            </p>
-          </Reveal>
-
-          <RevealGroup
-            className="mt-16 grid grid-cols-1 gap-x-10 gap-y-12 md:grid-cols-2"
-            stagger={0.07}
-            y={24}
-          >
-            {about.focusAreas.map((f, i) => (
-              <div key={f.title.en} data-reveal-item>
-                <span aria-hidden className="block font-mono text-[12px] text-[var(--signal)]">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <h3 className="display-md mt-4">{f.title[locale]}</h3>
-                <p className="mt-3 max-w-[46ch] text-[15px] leading-[1.7] text-[var(--ink-soft)]">
-                  {f.description[locale]}
-                </p>
-              </div>
-            ))}
-          </RevealGroup>
-        </div>
-      </section>
-
-      <section className="mx-auto w-full max-w-[1440px] px-5 py-24 sm:px-8 lg:px-10 lg:pb-32">
-        <Reveal className="grid grid-cols-12 items-end gap-x-0 gap-y-8 lg:gap-x-8">
-          <h2 className="display-xl col-span-12 max-w-[16ch] lg:col-span-7">
-            {t('contact.heading')}
+      <section className={`${wrap} py-16 lg:py-24`}>
+        <Reveal className="grid grid-cols-12 items-end gap-x-0 gap-y-6 lg:gap-x-8">
+          <h2 className={`${h2} col-span-12 max-w-[14ch] lg:col-span-7`}>
+            {t('services.heading')}
           </h2>
-          <div className="col-span-12 lg:col-span-4 lg:col-start-9">
-            <p className="max-w-[40ch] text-[16px] leading-[1.65] text-[var(--ink-soft)]">
-              {t('contact.lede')}
-            </p>
-            <Magnetic className="mt-7">
-              <Link href="/contact" className="btn btn-primary">
-                {t('contact.cta')}
+          <p className="col-span-12 max-w-[42ch] text-[16px] leading-[1.65] text-[var(--ink-soft)] lg:col-span-4 lg:col-start-9">
+            {t('services.lede')}
+          </p>
+        </Reveal>
+        <div className="mt-12 lg:mt-16">
+          <ServicesList
+            items={t.raw('services.items') as { title: string; body: string; tags: string[] }[]}
+          />
+        </div>
+        <Reveal>
+          <div className="mt-10">
+            <Magnetic>
+              <Link href="/contact?type=build" className="btn btn-primary">
+                {t('services.cta')}
               </Link>
             </Magnetic>
           </div>
         </Reveal>
+      </section>
+
+      <section className={`${wrap} py-16 lg:py-24`}>
+        <Reveal className="grid grid-cols-12 items-end gap-x-0 gap-y-6 lg:gap-x-8">
+          <h2 className={`${h2} col-span-12 max-w-[14ch] lg:col-span-7`}>
+            {t('products.heading')}
+          </h2>
+          <div className="col-span-12 lg:col-span-4 lg:col-start-9">
+            <p className="max-w-[42ch] text-[16px] leading-[1.65] text-[var(--ink-soft)]">
+              {t('products.lede')}
+            </p>
+            <Link href="/products" className="link mt-5 inline-block text-[15px] font-medium">
+              {t('products.all')}
+            </Link>
+          </div>
+        </Reveal>
+        <div className="mt-12 lg:mt-16">
+          <ProductTiles
+            items={tiles}
+            openLabel={t('products.open')}
+            clientLabel={t('products.client')}
+          />
+        </div>
+      </section>
+
+      <section className={`${wrap} py-16 lg:py-24`}>
+        <Reveal>
+          <h2 className={`${h2} max-w-[16ch]`}>{t('steps.heading')}</h2>
+        </Reveal>
+        <div className="mt-14 lg:mt-20">
+          <WorkSteps items={t.raw('steps.items') as { title: string; body: string }[]} />
+        </div>
+      </section>
+
+      <section className={`${wrap} py-20 lg:py-32`}>
+        <ScrollWords
+          text={t('statement')}
+          dim={0.5}
+          className="max-w-[26ch] text-[clamp(1.9rem,4.6vw,3.9rem)] leading-[1.12] font-bold tracking-[-0.035em] text-balance text-[var(--ink)]"
+        />
+      </section>
+
+      <section className={`${wrap} pb-14 lg:pb-20`}>
+        <HomeCta
+          actions={[
+            {
+              title: t('cta.build.title'),
+              lede: t('cta.build.lede'),
+              cta: t('cta.build.cta'),
+              href: '/contact?type=build',
+              primary: true,
+            },
+            {
+              title: t('cta.invest.title'),
+              lede: t('cta.invest.lede'),
+              cta: t('cta.invest.cta'),
+              href: '/contact?type=invest',
+            },
+          ]}
+        />
       </section>
     </>
   );

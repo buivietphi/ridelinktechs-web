@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     template: '%s · RideLink Techs',
   },
   description:
-    'Công ty phần mềm độc lập tại Đà Nẵng — sản phẩm mobile và web, kèm dự án cho khách hàng.',
+    'Công ty phần mềm tại Đà Nẵng — sản phẩm của riêng mình và dự án phần mềm trọn gói, bàn giao đủ mã nguồn.',
   applicationName: 'RideLink Techs',
   authors: [{ name: 'RideLink Techs' }],
   creator: 'RideLink Techs',
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     siteName: 'RideLink Techs',
     title: 'RideLink Techs — Phần mềm tại Đà Nẵng',
     description:
-      'Công ty phần mềm độc lập tại Đà Nẵng — sản phẩm mobile và web, kèm dự án cho khách hàng.',
+      'Công ty phần mềm tại Đà Nẵng — sản phẩm của riêng mình và dự án phần mềm trọn gói, bàn giao đủ mã nguồn.',
   },
   robots: { index: true, follow: true },
 };

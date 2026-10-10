@@ -15,68 +15,115 @@
     "menuViewAll": "Xem tất cả sản phẩm"
   },
   "home": {
-    "eyebrow": "Đà Nẵng, Việt Nam — thành lập 2025",
-    "lede": "Bốn sản phẩm do chúng tôi tự xây, và VibeHolic — dự án web đã bàn giao cho khách hàng ngành marketing. Dưới đây là giao diện thật của từng sản phẩm.",
-    "ctaPrimary": "Xem sản phẩm",
-    "ctaSecondary": "Gửi brief",
-    "ledger": "Năm mục trong danh mục. Chấm đặc là đã bàn giao, vòng rỗng là đang phát triển, chấm nhỏ là sắp ra mắt.",
-    "catalogue": {
-      "title": "Danh mục",
-      "heading": "Những sản phẩm chúng tôi tự làm.",
-      "lede": "Khám phá từng sản phẩm, từ ý tưởng đến thực tế.\nMỗi sản phẩm có một câu chuyện riêng — từ ý tưởng ban đầu, những tính năng đã xây dựng đến hành trình phát triển và hoàn thiện sản phẩm.",
-      "cta": "Mở toàn bộ danh mục",
-      "client": "Dự án khách hàng"
-    },
-    "shotTip": {
-      "ui": "Ảnh chụp màn hình ứng dụng thật, chụp từ bản đang chạy.",
-      "brand": "Ứng dụng chưa build được nên chúng tôi để brand mark thay cho ảnh chụp.",
-      "photo": "Ảnh minh hoạ. Sản phẩm này chưa có giao diện để chụp."
-    },
-    "stack": {
-      "hint": "Cuộn xuống để đi lần lượt qua từng sản phẩm."
-    },
-    "practice": {
-      "title": "Cách chúng tôi làm việc",
-      "heading": "Bốn nguyên tắc không đánh đổi.",
-      "lede": "Chúng tôi đề cao chất lượng kỹ thuật, tính minh bạch và giá trị thực tiễn, lấy khả năng phát triển bền vững làm định hướng cho mọi sản phẩm và dự án.",
-      "cta": "Về chúng tôi"
-    },
-    "contact": {
-      "title": "Liên hệ",
-      "heading": "Kể chúng tôi nghe bạn đang làm.",
-      "lede": "Gửi cho chúng tôi vài dòng về dự án của bạn. Chúng tôi đọc và trả lời trong một ngày làm việc, thường kèm một vài câu hỏi và đề xuất cụ thể để bàn tiếp.",
-      "cta": "Gửi brief"
-    },
-    "shot": {
-      "ui": "Ảnh chụp giao diện thật",
-      "brand": "Brand mark — ứng dụng đang phát triển",
-      "photo": "Ảnh minh hoạ"
-    },
-    "bench": {
-      "open": "Mở chi tiết",
-      "demo": "Xem bản chạy thật"
-    },
-    "place": "Đà Nẵng, Việt Nam",
-    "brandName": "RideLink Techs",
-    "titleLines": ["Phần mềm làm", "ở Việt Nam."],
     "hero": {
-      "eyebrow": "Công ty phần mềm độc lập · Đà Nẵng",
-      "titleLines": ["Tự xây.", "Tự chạy.", "Bàn giao thật."],
-      "lede": "Chúng tôi tập trung phát triển các sản phẩm công nghệ của riêng mình, đồng thời tìm kiếm nhà đầu tư và đối tác để cùng phát triển, mở rộng sản phẩm.\n\nBên cạnh đó, chúng tôi cũng nhận các dự án phát triển phần mềm theo yêu cầu, hợp tác cùng khách hàng để xây dựng và triển khai những giải pháp phù hợp với nhu cầu thực tế.",
-      "ctaPrimary": "Xem sản phẩm",
-      "ctaSecondary": "Gửi brief",
-      "cue": "Kéo xuống"
+      "eyebrow": "Công ty phần mềm · Đà Nẵng",
+      "titleLines": ["Chúng tôi xây.", "Chúng tôi chạy.", "Bạn làm chủ."],
+      "lede": "Chúng tôi tự phát triển sản phẩm công nghệ của riêng mình, và nhận làm dự án trọn gói: hiểu bài toán, thiết kế, lập trình, vận hành, rồi bàn giao đủ mã nguồn và tài liệu.",
+      "ctaPrimary": "Gửi brief",
+      "ctaSecondary": "Xem sản phẩm",
+      "trust": [
+        "Ký NDA trước buổi trao đổi đầu tiên",
+        "Bàn giao đủ mã nguồn và tài liệu",
+        "Phản hồi trong một ngày làm việc"
+      ],
+      "chips": {
+        "mobile": "Ứng dụng mobile",
+        "web": "Nền tảng web",
+        "backend": "Backend và API",
+        "run": "Vận hành"
+      },
+      "cue": "Cuộn xuống"
     },
     "facts": {
-      "products": "sản phẩm trong danh mục",
-      "inHouse": "sản phẩm chúng tôi tự xây",
-      "shipped": "dự án đã bàn giao cho khách hàng"
+      "products": "sản phẩm tự phát triển",
+      "shipped": "dự án khách hàng đã bàn giao",
+      "founded": "năm thành lập tại Đà Nẵng"
+    },
+    "stack": {
+      "title": "Công nghệ chúng tôi dùng"
+    },
+    "services": {
+      "heading": "Những gì chúng tôi xây được.",
+      "lede": "Từ câu hỏi đầu tiên đến hệ thống chạy ổn định, chúng tôi lo trọn quá trình: nghiên cứu, thiết kế, lập trình, vận hành và bàn giao.",
+      "items": [
+        {
+          "title": "Thiết kế sản phẩm",
+          "body": "Luồng người dùng, giao diện và hệ thống thiết kế trong Figma, trước khi viết dòng code đầu tiên.",
+          "tags": ["Figma", "Linear", "Notion"]
+        },
+        {
+          "title": "Ứng dụng di động",
+          "body": "Ứng dụng native cho iOS và Android, hoặc chạy một codebase trên cả hai bằng Flutter và React Native.",
+          "tags": ["Swift", "Kotlin", "Java", "Flutter", "React Native"]
+        },
+        {
+          "title": "Nền tảng web",
+          "body": "Website và web app với Next.js và TypeScript: nhanh, dễ tìm thấy và dễ mở rộng.",
+          "tags": ["Next.js", "React", "TypeScript", "Tailwind CSS"]
+        },
+        {
+          "title": "Backend và dữ liệu",
+          "body": "API, cơ sở dữ liệu, đăng nhập và thanh toán với NestJS, Supabase, Firebase và Postgres.",
+          "tags": ["NestJS", "Supabase", "Firebase", "Postgres"]
+        },
+        {
+          "title": "Hạ tầng và vận hành",
+          "body": "Triển khai, giám sát, xử lý sự cố và bảo trì sau bàn giao, khi bạn cần chúng tôi ở lại.",
+          "tags": ["Docker", "GitHub Actions", "Vercel"]
+        }
+      ],
+      "cta": "Gửi brief cho dự án của bạn"
+    },
+    "products": {
+      "heading": "Sản phẩm của chúng tôi.",
+      "lede": "Mỗi sản phẩm bắt đầu từ một vấn đề có thật ở bất kỳ thị trường nào chúng tôi phục vụ.",
+      "all": "Xem tất cả sản phẩm",
+      "open": "Xem chi tiết",
+      "client": "Dự án khách hàng"
+    },
+    "steps": {
+      "heading": "Một dự án diễn ra như thế nào.",
+      "items": [
+        {
+          "title": "Trao đổi",
+          "body": "Bạn kể bài toán, chúng tôi lắng nghe. Sẵn sàng ký NDA trước buổi đầu tiên."
+        },
+        {
+          "title": "Phân tích dự án",
+          "body": "Chúng tôi đọc kỹ bài toán, đánh giá độ khả thi, rủi ro và những gì cần có để làm được."
+        },
+        {
+          "title": "Thống nhất phạm vi",
+          "body": "Phạm vi, chi phí, tiến độ và quyền sở hữu được ghi rõ ngay từ đầu."
+        },
+        {
+          "title": "Xây dựng",
+          "body": "Chúng tôi thiết kế và lập trình, làm việc trên kênh chat nào bạn thuận tiện, cùng Linear và họp video khi cần."
+        },
+        {
+          "title": "Bàn giao",
+          "body": "Bạn nhận đủ mã nguồn, tài liệu kỹ thuật và hướng dẫn vận hành."
+        }
+      ]
+    },
+    "statement": "Chúng tôi xây phần mềm đáng tin cậy, và ở lại cùng từng sản phẩm đủ lâu để nó trưởng thành.",
+    "cta": {
+      "build": {
+        "title": "Bạn muốn xây một sản phẩm?",
+        "lede": "Kể cho chúng tôi nghe bài toán của bạn. Chúng tôi trả lời trong một ngày làm việc.",
+        "cta": "Gửi brief"
+      },
+      "invest": {
+        "title": "Bạn muốn đầu tư hoặc đồng hành?",
+        "lede": "Chúng tôi đang tìm nhà đầu tư và đối tác để cùng phát triển các sản phẩm của mình.",
+        "cta": "Liên hệ đầu tư"
+      }
     }
   },
   "meta": {
     "home": {
       "title": "RideLink Techs: Phần mềm tại Đà Nẵng",
-      "description": "Công ty phần mềm độc lập tại Đà Nẵng. Chúng tôi tự phát triển sản phẩm riêng và nhận xây phần mềm theo yêu cầu, bàn giao đầy đủ mã nguồn và tài liệu."
+      "description": "Công ty phần mềm tại Đà Nẵng. Chúng tôi tự phát triển sản phẩm riêng và nhận làm dự án phần mềm trọn gói, bàn giao đầy đủ mã nguồn và tài liệu."
     },
     "products": {
       "description": "Các sản phẩm do RideLink Techs tự phát triển và những dự án đã xây dựng, bàn giao cho khách hàng."
@@ -215,7 +262,7 @@
         },
         {
           "q": "Bạn có làm việc với khách ngoài Đà Nẵng không?",
-          "a": "Có. Phần lớn khách outsource của chúng tôi ở Hà Nội, TP.HCM và Singapore. Chúng tôi làm việc qua Slack và Linear, và họp bằng video khi cần."
+          "a": "Có. Phần lớn khách outsource của chúng tôi ở Hà Nội, TP.HCM và Singapore. Chúng tôi làm việc trên kênh chat nào bạn thuận tiện, cùng Linear, và họp bằng video khi cần."
         },
         {
           "q": "Sau khi bàn giao, tôi có tự phát triển tiếp được không?",

@@ -4,24 +4,17 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, CaretDown, Car, Cube, Megaphone, PawPrint, Sparkle } from 'phosphor-react';
-import type { Icon } from 'phosphor-react';
+import { ArrowRight, CaretDown } from 'phosphor-react';
 import { LanguageSwitcher } from '@/i18n/LanguageSwitcher';
 import { CelestialToggle } from '@/components/theme/CelestialToggle';
 import { LogoMark } from '@/components/ui/LogoMark';
+import { ProductGlyph } from '@/components/ui/ProductGlyph';
 import { MobileNav } from './MobileNav';
 import { cn } from '@/lib/cn';
 import { company } from '@/content/company';
 import { products } from '@/content/products';
-import type { ProductIcon } from '@/content/products';
+import { statusMark } from '@/lib/status-mark';
 import type { Locale } from '@/i18n/config';
-
-const productIcons: Record<ProductIcon, Icon> = {
-  car: Car,
-  sparkle: Sparkle,
-  paw: PawPrint,
-  megaphone: Megaphone,
-};
 
 const navKeys = ['home', 'products', 'about', 'contact'] as const;
 type NavKey = (typeof navKeys)[number];
@@ -83,24 +76,6 @@ export function Header() {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     closeTimer.current = setTimeout(() => setMenuOpen(false), 260);
   };
-
-  const markFor = (status: string) => ({
-    'data-state': status === 'upcoming' ? ('upcoming' as const) : undefined,
-    style: {
-      backgroundColor:
-        status === 'shipped'
-          ? 'var(--signal)'
-          : status === 'upcoming'
-            ? 'var(--quiet)'
-            : 'transparent',
-      border:
-        status === 'in-development'
-          ? '1.5px solid var(--signal)'
-          : status === 'shipped' || status === 'upcoming'
-            ? 'none'
-            : '1.5px solid var(--quiet)',
-    },
-  });
 
   return (
     <header
@@ -225,7 +200,6 @@ export function Header() {
                           <ul className="mt-3 grid grid-cols-1 gap-x-6 sm:grid-cols-2 lg:grid-cols-3">
                             {products.map((p) => {
                               const current = pathname === `/products/${p.slug}`;
-                              const ProductGlyph = (p.icon && productIcons[p.icon]) || Cube;
                               return (
                                 <li key={p.slug} className="border-b border-[var(--rule)] py-1">
                                   <Link
@@ -241,7 +215,7 @@ export function Header() {
                                         current ? 'text-[var(--signal)]' : 'text-[var(--ink)]',
                                       )}
                                     >
-                                      <ProductGlyph size={22} weight="duotone" />
+                                      <ProductGlyph icon={p.icon} size={22} weight="duotone" />
                                     </span>
                                     <span className="min-w-0">
                                       <span
@@ -267,7 +241,7 @@ export function Header() {
                                       <span
                                         aria-hidden
                                         className="status-dot"
-                                        {...markFor(p.status)}
+                                        {...statusMark(p.status)}
                                       />
                                       {p.category === 'outsource' ? 'NDA' : tStatus(p.status)}
                                     </span>

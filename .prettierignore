@@ -5,4 +5,6 @@ pnpm-lock.yaml
 package-lock.json
 _claude
 _screenshots
+.codebase-memory
+.hallmark
 .DS_Store

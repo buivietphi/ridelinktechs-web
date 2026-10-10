@@ -10,6 +10,7 @@
 
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { techLogoSlug } from '../src/lib/tech-logos';
 import { products } from '../src/content/products.ts';
 import { company } from '../src/content/company.ts';
 import { about } from '../src/content/about.ts';
@@ -182,6 +183,14 @@ if (about.focusAreas.length < 3 || about.focusAreas.length > 6)
   fail('about.focusAreas must be 3-6 entries');
 if (about.teamMembers.length > 12) fail('about.teamMembers > 12 entries');
 pass('AboutContent valid');
+
+for (const group of about.practice.stack) {
+  for (const item of group.items) {
+    const file = join(process.cwd(), 'public', 'tech', `${techLogoSlug(item)}.svg`);
+    if (!existsSync(file)) fail(`about.practice.stack "${item}": missing logo public/tech/...`);
+  }
+}
+pass('Tech logos present');
 
 if (errors > 0) {
   console.error(`\n${errors} content validation error(s).`);

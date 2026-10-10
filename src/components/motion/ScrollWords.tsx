@@ -11,9 +11,10 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 type ScrollWordsProps = {
   text: string;
   className?: string;
+  dim?: number;
 };
 
-export function ScrollWords({ text, className }: ScrollWordsProps) {
+export function ScrollWords({ text, className, dim = 0.14 }: ScrollWordsProps) {
   const ref = useRef<HTMLParagraphElement | null>(null);
   const words = text.split(' ');
 
@@ -24,7 +25,7 @@ export function ScrollWords({ text, className }: ScrollWordsProps) {
       if (!el) return;
       gsap.fromTo(
         el.querySelectorAll('[data-word]'),
-        { opacity: 0.14 },
+        { opacity: dim },
         {
           opacity: 1,
           ease: 'none',
@@ -33,7 +34,7 @@ export function ScrollWords({ text, className }: ScrollWordsProps) {
         },
       );
     },
-    { scope: ref, dependencies: [text] },
+    { scope: ref, dependencies: [text, dim] },
   );
 
   return (

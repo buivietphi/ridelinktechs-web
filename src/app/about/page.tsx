@@ -14,6 +14,7 @@ import { PhoneFrame } from '@/components/ui/Frames';
 import { JumpLink } from '@/components/ui/JumpLink';
 import { LogoMark } from '@/components/ui/LogoMark';
 import { CardSwap } from '@/components/motion/CardSwap';
+import { TechStack } from '@/components/home/TechStack';
 import { Magnetic } from '@/components/motion/Magnetic';
 import { PageIntro } from '@/components/motion/PageIntro';
 import { Parallax } from '@/components/motion/Parallax';
@@ -96,24 +97,11 @@ export default async function AboutPage() {
     extra:
       i === 0 ? (
         <div className="mt-10">
-          <p className="display-sm">{practice.stackHeading[locale]}</p>
-          <dl className="mt-4 flex flex-col gap-3">
-            {practice.stack.map((group) => (
-              <div key={group.label.en} className="flex items-start gap-x-3">
-                <dt className="data-label w-20 shrink-0 pt-[7px] sm:w-24">{group.label[locale]}</dt>
-                <dd className="flex min-w-0 flex-wrap gap-2">
-                  {group.items.map((item) => (
-                    <span
-                      key={item}
-                      className="rounded-[var(--radius-pill)] border border-[var(--rule)] px-3 py-1 text-[12.5px] text-[var(--ink-soft)]"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </dd>
-              </div>
-            ))}
-          </dl>
+          <TechStack
+            title={practice.stackHeading[locale]}
+            groups={practice.stack}
+            locale={locale}
+          />
         </div>
       ) : undefined,
   }));

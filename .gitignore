@@ -50,3 +50,6 @@ next-env.d.ts
 /.impeccable/build/
 /.impeccable/review/
 /.impeccable/mocks/
+
+# codebase-memory graph index (generated)
+.codebase-memory/

@@ -90,8 +90,8 @@ export const about: AboutContent = {
   meta: {
     title: { vi: 'Về chúng tôi', en: 'About' },
     description: {
-      vi: 'RideLink Techs là công ty phần mềm độc lập ở Đà Nẵng. Chúng tôi tự phát triển sản phẩm riêng, nhận xây phần mềm theo yêu cầu và bàn giao đầy đủ mã nguồn cùng tài liệu kỹ thuật.',
-      en: 'RideLink Techs is an independent software company in Da Nang. We build our own products, take on custom software projects, and hand over the full source code and technical documentation.',
+      vi: 'RideLink Techs là studio phần mềm ở Đà Nẵng. Chúng tôi tự phát triển sản phẩm riêng, nhận làm dự án phần mềm trọn gói và bàn giao đầy đủ mã nguồn cùng tài liệu kỹ thuật.',
+      en: 'RideLink Techs is a software company in Da Nang. We build our own products, take on end to end software projects, and hand over the full source code and technical documentation.',
     },
   },
   hero: {
@@ -101,8 +101,8 @@ export const about: AboutContent = {
       { vi: 'Của mình, và của bạn.', en: 'Ours, and yours.' },
     ],
     lede: {
-      vi: 'Công ty phần mềm độc lập ở Đà Nẵng. Chúng tôi tự phát triển sản phẩm riêng và nhận xây phần mềm theo yêu cầu.',
-      en: 'An independent software company in Da Nang. We develop our own products and build custom software for clients.',
+      vi: 'Công ty phần mềm ở Đà Nẵng. Chúng tôi tự phát triển sản phẩm riêng và nhận làm dự án phần mềm trọn gói.',
+      en: 'A software company in Da Nang. We build products of our own and take on end to end software projects.',
     },
     shotAlt: { vi: 'giao diện thật của ứng dụng', en: 'real app interface' },
   },
@@ -119,8 +119,8 @@ export const about: AboutContent = {
       },
     ],
     mission: {
-      vi: 'Sứ mệnh của chúng tôi là xây phần mềm đáng tin cậy cho người dùng Việt Nam, và làm việc ở một nơi mà kỹ sư có thể đi cùng sản phẩm của mình nhiều năm, thay vì nhiều sprint.',
-      en: 'Our mission is to build software Vietnamese users can rely on, and to work somewhere an engineer can stay with their product for years instead of sprints.',
+      vi: 'Sứ mệnh của chúng tôi là xây phần mềm đáng tin cậy, và làm việc ở một nơi mà kỹ sư có thể đi cùng sản phẩm của mình nhiều năm, thay vì nhiều sprint.',
+      en: 'Our mission is to build software people can rely on, and to work somewhere an engineer can stay with their product for years instead of sprints.',
     },
     place: { vi: 'Đà Nẵng, Việt Nam', en: 'Da Nang, Vietnam' },
   },
@@ -136,8 +136,8 @@ export const about: AboutContent = {
     own: {
       title: { vi: 'Sản phẩm của chúng tôi', en: 'Our products' },
       lede: {
-        vi: 'Chúng tôi tự chọn bài toán, tự thiết kế và tự xây. Mỗi sản phẩm bắt đầu từ một vấn đề có thật của người dùng Việt Nam.',
-        en: 'We choose the problems, design the answers and build them ourselves. Each product starts from a real problem faced by Vietnamese users.',
+        vi: 'Chúng tôi tự chọn bài toán, tự thiết kế và tự xây. Mỗi sản phẩm bắt đầu từ một vấn đề có thật, ở bất kỳ thị trường nào chúng tôi phục vụ.',
+        en: 'We choose the problems, design the answers and build them ourselves. Each product starts from a real problem, in any market we serve.',
       },
       invest: {
         vi: 'Chúng tôi đang tìm nhà đầu tư và đối tác để cùng phát triển, mở rộng các sản phẩm này.',
@@ -147,8 +147,8 @@ export const about: AboutContent = {
     client: {
       title: { vi: 'Dự án cho khách hàng', en: 'Projects for clients' },
       lede: {
-        vi: 'Chúng tôi nhận xây phần mềm theo yêu cầu trên mobile (iOS, Android), web, desktop và backend.',
-        en: 'We build custom software for mobile (iOS, Android), web, desktop and backend.',
+        vi: 'Chúng tôi nhận làm dự án phần mềm trọn gói: nghiên cứu bài toán, thiết kế trải nghiệm, lập trình trên mobile, web, desktop và backend, rồi vận hành và bàn giao.',
+        en: 'We take on end to end software projects: understanding the problem, designing the experience, building on mobile, web, desktop and backend, then running it and handing it over.',
       },
       caption: {
         vi: 'VibeHolic: website cho một agency media tại Đà Nẵng, đã bàn giao.',
@@ -215,22 +215,27 @@ export const about: AboutContent = {
     stack: [
       {
         label: { vi: 'Web', en: 'Web' },
-        items: ['TypeScript', 'React', 'Next.js', 'Tailwind CSS', 'shadcn/ui', 'GSAP'],
+        items: ['TypeScript', 'React', 'Next.js', 'Tailwind CSS'],
       },
       {
         label: { vi: 'Mobile', en: 'Mobile' },
-        items: ['React Native', 'Flutter', 'Dart', 'Swift', 'Kotlin'],
+        items: ['React Native', 'Flutter', 'Dart'],
+      },
+      {
+        label: { vi: 'Native', en: 'Native' },
+        items: ['Android', 'Kotlin', 'Kotlin Multiplatform', 'Java', 'Swift', 'SwiftUI'],
       },
       {
         label: { vi: 'Backend', en: 'Backend' },
         items: [
           'Node.js',
-          'Next.js',
           'NestJS',
+          'Spring Boot',
           'Supabase',
           'Firebase',
           'Postgres',
-          'Edge functions',
+          'MongoDB',
+          'Redis',
         ],
       },
       {
@@ -368,11 +373,11 @@ export const about: AboutContent = {
     {
       title: {
         vi: 'Giải pháp công nghệ toàn diện, đa nền tảng',
-        en: 'Complete technology solutions, multi platform',
+        en: 'End to end solutions across every platform',
       },
       description: {
         vi: 'Chúng tôi cung cấp dịch vụ phát triển phần mềm trên nhiều nền tảng, bao gồm Mobile (iOS, Android), Web, Desktop và Backend. Mỗi giải pháp được thiết kế dựa trên đặc thù nghiệp vụ, với kiến trúc phù hợp, hiệu năng tối ưu, khả năng mở rộng và tính ổn định, đáp ứng nhu cầu vận hành thực tế.',
-        en: 'We provide software development across multiple platforms: Mobile (iOS, Android), Web, Desktop and Backend. Each solution is designed around the specifics of the work, with suitable architecture, optimised performance, scalability and stability, meeting real operational demands.',
+        en: 'We develop software across Mobile (iOS, Android), Web, Desktop and Backend. Each solution is designed around the specifics of the work, with the right architecture, optimised performance, scalability and stability, meeting real operational demands.',
       },
     },
     {

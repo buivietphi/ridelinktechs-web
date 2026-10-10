@@ -35,7 +35,7 @@ type LenisLike = {
   destroy: () => void;
   on: (e: string, f: () => void) => void;
   off: (e: string, f: () => void) => void;
-  scrollTo: (target: HTMLElement, options?: { offset?: number }) => void;
+  scrollTo: (target: HTMLElement | number, options?: { offset?: number }) => void;
 };
 
 let activeLenis: LenisLike | null = null;
@@ -49,6 +49,14 @@ export function scrollToElement(el: HTMLElement, offset = 0): void {
     top: el.getBoundingClientRect().top + window.scrollY + offset,
     behavior: prefersReducedMotion() ? 'auto' : 'smooth',
   });
+}
+
+export function scrollToTop(): void {
+  if (activeLenis) {
+    activeLenis.scrollTo(0, { offset: 0 });
+    return;
+  }
+  window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
 }
 
 export const EASE = {

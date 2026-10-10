@@ -25,8 +25,8 @@ export const company: CompanyProfile = {
   masthead: 'RideLink  Techs',
   studioDateline: 'Đà Nẵng, Việt Nam',
   tagline: {
-    vi: 'Công ty phần mềm độc lập, làm tại Đà Nẵng.',
-    en: 'An independent software company, based in Da Nang.',
+    vi: 'Công ty phần mềm, làm tại Đà Nẵng.',
+    en: 'A software company, based in Da Nang.',
   },
   email: 'contact@ridelinktechs.com',
   phoneDisplay: '0967329308',

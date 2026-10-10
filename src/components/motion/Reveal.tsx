@@ -34,9 +34,9 @@ export function Reveal({
       if (!el) return;
       gsap.fromTo(
         el,
-        { autoAlpha: 0, y, scale },
+        { opacity: 0, y, scale },
         {
-          autoAlpha: 1,
+          opacity: 1,
           y: 0,
           scale: 1,
           duration: 0.9,
@@ -82,9 +82,9 @@ export function RevealGroup({
       if (items.length === 0) return;
       gsap.fromTo(
         items,
-        { autoAlpha: 0, y },
+        { opacity: 0, y },
         {
-          autoAlpha: 1,
+          opacity: 1,
           y: 0,
           duration: 0.9,
           stagger,

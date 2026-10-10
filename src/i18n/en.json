@@ -15,68 +15,115 @@
     "menuViewAll": "See all products"
   },
   "home": {
-    "eyebrow": "Da Nang, Vietnam — founded 2025",
-    "lede": "Four products we build ourselves, and VibeHolic — the web engagement we delivered for a client in marketing. Below is the real interface of each one.",
-    "ctaPrimary": "See the work",
-    "ctaSecondary": "Send a brief",
-    "ledger": "Five items in the catalogue. A filled dot is delivered, a hollow ring is in development, a small dot is upcoming.",
-    "catalogue": {
-      "title": "Catalogue",
-      "heading": "The products we build ourselves.",
-      "lede": "Explore each product, from first idea to finished build.\nEach one has its own story — from the original idea, through the features built, to the journey of getting there.",
-      "cta": "Open the full catalogue",
-      "client": "Client project"
-    },
-    "shotTip": {
-      "ui": "A real screenshot, captured from the running build.",
-      "brand": "This app does not build yet, so the brand mark stands in for a screenshot.",
-      "photo": "An illustrative photo. This product has no interface to capture yet."
-    },
-    "stack": {
-      "hint": "Scroll to walk through them one by one."
-    },
-    "practice": {
-      "title": "How we work",
-      "heading": "Four principles we do not trade away.",
-      "lede": "We value technical quality, transparency and practical value, and take sustainable long-term development as the direction for every product and project.",
-      "cta": "About the company"
-    },
-    "contact": {
-      "title": "Contact",
-      "heading": "Tell us what you are building.",
-      "lede": "Send us a few lines about your project. We read it and reply within one working day, usually with a few questions and a concrete proposal to talk through.",
-      "cta": "Send a brief"
-    },
-    "shot": {
-      "ui": "Real interface capture",
-      "brand": "Brand mark — app in development",
-      "photo": "Illustrative photograph"
-    },
-    "bench": {
-      "open": "Open the detail",
-      "demo": "See it running"
-    },
-    "place": "Da Nang, Vietnam",
-    "brandName": "RideLink Techs",
-    "titleLines": ["Software built", "in Vietnam."],
     "hero": {
-      "eyebrow": "Independent software company · Da Nang",
-      "titleLines": ["We build it.", "We run it.", "We hand it over."],
-      "lede": "We focus on developing our own technology products, and are looking for investors and partners to develop and expand them with us.\n\nAlongside that, we take on software projects built to order, working with the client to design and ship solutions that fit what they actually need.",
-      "ctaPrimary": "See the work",
-      "ctaSecondary": "Start a brief",
+      "eyebrow": "Software company · Da Nang",
+      "titleLines": ["We build it.", "We run it.", "You own it."],
+      "lede": "We build technology products of our own, and take on end to end projects: understanding the problem, designing, building, running it, then handing over the full source code and documentation.",
+      "ctaPrimary": "Send a brief",
+      "ctaSecondary": "See the products",
+      "trust": [
+        "NDA signed before the first conversation",
+        "Full source code and documentation",
+        "Reply within one working day"
+      ],
+      "chips": {
+        "mobile": "Mobile apps",
+        "web": "Web platforms",
+        "backend": "Backend and APIs",
+        "run": "Operations"
+      },
       "cue": "Scroll down"
     },
     "facts": {
-      "products": "products in the catalogue",
-      "inHouse": "built in-house",
-      "shipped": "client project delivered"
+      "products": "products built in-house",
+      "shipped": "client project delivered",
+      "founded": "founded in Da Nang"
+    },
+    "stack": {
+      "title": "What we build with"
+    },
+    "services": {
+      "heading": "What we can build.",
+      "lede": "From the first question to a system running reliably, we cover the whole path: research, design, build, run and handover.",
+      "items": [
+        {
+          "title": "Product design",
+          "body": "User flows, interfaces and a design system in Figma, before the first line of code.",
+          "tags": ["Figma", "Linear", "Notion"]
+        },
+        {
+          "title": "Mobile apps",
+          "body": "Native apps for iOS and Android, or one codebase across both with Flutter and React Native.",
+          "tags": ["Swift", "Kotlin", "Java", "Flutter", "React Native"]
+        },
+        {
+          "title": "Web platforms",
+          "body": "Websites and web apps with Next.js and TypeScript: fast, easy to find and easy to extend.",
+          "tags": ["Next.js", "React", "TypeScript", "Tailwind CSS"]
+        },
+        {
+          "title": "Backend and data",
+          "body": "APIs, databases, sign-in and payments with NestJS, Supabase, Firebase and Postgres.",
+          "tags": ["NestJS", "Supabase", "Firebase", "Postgres"]
+        },
+        {
+          "title": "Infrastructure and operations",
+          "body": "Deployment, monitoring, incident handling and maintenance after handover, when you want us to stay.",
+          "tags": ["Docker", "GitHub Actions", "Vercel"]
+        }
+      ],
+      "cta": "Send a brief for your project"
+    },
+    "products": {
+      "heading": "Our products.",
+      "lede": "Each product starts from a real problem, in any market we serve.",
+      "all": "See all products",
+      "open": "View details",
+      "client": "Client project"
+    },
+    "steps": {
+      "heading": "How a project runs.",
+      "items": [
+        {
+          "title": "Talk",
+          "body": "You describe the problem and we listen. We are happy to sign an NDA before the first call."
+        },
+        {
+          "title": "Project analysis",
+          "body": "We read the problem properly, then assess what is feasible, what the risks are, and what has to be in place to build it."
+        },
+        {
+          "title": "Agree the scope",
+          "body": "Scope, cost, timeline and ownership are written down from the start."
+        },
+        {
+          "title": "Build",
+          "body": "We design and code, working on whichever chat channel suits you, with Linear and video calls when it helps."
+        },
+        {
+          "title": "Hand over",
+          "body": "You receive the full source code, technical documentation and an operations guide."
+        }
+      ]
+    },
+    "statement": "We build software people can rely on, and stay with each product long enough for it to grow up.",
+    "cta": {
+      "build": {
+        "title": "Want a product built?",
+        "lede": "Tell us what you are working on. We reply within one working day.",
+        "cta": "Send a brief"
+      },
+      "invest": {
+        "title": "Want to invest or partner?",
+        "lede": "We are looking for investors and partners to develop our products with us.",
+        "cta": "Talk about investing"
+      }
     }
   },
   "meta": {
     "home": {
       "title": "RideLink Techs: Software from Da Nang",
-      "description": "An independent software company in Da Nang. We build our own products and take on custom software projects, handing over the full source code and documentation."
+      "description": "A software company in Da Nang. We build our own products and take on end to end software projects, handing over the full source code and documentation."
     },
     "products": {
       "description": "The products RideLink Techs develops itself, and the projects it has built and delivered for clients."
@@ -215,7 +262,7 @@
         },
         {
           "q": "Do you work with clients outside Da Nang?",
-          "a": "Yes. Most of our outsource clients are in Hanoi, HCMC and Singapore. We work over Slack and Linear, and by video when it helps."
+          "a": "Yes. Most of our outsource clients are in Hanoi, HCMC and Singapore. We work on whichever chat channel suits you, with Linear, and by video when it helps."
         },
         {
           "q": "Can I keep developing after handover?",

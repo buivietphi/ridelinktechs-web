@@ -87,6 +87,15 @@
 }
 
 @layer components {
+  .tech-mark {
+    display: block;
+    width: 1.75rem;
+    aspect-ratio: 1;
+    background-color: currentColor;
+    -webkit-mask: var(--mark) center / contain no-repeat;
+    mask: var(--mark) center / contain no-repeat;
+  }
+
   .display-hero {
     font-family: var(--font-display);
     font-weight: 800;
@@ -242,6 +251,24 @@
 
   .link:hover::after {
     transform: scaleX(1);
+  }
+
+  .text-brand,
+  .text-brand .hero-word {
+    background-image: linear-gradient(
+      100deg,
+      var(--signal) 0%,
+      var(--signal-violet) 58%,
+      var(--signal-cyan) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-brand .hero-word {
+    padding-block: 0.12em;
+    margin-block: -0.12em;
   }
 
   .hit::before {
@@ -431,6 +458,20 @@
 
   .magnetic {
     will-change: transform;
+  }
+}
+
+@keyframes eyebrow-ping {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.7;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
   }
 }
 
