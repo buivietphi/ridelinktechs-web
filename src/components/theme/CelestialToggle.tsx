@@ -44,7 +44,7 @@ export function CelestialToggle({ className }: { className?: string }) {
         duration: 18,
         ease: 'none',
         repeat: -1,
-        transformOrigin: '12px 12px',
+        svgOrigin: '12 12',
       });
       return () => {
         tween.kill();
@@ -63,7 +63,7 @@ export function CelestialToggle({ className }: { className?: string }) {
           yoyo: true,
           repeat: -1,
           ease: 'sine.inOut',
-          transformOrigin: '12px 12px',
+          svgOrigin: '12 12',
         });
       }
       if (star1Ref.current) {
@@ -74,7 +74,7 @@ export function CelestialToggle({ className }: { className?: string }) {
           yoyo: true,
           repeat: -1,
           ease: 'sine.inOut',
-          transformOrigin: '16px 5px',
+          svgOrigin: '16 5',
         });
       }
       if (star2Ref.current) {
@@ -85,7 +85,7 @@ export function CelestialToggle({ className }: { className?: string }) {
           yoyo: true,
           repeat: -1,
           ease: 'sine.inOut',
-          transformOrigin: '7px 8px',
+          svgOrigin: '7 8',
           delay: 0.4,
         });
       }
@@ -137,7 +137,7 @@ export function CelestialToggle({ className }: { className?: string }) {
         aria-hidden
         className="col-start-1 row-start-1 text-[var(--signal)] will-change-transform"
       >
-        <g ref={raysRef} style={{ transformOrigin: '12px 12px' }}>
+        <g ref={raysRef}>
           <circle cx="12" cy="12" r="4" />
           <path d="M12 2v2" />
           <path d="M12 20v2" />
@@ -162,7 +162,7 @@ export function CelestialToggle({ className }: { className?: string }) {
         aria-hidden
         className="col-start-1 row-start-1 text-[var(--signal-cyan)] will-change-transform"
       >
-        <g ref={moonBodyRef} style={{ transformOrigin: '12px 12px' }}>
+        <g ref={moonBodyRef}>
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
         </g>
         <path ref={star1Ref} d="M16 3v4M14 5h4" strokeWidth="1.5" className="opacity-80" />

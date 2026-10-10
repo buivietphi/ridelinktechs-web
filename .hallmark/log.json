@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-10-10",
+    "macrostructure": "Admin console: Kanban board + roster cards",
+    "theme": "site tokens",
+    "theme_axes": "dark and light / Be Vietnam Pro / brand blue, violet, cyan",
+    "vibe": "calm internal tool with real GSAP motion",
+    "enrichment": "none",
+    "nav": "N5 Floating pill, bottom pill on phones",
+    "footer": "none",
+    "brief": "ridelinks-techs-web /admin redesign · drag-and-drop contact board, account and device cards, split login, session kick-out"
+  },
+  {
     "date": "2026-09-28",
     "macrostructure": "Workbench",
     "theme": "custom",

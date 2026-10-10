@@ -334,9 +334,10 @@
   }
 
   .field:focus-visible {
-    border-color: var(--signal);
+    outline: 2px solid var(--signal);
+    outline-offset: -1px;
+    border-color: transparent;
     background-color: var(--ground);
-    box-shadow: 0 0 0 4px var(--signal-soft);
   }
 
   .field:disabled {
@@ -459,6 +460,297 @@
   .magnetic {
     will-change: transform;
   }
+
+  .btn-danger {
+    background-color: var(--warn);
+    border-color: var(--warn);
+    color: var(--ink-on-signal);
+  }
+
+  .btn-danger:hover:not(:disabled) {
+    background-color: var(--warn);
+    border-color: var(--warn);
+    color: var(--ink-on-signal);
+  }
+
+  .icon-btn {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    border-radius: var(--radius-pill);
+    color: var(--ink-soft);
+    transition:
+      background-color var(--dur-tap) var(--ease-out-quint),
+      color var(--dur-tap) var(--ease-out-quint);
+  }
+
+  .icon-btn:hover,
+  .icon-btn[aria-expanded='true'] {
+    background-color: var(--ground-lift);
+    color: var(--ink);
+  }
+
+  .icon-btn:active,
+  .menu-item:active,
+  .choice-pill:active {
+    transform: translateY(1px);
+  }
+
+  .admin-shell {
+    --ink-faint: var(--admin-ink-faint);
+  }
+
+  .glass-bar {
+    background-color: color-mix(in oklab, var(--admin-card) 80%, transparent);
+    background-image: var(--surface-tint);
+    border: 1px solid var(--rule);
+    box-shadow: var(--shadow-2);
+    -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    backdrop-filter: blur(18px) saturate(1.4);
+  }
+
+  .menu-item {
+    display: flex;
+    width: 100%;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0 0.75rem;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-align: left;
+    white-space: nowrap;
+    transition: background-color var(--dur-tap) var(--ease-out-quint);
+  }
+
+  .menu-item:hover {
+    background-color: var(--ground-lift);
+  }
+
+  .self-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--radius-pill);
+    background-color: var(--ink);
+    color: var(--ground);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .choice-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.5rem;
+    padding: 0 0.95rem;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-pill);
+    color: var(--ink-soft);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      background-color var(--dur-tap) var(--ease-out-quint),
+      border-color var(--dur-tap) var(--ease-out-quint),
+      color var(--dur-tap) var(--ease-out-quint);
+  }
+
+  .choice-pill:hover {
+    border-color: var(--ink-faint);
+    color: var(--ink);
+  }
+
+  .choice-pill.is-checked {
+    border-color: var(--ink);
+    background-color: var(--ink);
+    color: var(--ground);
+  }
+
+  .choice-pill:has(:focus-visible),
+  .choice-card:has(:focus-visible) {
+    outline: 2px solid var(--signal);
+    outline-offset: 2px;
+  }
+
+  .choice-card {
+    display: block;
+    padding: 0.85rem 0.95rem;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition:
+      background-color var(--dur-tap) var(--ease-out-quint),
+      border-color var(--dur-tap) var(--ease-out-quint);
+  }
+
+  .choice-card:hover {
+    border-color: var(--ink-faint);
+  }
+
+  .choice-card.is-checked {
+    border-color: var(--ink);
+    background-color: var(--admin-lane);
+    box-shadow: inset 0 0 0 1px var(--ink);
+  }
+
+  .kanban-lane {
+    display: flex;
+    width: min(84vw, 19rem);
+    flex-shrink: 0;
+    flex-direction: column;
+    scroll-snap-align: start;
+    padding: 0.625rem;
+    border: 1px solid var(--rule-2);
+    border-radius: var(--radius-xl);
+    background-color: var(--admin-lane);
+    transition:
+      background-color var(--dur-tap) var(--ease-out-quint),
+      border-color var(--dur-tap) var(--ease-out-quint);
+  }
+
+  .kanban-lane[data-over] {
+    border-color: var(--signal);
+    background-color: color-mix(in oklab, var(--signal) 10%, var(--admin-lane));
+  }
+
+  .kanban-card {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0.875rem 1rem 1rem;
+    border: 1px solid var(--rule-2);
+    border-radius: var(--radius-lg);
+    background-color: var(--admin-card);
+    background-image: var(--surface-tint);
+    box-shadow: var(--shadow-1);
+    color: var(--ink);
+    text-align: left;
+    transition:
+      box-shadow var(--dur-fast) var(--ease-out-quint),
+      border-color var(--dur-tap) var(--ease-out-quint);
+  }
+
+  .account-card {
+    transition:
+      box-shadow var(--dur-fast) var(--ease-out-quint),
+      transform var(--dur-fast) var(--ease-out-quint);
+  }
+
+  .account-card:active {
+    transform: translateY(1px);
+  }
+
+  .kanban-card:active {
+    border-color: var(--ink-faint);
+  }
+
+  .kanban-card[data-dragging] {
+    box-shadow: var(--shadow-device);
+  }
+
+  .toast-action {
+    flex-shrink: 0;
+    min-height: 2.25rem;
+    padding: 0 0.85rem;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    transition: background-color var(--dur-tap) var(--ease-out-quint);
+  }
+
+  .toast-action:hover {
+    background-color: color-mix(in oklab, var(--ground) 14%, transparent);
+  }
+
+  .admin-dialog {
+    position: fixed;
+    inset: 0;
+    width: min(100% - 2rem, 34rem);
+    max-width: none;
+    height: fit-content;
+    max-height: min(88dvh, 46rem);
+    margin: auto;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-xl);
+    background-color: var(--admin-card);
+    background-image: var(--surface-tint);
+    color: var(--ink);
+    box-shadow: var(--shadow-device);
+    overflow: hidden;
+  }
+
+  .admin-dialog::backdrop {
+    background-color: var(--scrim, rgba(6, 5, 3, 0.55));
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    animation: admin-fade var(--dur-fast) var(--ease-out-quint);
+  }
+
+  .admin-dialog-side {
+    inset: 0 0 0 auto;
+    width: min(100%, 36rem);
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    border-radius: var(--radius-xl) 0 0 var(--radius-xl);
+  }
+
+  @media (max-width: 639px) {
+    .admin-dialog,
+    .admin-dialog-side {
+      inset: auto 0 0;
+      width: 100%;
+      height: auto;
+      max-height: 92dvh;
+      margin: 0;
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    }
+  }
+
+  @media (hover: hover) {
+    .kanban-card:hover {
+      border-color: var(--rule);
+      box-shadow: var(--shadow-lift);
+    }
+
+    .account-card:hover {
+      box-shadow: var(--shadow-lift);
+      transform: translateY(-2px);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .kanban-lane {
+      width: auto;
+      min-width: 0;
+    }
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    .glass-bar {
+      background-color: var(--admin-card);
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+  }
+}
+
+@keyframes admin-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+html:has(.admin-dialog[open]) {
+  overflow: hidden;
 }
 
 @keyframes eyebrow-ping {

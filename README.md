@@ -42,6 +42,7 @@ Toggle the theme (top-right), switch language (top-right), scroll — animated r
 | `npm run check:content` | Validate `src/content/*.ts` + `products.json`     |
 | `npm run check:i18n`    | Validate `vi.json` ↔ `en.json` parity             |
 | `npm run check`         | Aggregate quality gates                           |
+| `npm run admin:create`  | Create the first `/admin` account                 |
 
 ## Structure
 
@@ -166,6 +167,65 @@ Run the migrations once each, in filename order, in the SQL Editor of project
 
 Never re-run the first migration after the second: it recreates the 10-argument function next to
 the new one, and PostgREST cannot choose between them.
+
+3. [`supabase/migrations/20261010120000_ridelink_admin.sql`](supabase/migrations/20261010120000_ridelink_admin.sql)
+   adds the `/admin` accounts, devices, sessions and sign-in counters, plus the `ridelink_auth_*`,
+   `ridelink_admin_*` and `ridelink_contact_list` / `ridelink_contact_update` functions.
+4. [`supabase/migrations/20261010130000_ridelink_session_revoke.sql`](supabase/migrations/20261010130000_ridelink_session_revoke.sql)
+   keeps ended sessions with a reason (`revoked_at`, `revoked_reason`) so a signed-out browser can say
+   why, adds `ridelink_admin_logout_user`, and lets `ridelink_contact_update` change only the status
+   or only the note (a `null` argument keeps the current value).
+5. [`supabase/migrations/20261010140000_ridelink_roles_avatar.sql`](supabase/migrations/20261010140000_ridelink_roles_avatar.sql)
+   lets `owner` manage `sub` accounts and their devices, opens contacts to `sub`, records who last
+   changed a brief's status (`status_by`, `status_by_name`, `status_at`), adds `ridelink_user.avatar`
+   and the `ridelink_auth_profile` / `ridelink_auth_set_avatar` functions, and lets an admin sign out
+   or delete the device they are using.
+6. [`supabase/migrations/20261010150000_ridelink_self_devices.sql`](supabase/migrations/20261010150000_ridelink_self_devices.sql)
+   lets every role sign out, lock and delete its own devices from `/admin/profile`. A device someone
+   else locked can only be unlocked by a role that manages its owner, and the device in use can
+   never be locked.
+7. [`supabase/migrations/20261010160000_ridelink_self_logout.sql`](supabase/migrations/20261010160000_ridelink_self_logout.sql)
+   adds the `self_logout` reason so a device you signed out yourself does not say an admin did it.
+8. [`supabase/migrations/20261011090000_ridelink_current_device_guard.sql`](supabase/migrations/20261011090000_ridelink_current_device_guard.sql)
+   makes `ridelink_admin_delete_device` refuse the device the session is running on, like the lock
+   already did. The device in use can only be signed out.
+
+### Admin area (`/admin`)
+
+Its own accounts in `ridelink_user`, never `auth.users` or VibeHolic's `admin_user`. Passwords are
+bcrypt hashes made by `pgcrypto`; the browser holds only a random session token whose SHA-256 sits
+in `ridelink_session`. Every admin function takes that hash and checks the role inside Postgres, so a
+page that forgets a check still cannot read or change anything.
+
+| Role    | Contacts | Accounts and devices                                 |
+| ------- | -------- | ---------------------------------------------------- |
+| `admin` | yes      | every account and device                             |
+| `owner` | yes      | `sub` accounts and their devices; sees the rest only |
+| `sub`   | yes      | no                                                   |
+
+Everyone can open `/admin/profile` from the avatar menu to see their own account, sign out, lock or
+delete their own other devices (the device in use can only be signed out), and change their profile
+picture (resized in the browser to a 192 px WebP and stored in
+`ridelink_user.avatar`).
+
+Each sign-in records the browser by its ThumbmarkJS hash. A blocked device or account is signed out
+at once and cannot sign in again until it is unblocked. Five wrong passwords lock that email for
+15 minutes; twenty from one IP lock the IP for an hour.
+
+Every open `/admin` tab asks `GET /admin/session` every 10 seconds and when it regains focus. When an
+admin signs a device or an account out, blocks it, resets its password, deletes it, or the person
+changes their password on another device, the tab goes to `/admin/login`, which tells them why. A
+role change reloads the page with the new permissions instead.
+
+Create the first admin after the migration has run:
+
+```bash
+pnpm admin:create
+```
+
+It reads `.env.production`, asks for an email, a name and a password, and works only while
+`ridelink_user` is empty. Add everyone else from `/admin/accounts`; new accounts must change their
+temporary password on first sign-in.
 
 ## Brand & content rules
 

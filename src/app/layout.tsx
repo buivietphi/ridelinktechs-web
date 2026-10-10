@@ -1,15 +1,9 @@
 import type { Metadata, Viewport } from 'next';
 import { getLocale, getMessages } from 'next-intl/server';
-import type { Locale } from '@/i18n/config';
 import { Be_Vietnam_Pro, IBM_Plex_Mono } from 'next/font/google';
 import { I18nProvider } from '@/i18n/I18nProvider';
 import { ThemeProvider } from '@/components/theme/ThemeProvider';
 import { ThemeBinding } from '@/components/theme/ThemeBinding';
-import { JsonLd } from '@/components/JsonLd';
-import { graph, organization, website } from '@/lib/schema';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
-import { SmoothScroll } from '@/lib/animations';
 import { RouteProgress } from '@/components/motion/RouteProgress';
 import '@/styles/tokens.css';
 import './globals.css';
@@ -101,20 +95,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       suppressHydrationWarning
     >
       <body className="bg-[var(--ground)] font-[var(--font-body)] text-[var(--ink)]">
-        <JsonLd data={graph(organization(locale as Locale), website(locale as Locale))} />
         <ThemeProvider defaultTheme="dark">
           <ThemeBinding />
           <I18nProvider locale={locale} messages={messages}>
             <a href="#main" className="skip-link">
               {skipLabel}
             </a>
-            <SmoothScroll />
             <RouteProgress />
-            <Header />
-            <main id="main" className="relative pt-[92px] md:pt-[132px]">
-              {children}
-            </main>
-            <Footer />
+            {children}
           </I18nProvider>
         </ThemeProvider>
       </body>
