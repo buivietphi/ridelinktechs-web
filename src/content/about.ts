@@ -360,8 +360,8 @@ export const about: AboutContent = {
       en: 'Need software built, or want to build our products with us?',
     },
     lede: {
-      vi: 'Gửi cho chúng tôi một brief ngắn. Nếu bạn muốn, chúng tôi ký NDA trước buổi trao đổi đầu tiên, và trả lời trong một ngày làm việc.',
-      en: 'Send us a short brief. If you like, we sign an NDA before the first conversation, and we reply within one working day.',
+      vi: 'Gửi cho chúng tôi một brief ngắn. Nếu bạn muốn, chúng tôi ký NDA trước buổi trao đổi đầu tiên, và trả lời sớm nhất có thể.',
+      en: 'Send us a short brief. If you like, we sign an NDA before the first conversation, and we reply as soon as we can.',
     },
   },
   cta: {

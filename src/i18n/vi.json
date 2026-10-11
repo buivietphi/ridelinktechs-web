@@ -24,7 +24,7 @@
       "trust": [
         "Ký NDA trước buổi trao đổi đầu tiên",
         "Bàn giao đủ mã nguồn và tài liệu",
-        "Phản hồi trong một ngày làm việc"
+        "Phản hồi sớm nhất có thể"
       ],
       "chips": {
         "mobile": "Ứng dụng mobile",
@@ -110,7 +110,7 @@
     "cta": {
       "build": {
         "title": "Bạn muốn xây một sản phẩm?",
-        "lede": "Kể cho chúng tôi nghe bài toán của bạn. Chúng tôi trả lời trong một ngày làm việc.",
+        "lede": "Kể cho chúng tôi nghe bài toán của bạn. Chúng tôi trả lời sớm nhất có thể.",
         "cta": "Gửi brief"
       },
       "invest": {
@@ -129,7 +129,7 @@
       "description": "Các sản phẩm do RideLink Techs tự phát triển và những dự án đã xây dựng, bàn giao cho khách hàng."
     },
     "contact": {
-      "description": "Gửi brief cho RideLink Techs. Chúng tôi sẵn sàng ký NDA trước buổi trao đổi đầu tiên và trả lời trong một ngày làm việc."
+      "description": "Gửi brief cho RideLink Techs. Chúng tôi sẵn sàng ký NDA trước buổi trao đổi đầu tiên và trả lời sớm nhất có thể."
     }
   },
   "products": {
@@ -172,9 +172,9 @@
       "web": "Web"
     },
     "ctaInHouse": "Quan tâm đến {name}?",
-    "ctaInHouseLede": "Chúng tôi đang tìm nhà đầu tư và đối tác để cùng phát triển sản phẩm này. Gửi cho chúng tôi một brief ngắn, chúng tôi trả lời trong một ngày làm việc.",
+    "ctaInHouseLede": "Chúng tôi đang tìm nhà đầu tư và đối tác để cùng phát triển sản phẩm này. Gửi cho chúng tôi một brief ngắn, chúng tôi trả lời sớm nhất có thể.",
     "ctaClient": "Cần một sản phẩm như {name}?",
-    "ctaClientLede": "Kể cho chúng tôi nghe bạn đang làm. Chúng tôi sẵn sàng ký NDA trước buổi trao đổi đầu tiên và trả lời trong một ngày làm việc.",
+    "ctaClientLede": "Kể cho chúng tôi nghe bạn đang làm. Chúng tôi sẵn sàng ký NDA trước buổi trao đổi đầu tiên và trả lời sớm nhất có thể.",
     "next": "Sản phẩm tiếp theo"
   },
   "common": {
@@ -188,8 +188,8 @@
   "contact": {
     "eyebrow": "Liên hệ",
     "title": "Bắt đầu bằng một cuộc trò chuyện.",
-    "subtitle": "Gọi điện, gửi email hoặc ghé văn phòng. Chúng tôi sẵn sàng ký NDA một chiều hoặc hai chiều trước buổi trao đổi đầu tiên.",
-    "dateline": "Chúng tôi trả lời trong một ngày làm việc.",
+    "subtitle": "Liên hệ cho chúng tôi. Chúng tôi sẵn sàng ký NDA một chiều hoặc hai chiều trước buổi trao đổi đầu tiên.",
+    "dateline": "Chúng tôi trả lời sớm nhất có thể.",
     "formNote": "Gửi điều này sẽ mở ứng dụng email của bạn với nội dung đã điền sẵn. Chúng tôi không lưu dữ liệu trên trang này.",
     "channels": {
       "email": "Email",
@@ -200,7 +200,7 @@
     },
     "values": {
       "hours": "Thứ 2 đến thứ 7, 09:00 đến 18:00",
-      "response": "Trong 24 giờ làm việc"
+      "response": "Sớm nhất có thể"
     },
     "form": {
       "name": "Họ và tên",

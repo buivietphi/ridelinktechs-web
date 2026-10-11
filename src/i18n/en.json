@@ -24,7 +24,7 @@
       "trust": [
         "NDA signed before the first conversation",
         "Full source code and documentation",
-        "Reply within one working day"
+        "Reply as soon as we can"
       ],
       "chips": {
         "mobile": "Mobile apps",
@@ -110,7 +110,7 @@
     "cta": {
       "build": {
         "title": "Want a product built?",
-        "lede": "Tell us what you are working on. We reply within one working day.",
+        "lede": "Tell us what you are working on. We reply as soon as we can.",
         "cta": "Send a brief"
       },
       "invest": {
@@ -129,7 +129,7 @@
       "description": "The products RideLink Techs develops itself, and the projects it has built and delivered for clients."
     },
     "contact": {
-      "description": "Send RideLink Techs a brief. We are happy to sign an NDA before the first conversation and reply within one working day."
+      "description": "Send RideLink Techs a brief. We are happy to sign an NDA before the first conversation and reply as soon as we can."
     }
   },
   "products": {
@@ -172,9 +172,9 @@
       "web": "Web"
     },
     "ctaInHouse": "Interested in {name}?",
-    "ctaInHouseLede": "We are looking for investors and partners to develop this product with us. Send us a short brief and we reply within one working day.",
+    "ctaInHouseLede": "We are looking for investors and partners to develop this product with us. Send us a short brief and we reply as soon as we can.",
     "ctaClient": "Need a product like {name}?",
-    "ctaClientLede": "Tell us what you are building. We are happy to sign an NDA before the first conversation, and we reply within one working day.",
+    "ctaClientLede": "Tell us what you are building. We are happy to sign an NDA before the first conversation, and we reply as soon as we can.",
     "next": "Next product"
   },
   "common": {
@@ -188,8 +188,8 @@
   "contact": {
     "eyebrow": "Contact",
     "title": "Start with a conversation.",
-    "subtitle": "Call, email or come by the office. We are happy to sign a one-way or mutual NDA before the first conversation.",
-    "dateline": "We reply within one working day.",
+    "subtitle": "Contact us. We are happy to sign a one-way or mutual NDA before the first conversation.",
+    "dateline": "We reply as soon as we can.",
     "formNote": "Submitting opens your email client with the message pre-filled. We store nothing on this page.",
     "channels": {
       "email": "Email",
@@ -200,7 +200,7 @@
     },
     "values": {
       "hours": "Monday to Saturday, 09:00 to 18:00",
-      "response": "Within 24 working hours"
+      "response": "As soon as we can"
     },
     "form": {
       "name": "Your name",
