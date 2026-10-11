@@ -24,3 +24,9 @@ export async function saveContactNote(id: string, note: string) {
   if (result.ok) revalidatePath('/admin/contacts');
   return result;
 }
+
+export async function deleteContact(id: string) {
+  const result = await actAs('ridelink_contact_delete', { p_id: text(id) });
+  revalidatePath('/admin/contacts');
+  return result;
+}

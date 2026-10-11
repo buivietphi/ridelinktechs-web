@@ -189,6 +189,10 @@ the new one, and PostgREST cannot choose between them.
 8. [`supabase/migrations/20261011090000_ridelink_current_device_guard.sql`](supabase/migrations/20261011090000_ridelink_current_device_guard.sql)
    makes `ridelink_admin_delete_device` refuse the device the session is running on, like the lock
    already did. The device in use can only be signed out.
+9. [`supabase/migrations/20261012090000_ridelink_contact_delete.sql`](supabase/migrations/20261012090000_ridelink_contact_delete.sql)
+   adds `ridelink_contact_delete`, which deletes one brief and only accepts an `admin` session. A
+   deleted brief also stops counting toward the per-IP rate limit of the contact form, since that
+   limit counts stored rows.
 
 ### Admin area (`/admin`)
 
@@ -202,6 +206,8 @@ page that forgets a check still cannot read or change anything.
 | `admin` | yes      | every account and device                             |
 | `owner` | yes      | `sub` accounts and their devices; sees the rest only |
 | `sub`   | yes      | no                                                   |
+
+All three roles can read, move and annotate briefs; only `admin` can delete one (drawer, "Xoá brief").
 
 Everyone can open `/admin/profile` from the avatar menu to see their own account, sign out, lock or
 delete their own other devices (the device in use can only be signed out), and change their profile

@@ -8,6 +8,7 @@ import { Envelope, NotePencil, Phone } from 'phosphor-react';
 import {
   startTransition,
   useLayoutEffect,
+  useMemo,
   useOptimistic,
   useRef,
   useState,
@@ -30,6 +31,7 @@ import {
 import { ago, when } from '@/lib/admin/format';
 import { cn } from '@/lib/cn';
 import { saveContactNote, setContactStatus } from './actions';
+import { DeleteContact } from './DeleteContact';
 
 gsap.registerPlugin(useGSAP, Draggable, Flip);
 
@@ -73,7 +75,7 @@ function Card({
 }: {
   contact: Contact;
   handler: Handler | null;
-  onOpen: (id: string) => void;
+  onOpen: (contact: Contact) => void;
   onDrop: MoveHandler;
 }) {
   const ref = useRef<HTMLButtonElement>(null);
@@ -133,7 +135,7 @@ function Card({
       data-card
       data-flip-id={contact.id}
       onClick={() => {
-        if (performance.now() - droppedAt > 400) onOpen(contact.id);
+        if (performance.now() - droppedAt > 400) onOpen(contact);
       }}
       className="kanban-card"
     >
@@ -216,10 +218,14 @@ function Detail({
   contact,
   handler,
   onMove,
+  canDelete,
+  onDeleted,
 }: {
   contact: Contact;
   handler: Handler | null;
   onMove: MoveHandler;
+  canDelete: boolean;
+  onDeleted: () => void;
 }) {
   const facts: [string, string][] = [
     ['Nhu cầu', contact.inquiry_type ? INQUIRY[contact.inquiry_type] : 'Chưa phân loại'],
@@ -305,6 +311,10 @@ function Detail({
       </dl>
 
       <NoteForm contact={contact} />
+
+      {canDelete ? (
+        <DeleteContact id={contact.id} name={contact.name} onDeleted={onDeleted} />
+      ) : null}
     </div>
   );
 }
@@ -314,11 +324,13 @@ export function Board({
   total,
   people,
   me,
+  canDelete,
 }: {
   items: Contact[];
   total: number;
   people: People;
   me: Me;
+  canDelete: boolean;
 }) {
   const toast = useToast();
   const board = useRef<HTMLDivElement>(null);
@@ -337,9 +349,14 @@ export function Board({
     ),
   );
   const everyone: People = { ...people, [me.id]: me };
-  const [openId, setOpenId] = useState<string | null>(null);
+  const [removed, setRemoved] = useState<string[]>([]);
+  const visible = useMemo(
+    () => list.filter((contact) => !removed.includes(contact.id)),
+    [list, removed],
+  );
+  const [shown, setShown] = useState<Contact | null>(null);
   const [open, setOpen] = useState(false);
-  const selected = list.find((contact) => contact.id === openId) ?? null;
+  const selected = shown ? (list.find((contact) => contact.id === shown.id) ?? shown) : null;
 
   const snapshot = () => {
     if (!board.current || prefersReducedMotion()) return;
@@ -357,7 +374,7 @@ export function Board({
       scale: true,
       zIndex: 30,
     });
-  }, [list]);
+  }, [visible]);
 
   useGSAP(
     () => {
@@ -378,6 +395,12 @@ export function Board({
     },
     { scope: board },
   );
+
+  const remove = (id: string) => {
+    snapshot();
+    setRemoved((ids) => [...ids, id]);
+    setOpen(false);
+  };
 
   const move: MoveHandler = (contact, status, quiet = false) => {
     if (contact.status === status) return;
@@ -412,7 +435,7 @@ export function Board({
         className="-mx-4 flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 pb-4 sm:-mx-6 sm:scroll-px-6 sm:px-6 lg:-mx-8 lg:scroll-px-8 lg:px-8 xl:mx-0 xl:grid xl:grid-cols-5 xl:overflow-visible xl:px-0 xl:pb-0"
       >
         {STATUSES.map((status) => {
-          const cards = list.filter((contact) => contact.status === status);
+          const cards = visible.filter((contact) => contact.status === status);
           return (
             <section
               key={status}
@@ -439,8 +462,8 @@ export function Board({
                     <Card
                       contact={contact}
                       handler={handlerOf(contact, everyone)}
-                      onOpen={(id) => {
-                        setOpenId(id);
+                      onOpen={(opened) => {
+                        setShown(opened);
                         setOpen(true);
                       }}
                       onDrop={move}
@@ -472,6 +495,8 @@ export function Board({
             contact={selected}
             handler={handlerOf(selected, everyone)}
             onMove={move}
+            canDelete={canDelete}
+            onDeleted={() => remove(selected.id)}
           />
         ) : null}
       </Dialog>

@@ -70,6 +70,7 @@ export default async function ContactsPage({ searchParams }: { searchParams: Pro
         items={items}
         total={data.total}
         people={data.people}
+        canDelete={session.role === 'admin'}
         me={{
           id: session.userId,
           name: session.displayName,
