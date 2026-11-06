@@ -28,7 +28,7 @@ export default [
       '.claude/**',
     ],
   },
-  nextPlugin.flatConfig.coreWebVitals,
+  nextPlugin.configs['core-web-vitals'],
   {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {

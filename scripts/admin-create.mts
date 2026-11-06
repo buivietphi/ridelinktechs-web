@@ -6,6 +6,7 @@
 import { stdin, stdout } from 'node:process';
 import { createInterface } from 'node:readline';
 import { Writable } from 'node:stream';
+import { supabaseHeaders } from '../src/lib/supabase-headers';
 
 const SUPABASE_URL = process.env.SUPABASE_URL ?? '';
 const KEY = process.env.SUPABASE_SERVICE_ROLE_KEY ?? '';
@@ -51,12 +52,7 @@ if (password !== again) {
 
 const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/ridelink_admin_bootstrap`, {
   method: 'POST',
-  headers: {
-    apikey: KEY,
-    Authorization: `Bearer ${KEY}`,
-    'Content-Type': 'application/json',
-    Accept: 'application/json',
-  },
+  headers: supabaseHeaders(KEY, { 'Content-Type': 'application/json' }),
   body: JSON.stringify({ p_email: email, p_display_name: name, p_password: password }),
 });
 

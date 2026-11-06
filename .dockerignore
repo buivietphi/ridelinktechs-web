@@ -1,34 +1,21 @@
-# Dependencies
-node_modules
-.pnp
-.pnp.js
+# Only production build inputs enter the build context or intermediate layers.
+**
+!Dockerfile
+!package.json
+!pnpm-lock.yaml
+!pnpm-workspace.yaml
+!next.config.mjs
+!tsconfig.json
+!postcss.config.mjs
+!eslint.config.mjs
+!src/
+!src/**
+!public/
+!public/**
 
-# Next.js
-.next/
-out/
-build/
-*.tsbuildinfo
-next-env.d.ts
-
-# Misc
-.DS_Store
-*.pem
-.vscode
-.idea
-*.log
-
-# Personal overrides only. `.env.development` and `.env.production` are tracked
-# and must reach the image: the runner stage copies `.env.production` next to
-# server.js, and the standalone server loads it on startup.
-.env*.local
-.env
-
-# Source maps (large, not needed in container)
-*.map
-
-# Tests
-test-results/
-playwright-report/
-
-# Large asset sources (not needed at runtime)
-logo/
+# Keep credentials out even if someone places them under an allowed directory.
+**/.env*
+**/.mcp.json
+**/*.pem
+**/*.key
+**/.DS_Store

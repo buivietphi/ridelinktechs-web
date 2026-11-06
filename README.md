@@ -6,7 +6,8 @@ The visual language is **Atelier Editorial · Studio Almanac** — warm bone pap
 
 ## Stack
 
-- Next.js 15 (App Router, standalone output)
+- Next.js 16 (App Router, standalone output)
+- Node.js 24 LTS and pnpm 12 (versions pinned by the project and Dockerfile)
 - TypeScript strict
 - Tailwind CSS v4 (`@theme inline`)
 - next-intl (cookie locale persistence, no URL prefix)
@@ -19,13 +20,14 @@ The visual language is **Atelier Editorial · Studio Almanac** — warm bone pap
 ## Getting started
 
 ```bash
-npm install
-npm run dev
+corepack pnpm install --frozen-lockfile
+corepack pnpm dev
 ```
 
-The dev server is locked to **port 7421** (port 3100 collides with the local Paperclip helper — avoid that one).
+The dev server defaults to port **3000**. Use `corepack pnpm dev --port 7421` to
+run it on port 7421.
 
-Open <http://localhost:7421>. Default theme is **light**, default locale is **Vietnamese**.
+Open <http://localhost:3000>. Default theme is **dark**, default locale is **Vietnamese**.
 
 Toggle the theme (top-right), switch language (top-right), scroll — animated reveals are on everywhere except where reduced-motion is set.
 
@@ -33,7 +35,7 @@ Toggle the theme (top-right), switch language (top-right), scroll — animated r
 
 | Command                 | What it does                                      |
 | ----------------------- | ------------------------------------------------- |
-| `npm run dev`           | Start the dev server on **port 7421** (Turbopack) |
+| `npm run dev`           | Start the dev server on **port 3000** (Turbopack) |
 | `npm run build`         | Production build (standalone output)              |
 | `npm run start`         | Run the built server                              |
 | `npm run lint`          | ESLint                                            |
@@ -76,38 +78,94 @@ src/
 
 ## Deployment
 
-The Next.js standalone output ships with two builds:
+Production uses Node 24 and the standalone image built by the included
+[`Dockerfile`](Dockerfile). The image runs `node server.js` as UID/GID 1001 and
+checks `/robots.txt` every 30 seconds. It builds without application credentials.
 
-1. **Docker**: build with `output: 'standalone'` (default), generate an image from the included [`Dockerfile`](Dockerfile), and run it behind a reverse-proxy on port 3000.
-2. **Any Node 22 host**: `npm run build && node .next/standalone/server.js`.
+The project pins pnpm in `package.json`, and the Dockerfile installs the same
+version. Dokploy's own pnpm installation is not used for Dockerfile builds.
+Dependency overrides and approved package build scripts are configured in
+`pnpm-workspace.yaml`; pnpm 12 does not read the old `package.json.pnpm` settings.
+Regenerate the lockfile with the pinned pnpm version before a frozen install.
+
+### Dokploy
+
+Select **Dockerfile** as the application's build type, with `Dockerfile` at the
+repository root and the internal port set to **3000**. Keep this selection in the
+saved Dokploy application settings so later deployments use the same runtime.
+
+Provide the variables from [`.env.example`](.env.example) through Dokploy's
+runtime Environment settings or an application-specific Docker Swarm secret.
+For the secret-file approach, mount the secret read-only at
+`/app/.env.production`, readable by UID 1001. Never put credentials into build
+arguments or the source directory sent to the Docker builder.
+
+Start with an application CPU limit of **2 CPUs** and a memory limit of **1 GiB**;
+adjust them after measuring actual traffic. Keep application code read-only,
+drop Linux capabilities, and enable `no-new-privileges` where the deployment
+runtime supports it. Next.js image optimization needs a writable
+`/app/.next/cache`; use a bounded tmpfs or a dedicated cache volume owned by UID 1001. A bounded `/tmp` tmpfs handles temporary files.
+
+A direct Docker deployment with runtime environment injection looks like this:
+
+```bash
+docker build -t ridelink-techs-web:patched .
+docker run -d --name ridelink-techs-web \
+  --env-file /secure/path/ridelink.env \
+  --read-only --cap-drop ALL --security-opt no-new-privileges \
+  --cpus 2 --memory 1g \
+  --tmpfs /tmp:rw,noexec,nosuid,size=16m \
+  --tmpfs /app/.next/cache:rw,noexec,nosuid,size=128m,uid=1001,gid=1001,mode=0700 \
+  -p 127.0.0.1:3000:3000 ridelink-techs-web:patched
+```
+
+Put a reverse proxy in front of port 3000. The image's writable layer contains no
+application secrets; Docker still exposes injected environment values to users
+with Docker administration access.
 
 ### Environment
 
-There are two tracked env files, and which one loads depends on `NODE_ENV`:
+The project keeps `.env.development` and `.env.production` tracked. Next.js reads
+the matching mode file locally; `.env.<mode>.local` provides a personal override.
+[`.env.example`](.env.example) documents the required variables.
 
-| File               | Loaded by                                   | Turnstile     |
-| ------------------ | ------------------------------------------- | ------------- |
-| `.env.development` | `npm run dev` (`NODE_ENV=development`)      | dummy keys    |
-| `.env.production`  | `npm run build` and `npm start` / the image | the real keys |
+Docker excludes all environment files from the build context, including
+intermediate image layers. Supply the production file as a read-only runtime
+mount at `/app/.env.production`, or provide its values through Dokploy Environment.
 
-`.env.example` is the blank template. `.env.development` uses Cloudflare's
-official dummy Turnstile pair, which validates on any host including
-`localhost`; a production secret rejects a dummy token, so the two must never be
-mixed.
+Next.js gives `process.env` precedence over environment files. Server-only
+variables are read by the running process; restart or replace the application
+tasks after changing them. The Turnstile site key is passed from a server
+component to the form, so changing it requires a task restart rather than a
+`NEXT_PUBLIC_` rebuild.
 
-Next.js resolves these automatically — the standalone server loads
-`.env.production` from its own directory on startup, and the `Dockerfile` copies
-the file next to `server.js` for that reason. **No `-e` flags and no build
-arguments are required**: a fresh clone is deployable as is.
+For local development only, Cloudflare's official dummy pair validates on
+localhost:
 
-Every server variable is read per request, so nothing is baked into the bundle.
-`NEXT_PUBLIC_` values would be frozen at build time, which is why the Turnstile
-sitekey is read by a server component in `src/app/contact/page.tsx` and handed to
-the form as a prop instead.
+```dotenv
+TURNSTILE_SITE_KEY=1x00000000000000000000AA
+TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA
+```
 
-> `.env.production` holds `SUPABASE_SERVICE_ROLE_KEY`, which bypasses row level
-> security. It is tracked in git by choice. If this repository ever becomes
-> public, rotate that key in Supabase before anything else.
+Production must use a real Turnstile key pair.
+
+### Recovery after a compromised container
+
+Keep the affected service stopped until the replacement has passed the
+production dependency audit, typecheck, lint, content/i18n checks, build and HTTP
+smoke checks. Build from reviewed source into a new image and replace the
+container; do not reuse the compromised writable layer or restore its startup
+files. Verify the running user, installed Next.js version, resource limits,
+health check and CPU usage after deployment.
+
+Rotate secrets readable by the old container, including the Supabase service
+key, Turnstile secret and contact IP pepper. The Supabase project is shared:
+inventory all consumers before retiring a legacy key. Creating a new
+`sb_secret_...` key alone does not revoke an exposed legacy `service_role` JWT.
+Follow [Supabase's leaked-key rotation procedure](https://supabase.com/docs/guides/security/rotate-leaked-api-keys),
+including migration of affected `anon` consumers and retirement of the legacy
+signing secret. A clean application container does not establish that the host
+or other services are free of compromise; investigate their scope separately.
 
 ### The Supabase project is shared with VibeHolic
 
@@ -118,7 +176,7 @@ into VibeHolic's `contact_lead`, which its admin dashboard reads through
 
 That sharing is also why the write path is an RPC. `service_role` carries
 `BYPASSRLS`, so a key holding a plain `INSERT` grant on one table can read and
-write **every** table in the project, VibeHolic's included. Instead:
+write **every** table in the project, VibeHolic's included. The dedicated contact table uses these grants:
 
 | Role           | Can do                                                 |
 | -------------- | ------------------------------------------------------ |
@@ -153,7 +211,9 @@ block aborts the migration if any of that drifts.
 > The migration's trailing guard fails loudly if this ever regresses. Do not
 > "simplify" it back to revoking from `PUBLIC` only.
 
-A leaked key now costs one blind write endpoint instead of the whole project.
+These grants apply to this contact table and its RPC. A `service_role` key can
+still access other resources in the shared Supabase project, so treat exposure
+of that key as a project-wide incident.
 
 Run the migrations once each, in filename order, in the SQL Editor of project
 `qyqhoegexqmzdzrosztm`:
@@ -259,7 +319,7 @@ temporary password on first sign-in.
 2. Run `npm run check:content` to validate the JSON shape.
 3. Update bilingual strings in any new copy inside the relevant namespace of `vi.json` + `en.json`. Then `npm run check:i18n`.
 4. If you introduced new copy keys, add them to **both** files in the same edit (parity is enforced).
-5. `npm run dev` (already on port 7421) and the new product appears on `/products` immediately.
+5. Run `corepack pnpm dev` and the new product appears on `/products` immediately.
 
 ### When adding a page
 

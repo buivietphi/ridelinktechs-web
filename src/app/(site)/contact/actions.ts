@@ -4,6 +4,7 @@ import { headers } from 'next/headers';
 import { inHouseProducts } from '@/content/products';
 import { defaultLocale, isLocale } from '@/i18n/config';
 import { clientIp, hashIp } from '@/lib/ip';
+import { supabaseHeaders } from '@/lib/supabase-headers';
 import { isInquiry } from './inquiry';
 
 const SUPABASE_URL = process.env.SUPABASE_URL ?? '';
@@ -113,7 +114,7 @@ export async function submitContact(
   try {
     res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${RPC}`, {
       method: 'POST',
-      headers: dbHeaders({ 'Content-Type': 'application/json' }),
+      headers: supabaseHeaders(KEY, { 'Content-Type': 'application/json' }),
       body: JSON.stringify({
         p_name: name,
         p_email: email,
@@ -150,15 +151,6 @@ export async function submitContact(
 
   if (ipHash) recordHit(ipHash);
   return { ok: true, code: null, field: null };
-}
-
-function dbHeaders(extra?: Record<string, string>): Record<string, string> {
-  return {
-    apikey: KEY,
-    Authorization: `Bearer ${KEY}`,
-    Accept: 'application/json',
-    ...extra,
-  };
 }
 
 function hitRate(ipHash: string): boolean {

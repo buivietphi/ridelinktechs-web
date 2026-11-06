@@ -1,4 +1,5 @@
 import 'server-only';
+import { supabaseHeaders } from '../supabase-headers';
 
 const SUPABASE_URL = process.env.SUPABASE_URL ?? '';
 const KEY = process.env.SUPABASE_SERVICE_ROLE_KEY ?? '';
@@ -21,12 +22,7 @@ export async function rpc<T>(name: string, args: Record<string, unknown>): Promi
   try {
     res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${name}`, {
       method: 'POST',
-      headers: {
-        apikey: KEY,
-        Authorization: `Bearer ${KEY}`,
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
+      headers: supabaseHeaders(KEY, { 'Content-Type': 'application/json' }),
       body: JSON.stringify(args),
       cache: 'no-store',
       signal: AbortSignal.timeout(8_000),

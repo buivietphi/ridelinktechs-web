@@ -27,11 +27,7 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# Environment files.
-# `.env.development` and `.env.production` are deliberately NOT ignored: the
-# owner chose to track them so a fresh clone is deployable without hand-copying
-# secrets. Both hold SUPABASE_SERVICE_ROLE_KEY, which bypasses RLS — if this
-# repo ever goes public, rotate that key first.
+# Keep the project's two mode files tracked; personal overrides stay local.
 .env*.local
 .env
 
